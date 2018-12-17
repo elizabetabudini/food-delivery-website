@@ -1,0 +1,16 @@
+.card-sm{
+  margin-top: 50%;
+  background: rgba(0,0,0,0.7);
+}
+.form-control{
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.col-auto{
+  margin-left: 1%;
+}
+.form-control:hover{
+  background-color: rgb(255, 255, 255);
+  -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+  -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+}
