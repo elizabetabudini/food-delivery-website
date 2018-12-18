@@ -7,20 +7,20 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 <ul class="navbar-nav mr-auto">
   <li class="nav-item active">
-    <a class="nav-link" href="homeclienti.php">Home <span class="sr-only">(current)</span></a>
+    <a class="nav-link" href="areafornitori.php">Home <span class="sr-only">(current)</span></a>
   </li>
 
   <li class="nav-item">
     <a class="nav-link" href="accedi.php">Accedi</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="signinutente.php">Registrati</a>
+    <a class="nav-link" href="signinfornitore.php">Registrati</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Carrello</a>
+    <a class="nav-link" href="#">Listino</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="areafornitori.php">Area Fornitori</a>
+    <a class="nav-link" href="homeclienti.php">Area Clienti</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Contatti</a>
