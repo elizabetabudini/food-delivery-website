@@ -1,0 +1,17 @@
+button {
+  margin-top: 3%;
+}
+h1, h2, h3 {
+  color: white;
+}
+h2{
+  color: rgba(255, 255, 255, 0.4);
+
+}
+h3 {
+  margin-top: 3%;
+  font-size: 98%;
+}
+.card-sm{
+  background-color: rgba(0, 0, 0, 0.7);
+}
