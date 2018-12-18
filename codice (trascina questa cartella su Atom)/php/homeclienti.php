@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <title>CFU - Home</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/full.css" rel="stylesheet">
-    <link href="css/home.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../css/bootstrap.min.css">
+    <link href="./../css/full.css" rel="stylesheet">
+    <link href="./../css/home.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
   <body>
-    <?php include 'php/menu.php'; ?>
+    <?php include 'menu.php'; ?>
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-12 col-md-10 col-lg-8">
           <form class="card card-sm">
@@ -39,6 +39,6 @@
 
 <!-- Bootstrap core JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="./../js/bootstrap.min.js"></script>
   </body>
 </html>

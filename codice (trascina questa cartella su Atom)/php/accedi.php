@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <title>CFU - Accedi</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/full.css" rel="stylesheet">
-    <link href="css/form.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../css/bootstrap.min.css">
+    <link href="./../css/full.css" rel="stylesheet">
+    <link href="./../css/form.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
   <body>
-  <?php include 'php/menu.php'; ?>
+  <?php include 'menu.php'; ?>
   <form>
     <div class="container">
     <div class="form-group">
