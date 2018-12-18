@@ -1,0 +1,44 @@
+.card-body {
+    background-color: rgba(255, 71, 0, 0.55);
+}
+.card-body:hover {
+    background-color: rgba(255, 71, 0, 0.43);
+}
+.btn-primary {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #ab0000e0;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #d90000c7;
+    border-color: #de0a0aa3;
+}
+.card-sm {
+    padding-left: 2%;
+    padding-right: 2%;
+    background: rgba(0,0,0,0.7);
+    padding-bottom: 2%;
+}
+h1, h2, h3{
+  color:white;
+  text-align: center;
+}
+h1{
+    margin-top:2%;
+}
+h3{
+  font-size: 95%;
+  font-style: italic;
+  margin-bottom:3%;
+}
+
+@media only screen and (max-width: 600px) {
+  .card{
+    margin-bottom: 3%;
+  }
+  .navbar-brand{
+    font-size: 1rem;
+  }
+
+}
