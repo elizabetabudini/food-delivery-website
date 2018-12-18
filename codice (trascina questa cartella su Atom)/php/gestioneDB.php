@@ -19,7 +19,7 @@ if(isset($_POST["nome"]) and isset($_POST["cognome"]) and isset($_POST["email"])
   }
   //Invio query
   if ($conn->query($query_sql) === TRUE) {
-      echo "Un nuovo record è stato creato con successo";
+      echo "Benvenuto " .$_POST['nome']. ", la registrazione è avvenuta con successo!";
   } else {
       echo "Errore: " . $query_sql . "<br>" . $conn->error;
   }
