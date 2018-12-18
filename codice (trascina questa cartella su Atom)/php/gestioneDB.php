@@ -21,12 +21,12 @@ if(isset($_POST["nome"]) and isset($_POST["cognome"]) and isset($_POST["email"])
   if ($conn->connect_errno) {
       echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
   }
-  if(empty($conn->query($query_sql_retrive))){
-  //Invio query
-    if ($conn->query($query_sql) === TRUE) {
+  if(mysqli_num_rows($conn->query($query_sql_retrive)) == 0){
+    //Invio query
+    if ($conn->query($query_sql_insert) === TRUE) {
         echo "Benvenuto " .$_POST['nome']. ", la registrazione è avvenuta con successo!";
     } else {
-        echo "Errore: " . $query_sql . "<br>" . $conn->error;
+        echo "Errore: " . $query_sql_insert . "<br>" . $conn->error;
     }
   }else{
     echo "<script>console.log( 'you are already registered' );</script>";
