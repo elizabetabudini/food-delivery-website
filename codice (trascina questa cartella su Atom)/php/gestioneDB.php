@@ -4,13 +4,15 @@ $servername="localhost";
 $username ="root";
 $password ="";
 $database = "progetto";
+$psswduser = "";
 
 if(isset($_POST["nome"]) and isset($_POST["cognome"]) and isset($_POST["email"]) and isset($_POST["password"])){
   //preparazione query
+  $psswduser = PASSWORD_HASH($_POST["password"], PASSWORD_DEFAULT);
   $query_sql="INSERT INTO `clienti` (`nome`, `cognome`, `email`, `password`) VALUES ('".$_POST['nome']."', '"
                                                                                .$_POST['cognome']."', '"
                                                                                .$_POST['email']."', '"
-                                                                               .$_POST['password']."')";
+                                                                               .$psswduser."')";
   //connessione al db
   $conn =new mysqli($servername, $username, $password, $database);
   //Check della connessione
