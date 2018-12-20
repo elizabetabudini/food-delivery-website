@@ -12,15 +12,15 @@
   </head>
   <body>
     <?php include 'menufornitori.php'; ?>
-    <div class="card card-sm">
+    <div class="card card-sm center-msg-box">
       <h1>CFU</h1>
       <h2>Cesena Food University</h2>
       <h3>Their food at your university</h3>
       <div class="row">
 
-      <div class="col-sm-6">
+      <div class="col-sm-6 ">
         <div class="card dark">
-          <div class="card-body">
+          <div class="card-body ">
             <h5 class="card-title">Dai una svolta alla tua attività</h5>
             <p class="card-text-center">Perchè perdere l'occasione di spedire ogni giorno il tuo cibo a studenti affamati?</p>
             <a href="signinfornitori.php" class="btn btn-primary">Registrati!</a>
@@ -29,7 +29,7 @@
       </div>
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body ">
             <h5 class="card-title">Sei già un nostro partner?</h5>
             <p class="card-text-center">Modifica il listino aggiungendo nuovi cibi, controlla i tuoi ordini e tanto altro.</p>
             <a href="accedi.php" class="btn btn-primary">Accedi!</a>

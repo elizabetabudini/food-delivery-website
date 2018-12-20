@@ -12,9 +12,9 @@
   </head>
   <body>
     <?php include 'menu.php'; ?>
-    <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-12 col-md-10 col-lg-8">
-          <form class="card card-sm">
+    <div class="row h-100 justify-content-center align-items-center ">
+        <div class="col-12 col-md-10 col-lg-8 ">
+          <form class="card card-sm center-msg-box">
             <h1>CFU</h1>
             <h2>Cesena Food University</h2>
             <h3>Their food at your university</h3>
