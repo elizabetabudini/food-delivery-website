@@ -15,7 +15,7 @@
     <div class="card card-sm center-msg-box">
       <h1>CFU</h1>
       <h2>Cesena Food University</h2>
-      <h3>Their food at your university</h3>
+      <h3>Your food at their university</h3>
       <div class="row">
 
       <div class="col-sm-6 ">
