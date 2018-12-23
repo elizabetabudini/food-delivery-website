@@ -1,4 +1,56 @@
 <?php
+if(isset($_GET["sent"])){
+	$errors = "";
+	$insertError = "";
+
+
+	if(!isset($_GET["nome"]) || strlen($_GET["nome"]) < 2){
+		$errors .= "Nome e' obbligatorio e deve essere almeno 2 caratteri <br/>";
+	}
+
+	if(!isset($_GET["cognome"]) || strlen($_GET["cognome"]) < 2){
+		$errors .= "Cognome e' obbligatorio e deve essere almeno 2 caratteri";
+	}
+
+	if(!isset($_GET["email"]) || !filter_var($_GET["email"], FILTER_VALIDATE_EMAIL)){
+		$errors .= "Email e' obbligatoria e deve essere valida <br/>";
+	}
+
+	if(!isset($_GET["password"])){
+		$errors .= "Password ? obbligatoria<br/>";
+	}
+
+	if(strlen($errors) == 0){
+
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "progetto";
+
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+
+		$stmt = $conn->prepare("INSERT INTO clienti (nome, cognome, email, password) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("sss", $nome, $cognome, $email , $password);
+
+		$nome = $_GET["nome"];
+		$cognome = $_GET["cognome"];
+		$email = $_GET["email"];
+		$psswduser = PASSWORD_HASH($_POST["password"], PASSWORD_DEFAULT);
+
+		$isInserted = $stmt->execute();
+		if(!$isInserted){
+			$insertError = $stmt->error;
+		}
+
+		$stmt->close();
+	}
+}
+?>
+<?php
+/*
 //Dichiarazione variabili per server
 $servername="localhost";
 $username ="root";
@@ -34,4 +86,5 @@ if(isset($_POST["nome"]) and isset($_POST["cognome"]) and isset($_POST["email"])
     //Chiusura connessione con db
   $conn->close();
 }
+*/
  ?>
