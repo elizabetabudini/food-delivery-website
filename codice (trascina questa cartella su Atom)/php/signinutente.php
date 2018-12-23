@@ -24,7 +24,7 @@ if(isset($_POST["sent"])){
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$dbname = "progetto";
+		$dbname = "cfu";
 
 		$conn = new mysqli($servername, $username, $password, $dbname);
 		if ($conn->connect_error) {
@@ -35,10 +35,13 @@ if(isset($_POST["sent"])){
 		$cognome = $_POST["cognome"];
 		$email = $_POST["email"];
 		$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+		$privilegi = "utente";
+		$cell = "";
 
-		$stmt = $conn->prepare("INSERT INTO clienti (nome, cognome, email, password) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $nome, $cognome, $email, $pwd);
-		
+
+		$stmt = $conn->prepare("INSERT INTO persona (nome, cognome, email, password, privilegi, cellulare) VALUES (?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("ssssss", $nome, $cognome, $email, $pwd, $privilegi, $cell);
+
 		$isInserted = $stmt->execute();
 		if(!$isInserted){
 			$insertError = $stmt->error;
