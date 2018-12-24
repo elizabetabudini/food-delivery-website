@@ -3,7 +3,7 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Sun Dec 23 12:19:15 2018 
+-- * Generation date: Mon Dec 24 11:29:57 2018 
 -- * LUN file: G:\xampp\htdocs\sitotecweb\database\tecweb.lun 
 -- * Schema: cfu/1 
 -- ********************************************* 
@@ -48,9 +48,11 @@ create table ingredienti (
      constraint IDingredienti primary key (nome));
 
 create table lista (
-     nome_alimento varchar(20) not null,
      id_prenotazione int not null,
-     constraint IDlista primary key (nome_alimento, id_prenotazione));
+     nome varchar(20) not null,
+     id_ristorante int not null,
+     nome_menu varchar(20) not null,
+     constraint IDlista primary key (id_prenotazione, nome, id_ristorante, nome_menu));
 
 create table menu (
      id_ristorante int not null,
@@ -127,6 +129,10 @@ alter table alimento add constraint FKpartecipa
 alter table lista add constraint FKlis_pre
      foreign key (id_prenotazione)
      references prenotazione (id);
+
+alter table lista add constraint FKcomprende
+     foreign key (nome, id_ristorante, nome_menu)
+     references alimento (nome, id_ristorante, nome_menu);
 
 alter table menu add constraint FKoffre
      foreign key (id_ristorante)
