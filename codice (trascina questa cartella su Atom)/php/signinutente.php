@@ -9,14 +9,14 @@ if(isset($_POST["sent"])){
 	}
 
 	if(!isset($_POST["cognome"]) || strlen($_POST["cognome"]) < 2){
-		$errors .= "Cognome è obbligatorio e deve essere almeno 2 caratteri";
+		$errors .= "Cognome è obbligatorio e deve avere almeno 2 caratteri <br/>";
 	}
 
 	if(!isset($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
 		$errors .= "Email è obbligatoria e deve essere valida <br/>";
 	}
-	if(!isset($_POST["password"])){
-		$errors .= "Password è obbligatoria <br/>";
+	if(!isset($_POST["password"]) || strlen($_POST["password"]) < 4){
+		$errors .= "Password è obbligatoria e deve avere almeno 4 caratteri <br/>";
 	}
 
 	if(strlen($errors) == 0){
@@ -70,7 +70,7 @@ if(isset($_POST["sent"])){
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-12 col-md-4 offset-md-4">
-			<?php
+		<?php
 			if(isset($_POST["sent"])){
 				if(strlen($errors) == 0 and $isInserted)
 				{
@@ -94,22 +94,23 @@ if(isset($_POST["sent"])){
 				Dati inseriti non corretti
 				<p></p>
 			</div>
+
 			<form id="insertform" method="post" action="#">
 				<div class="form-group">
 				<label for="inputNome">Nome</label>
-				<input type="text" name="nome" class="form-control" id="inputNome" placeholder="Inserisci Nome">
+				<input type="text" name="nome" class="form-control" id="inputNome" placeholder="Inserisci Nome" autofocus="true" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
 				</div>
 				<div class="form-group">
 				<label for="inputCognome">Cognome</label>
-				<input type="text" name="cognome" class="form-control" id="inputCognome" placeholder="Inserisci Cognome">
+				<input type="text" name="cognome" class="form-control" id="inputCognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
 				</div>
 				<div class="form-group">
 				<label for="inputEmail">Indirizzo Email</label>
-				<input type="email" name="email"  class="form-control" id="inputEmail" placeholder="Inserisci Email">
+				<input type="email" name="email"  class="form-control" id="inputEmail" placeholder="Inserisci Email" required >
 				</div>
 				<div class="form-group">
 				<label for="inputPassword">Password</label>
-				<input type="password" name="password"  class="form-control" id="inputPassword" placeholder="Inserisci Password">
+				<input type="password" name="password"  class="form-control" id="inputPassword" placeholder="Inserisci Password" required pattern=".{4,}" title="Inserisci almeno 4 caratteri">
 				</div>
 				<input type="hidden" name="sent" value="true" />
 				<button type="submit" class="btn btn-primary">Registrati</button>
@@ -123,6 +124,5 @@ if(isset($_POST["sent"])){
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="./../js/signinutente.js"></script>
-  </body>
+	</body>
 </html>

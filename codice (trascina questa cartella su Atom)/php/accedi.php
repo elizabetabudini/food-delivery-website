@@ -16,40 +16,31 @@ if(isset($_POST["sent"])){
 		$username = "root";
 		$password = "";
 		$dbname = "cfu";
-
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		}
-
-		$email = $_POST["email"];
-		$pwdinserita = password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-    $pwdgiusta = "";
-    /* create a prepared statement */
-    $stmt = $mysqli->prepare("SELECT password FROM persona WHERE email=?");
-
-    /* bind parameters for markers */
-    $stmt->bind_param("s", $email);
-
-    /* execute query */
+		session_start();
+    // Getting submitted user data from database
+    $con = new mysqli($servername, $username, $password, $dbname);
+    $stmt = $con->prepare("SELECT * FROM persona WHERE email = ?");
+    $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
 
-    /* bind result variables */
-    $stmt->bind_result($pwdgiusta);
+    $result = $stmt->get_result();
+	  $user = $result->fetch_object();
+		if($user===NULL){
+				$errors .= "L'email ".$_POST['email']." non è ancora registrata!<br/>";
+		} else {
+			$inserted= $_POST["password"];
+			/*var_dump($user->password);*/
 
-    /* fetch value */
-    $stmt->fetch();
+			// Verify user password and set $_SESSION
+	  	if ( password_verify($inserted, $user->password)) {
+				foreach ($_POST as $key => $value)
+				 $_SESSION['sessione'][$key] = $value;
+	  	} else {
+				$errors .= "La password non è corretta<br/>";
+			}
+		}
 
-    if($pwdinserita===$pwdgiusta){
-      console.log("password corretta");
-    }else {
-      console.log("errore password");
-    }
-
-    /* close statement */
-    $stmt->close();
-
+		/*var_dump($_SESSION);*/
  }
 }
 ?>
@@ -73,18 +64,18 @@ if(isset($_POST["sent"])){
 		<div class="col-12 col-md-4 offset-md-4">
 			<?php
 			if(isset($_POST["sent"])){
-				if(strlen($errors) == 0 and $isInserted)
+				if(strlen($errors) == 0)
 				{
 			?>
 			<div class="alert alert-success alert-php" role="alert">
-				Inserimento avvenuto correttamente!
+				Accesso effettuato!
 			</div>
 			<?php
 				}
 				else{
 			?>
 			<div class="alert alert-danger alert-php" role="alert">
-				Errore durante l'inserimento!
+				Errore
 				<p><?=$errors?><?=$insertError?></p>
 			</div>
 			<?php
@@ -99,12 +90,12 @@ if(isset($_POST["sent"])){
   <form method="post" action="#" id="signupform" >
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" autofocus required>
 
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" name= "password" id="password" placeholder="Password">
+      <input type="password" class="form-control" name= "password" id="password" placeholder="Password" required>
     </div>
   	<input type="hidden" name="sent" value="true" />
     <button type="submit" name= "submit" id= "submit" class="btn btn-primary">Accedi</button>
@@ -115,6 +106,5 @@ if(isset($_POST["sent"])){
  <!-- Bootstrap core JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="./../js/bootstrap.min.js"></script>
-  <script src="./../js/accedi.js"></script>
   </body>
 </html>
