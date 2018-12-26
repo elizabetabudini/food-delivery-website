@@ -3,7 +3,7 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Mon Dec 24 11:29:57 2018 
+-- * Generation date: Wed Dec 26 17:57:46 2018 
 -- * LUN file: G:\xampp\htdocs\sitotecweb\database\tecweb.lun 
 -- * Schema: cfu/1 
 -- ********************************************* 
@@ -18,13 +18,6 @@ use cfu;
 
 -- Tables Section
 -- _____________ 
-
-create table aggiunge (
-     ingrediente varchar(20) not null,
-     nome_alimento varchar(20) not null,
-     id_ristorante int not null,
-     nome_menu varchar(20) not null,
-     constraint IDaggiunge primary key (ingrediente, nome_alimento, id_ristorante, nome_menu));
 
 create table alimento (
      disponibilita char not null,
@@ -43,16 +36,16 @@ create table categoria_ristoranti (
      nome_categoria varchar(20) not null,
      constraint IDcategoria_ristoranti primary key (nome_categoria));
 
-create table ingredienti (
-     nome varchar(20) not null,
-     constraint IDingredienti primary key (nome));
-
 create table lista (
      id_prenotazione int not null,
      nome varchar(20) not null,
      id_ristorante int not null,
      nome_menu varchar(20) not null,
      constraint IDlista primary key (id_prenotazione, nome, id_ristorante, nome_menu));
+
+create table luogo (
+     nome char(20) not null,
+     constraint IDluogo primary key (nome));
 
 create table menu (
      id_ristorante int not null,
@@ -73,19 +66,19 @@ create table persona (
      password varchar(40) not null,
      privilegi int not null,
      cellulare char(10) not null,
-     id int not null,
      constraint IDpersona_ID primary key (email));
 
 create table prenotazione (
+     info_prenotazione varchar(50) not null,
      id int not null,
      id_ristorante int not null,
      email_cliente varchar(40) not null,
      data date not null,
      ora_accettazione date not null,
      stato int not null,
-     luogo_cosegna varchar(20) not null,
      ora_consegna date not null,
      totale int not null,
+     luogo_consegna char(20) not null,
      constraint IDprenotazione primary key (id));
 
 create table riceve (
@@ -99,7 +92,7 @@ create table ristorante (
      email_proprietario varchar(40) not null,
      nome_categoria varchar(20),
      nome varchar(20) not null,
-     posizione varchar(40) not null,
+     indirizzo varchar(40) not null,
      rating int not null,
      constraint IDristorante_ID primary key (id ),
      constraint FKappartiene_ID unique (email_proprietario),
@@ -108,14 +101,6 @@ create table ristorante (
 
 -- Constraints Section
 -- ___________________ 
-
-alter table aggiunge add constraint FKagg_ing
-     foreign key (ingrediente)
-     references ingredienti (nome);
-
-alter table aggiunge add constraint FKR
-     foreign key (nome_alimento, id_ristorante, nome_menu)
-     references alimento (nome, id_ristorante, nome_menu);
 
 alter table alimento add constraint FKpartecipa
      foreign key (id_ristorante, nome_menu)
@@ -152,10 +137,6 @@ alter table menu add constraint FKpartecipa2
 --     check(exists(select * from prenotazione
 --                  where prenotazione.email_cliente = email)); 
 
-alter table persona add constraint FKappartiene
-     foreign key (id_ristorante)
-     references ristorante (id );
-
 alter table prenotazione add constraint FKeffettua
      foreign key (email_cliente)
      references persona (email);
@@ -163,6 +144,10 @@ alter table prenotazione add constraint FKeffettua
 alter table prenotazione add constraint FKriferisce
      foreign key (id_ristorante)
      references ristorante (id );
+
+alter table prenotazione add constraint FKconsegna
+     foreign key (luogo_consegna)
+     references luogo (nome);
 
 alter table riceve add constraint FKric_per
      foreign key (email)
