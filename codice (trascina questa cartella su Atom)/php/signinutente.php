@@ -34,7 +34,7 @@ if(isset($_POST["sent"])){
 		$nome = $_POST["nome"];
 		$cognome = $_POST["cognome"];
 		$email = $_POST["email"];
-		$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+		$pwd = $_POST["password"];
 		$privilegi = "0";
 		$cell = "";
 

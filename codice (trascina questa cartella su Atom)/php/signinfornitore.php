@@ -21,7 +21,6 @@ if(isset($_POST["sent"])){
   if(!isset($_POST["password"]) || strlen($_POST["password"]) < 4){
     $errors .= "Password è obbligatoria e deve avere almeno 4 caratteri <br/>";
   }
-
 	if(strlen($errors) == 0){
 
 		$servername = "localhost";
@@ -39,7 +38,7 @@ if(isset($_POST["sent"])){
 		$nome = $_POST["nome"];
 		$cognome = $_POST["cognome"];
 		$email = $_POST["email"];
-		$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+		$pwd = $_POST["password"];
 		$privilegi = "1";
 		$cell = "";
 		$rating = "0";
@@ -58,24 +57,23 @@ if(isset($_POST["sent"])){
 		$stmt2->bind_param("sssss", $info, $email, $nomerist, $indirizzorist, $rating);
     $res= $stmt2->execute();
 
-		if( !$res ){
-			$insertError = $stmt->error;
-		} else {
-			$stmt4 = $conn->prepare("SELECT id FROM ristorante WHERE email_proprietario=?");
-			$stmt4->bind_param("s", $email);
-			$res= $stmt4->execute();
-			$id= $res["id"];
-
-			$stmt3 = $conn->prepare("UPDATE persona SET id_ristorante=? WHERE email=?");
-			$stmt3->bind_param("ss", $id, $email);
-			$stmt3->execute();
-
-			$stmt3->close();
-			$stmt4->close();
-		}
+  	$stmt2->close();
 		$stmt->close();
-		$stmt2->close();
-	}
+		$sql = "SELECT id FROM `ristorante` WHERE `email_proprietario`= 'elizabeta.budini@gmail.com'";
+		$result = mysqli_query($conn, $sql);
+		var_dump($result);
+		if (mysqli_num_rows($result) > 0) {
+		    // output data of each row
+		    while($row = mysqli_fetch_assoc($result)) {
+		        echo "trovati <br>";
+		    }
+		} else {
+		    echo "0 results";
+		}
+
+		$sql = "UPDATE `persona` SET `id_ristorante`='3' WHERE `email`='elizabeta.budini@gmail.com'";
+		$result = mysqli_query($conn, $sql);
+ }
 }
 ?>
 
