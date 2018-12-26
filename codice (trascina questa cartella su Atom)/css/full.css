@@ -7,6 +7,7 @@ body {
 }
 
 .center-msg-box{
+  padding:30px;
   margin:40px auto;
   border-radius: 10px;
   -webkit-border-radius:10px;
@@ -14,5 +15,5 @@ body {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
   -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.5);
 }

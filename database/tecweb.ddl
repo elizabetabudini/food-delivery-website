@@ -3,7 +3,7 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Wed Dec 26 15:17:01 2018 
+-- * Generation date: Wed Dec 26 17:57:46 2018 
 -- * LUN file: G:\xampp\htdocs\sitotecweb\database\tecweb.lun 
 -- * Schema: cfu/1 
 -- ********************************************* 
@@ -136,10 +136,6 @@ alter table menu add constraint FKpartecipa2
 -- alter table persona add constraint IDpersona_CHK
 --     check(exists(select * from prenotazione
 --                  where prenotazione.email_cliente = email)); 
-
-alter table persona add constraint FKappartiene
-     foreign key (id_ristorante)
-     references ristorante (id );
 
 alter table prenotazione add constraint FKeffettua
      foreign key (email_cliente)

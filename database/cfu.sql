@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 26, 2018 alle 15:27
+-- Creato il: Dic 26, 2018 alle 18:05
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -79,21 +79,6 @@ CREATE TABLE `lista` (
 CREATE TABLE `luogo` (
   `nome` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `luogo`
---
-
-INSERT INTO `luogo` (`nome`) VALUES
-('aula 2.1'),
-('aula 2.4'),
-('aula 2.9'),
-('aula 3.7'),
-('aula 3.9'),
-('laboratorio 2.2'),
-('laboratorio 3.1'),
-('laboratorio 3.3'),
-('punto ristoro');
 
 -- --------------------------------------------------------
 
@@ -242,8 +227,8 @@ ALTER TABLE `persona`
 ALTER TABLE `prenotazione`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FKeffettua` (`email_cliente`),
-  ADD KEY `FKriferisce` (`id_ristorante`),
-  ADD KEY `FKconsegna` (`luogo_consegna`);
+  ADD KEY `FKconsegna` (`luogo_consegna`),
+  ADD KEY `FKriferisce` (`id_ristorante`);
 
 --
 -- Indici per le tabelle `riceve`
@@ -261,6 +246,22 @@ ALTER TABLE `ristorante`
   ADD UNIQUE KEY `FKinclude_ID` (`nome_categoria`);
 
 --
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `prenotazione`
+--
+ALTER TABLE `prenotazione`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `ristorante`
+--
+ALTER TABLE `ristorante`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Limiti per le tabelle scaricate
 --
 
@@ -275,7 +276,7 @@ ALTER TABLE `alimento`
 --
 ALTER TABLE `lista`
   ADD CONSTRAINT `FKcomprende` FOREIGN KEY (`nome`,`id_ristorante`,`nome_menu`) REFERENCES `alimento` (`nome`, `id_ristorante`, `nome_menu`),
-  ADD CONSTRAINT `FKlis_pre` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`);
+  ADD CONSTRAINT `FKlistapre` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`);
 
 --
 -- Limiti per la tabella `menu`
