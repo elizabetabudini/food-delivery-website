@@ -42,6 +42,9 @@ if(isset($_POST["sent"])){
 		$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
 		$privilegi = "1";
 		$cell = "";
+		$rating = "0";
+		$info = "";
+		$cat ="";
 
 		$stmt = $conn->prepare("INSERT INTO persona (nome, cognome, email, password, privilegi, cellulare) VALUES (?, ?, ?, ?, ?, ?)");
 		$stmt->bind_param("ssssss", $nome, $cognome, $email, $pwd, $privilegi, $cell);
@@ -51,22 +54,24 @@ if(isset($_POST["sent"])){
 			$insertError = $stmt->error;
 		}
 
-		$stmt2 = $conn->prepare("INSERT INTO ristorante (email_proprietario, nome, posizione) VALUES (?, ?, ?)");
-		$stmt2->bind_param("sss", $email, $nomerist, $indirizzorist);
+		$stmt2 = $conn->prepare("INSERT INTO ristorante ( info, email_proprietario, nome, indirizzo, rating) VALUES (?, ?, ?, ?, ?)");
+		$stmt2->bind_param("sssss", $info, $email, $nomerist, $indirizzorist, $rating);
     $res= $stmt2->execute();
 
 		if( !$res ){
 			$insertError = $stmt->error;
 		} else {
-
-			$result = $stmt2->get_result();
-		  $ristorante = $result->fetch_object();
-			$id= $ristorante->id;
+			$stmt4 = $conn->prepare("SELECT id FROM ristorante WHERE email_proprietario=?");
+			$stmt4->bind_param("s", $email);
+			$res= $stmt4->execute();
+			$id= $res["id"];
 
 			$stmt3 = $conn->prepare("UPDATE persona SET id_ristorante=? WHERE email=?");
-			$stmt3->bind_param([$id, $email]);
+			$stmt3->bind_param("ss", $id, $email);
 			$stmt3->execute();
+
 			$stmt3->close();
+			$stmt4->close();
 		}
 		$stmt->close();
 		$stmt2->close();
