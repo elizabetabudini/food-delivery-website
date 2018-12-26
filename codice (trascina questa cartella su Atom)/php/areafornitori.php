@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/areafornitori.css" rel="stylesheet">
+    <link href="./../css/menubar.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
@@ -23,7 +24,7 @@
           <div class="card-body ">
             <h5 class="card-title">Dai una svolta alla tua attività</h5>
             <p class="card-text-center">Perchè perdere l'occasione di spedire ogni giorno il tuo cibo a studenti affamati?</p>
-            <a href="signinfornitori.php" class="btn btn-primary">Registrati!</a>
+            <a href="signinfornitore.php" class="btn btn-primary">Registrati!</a>
           </div>
         </div>
       </div>
