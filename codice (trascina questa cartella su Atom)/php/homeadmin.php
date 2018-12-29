@@ -18,21 +18,30 @@
   <div class="card card-sm center-msg-box transparent">
 
   <div class="row">
-    <div class="col-sm-6 ">
+    <div class="col-md-4 ">
       <div class="card dark">
-        <div class="card card">
-          <h5 class="card-title">Dai una svolta alla tua attività</h5>
-          <p class="card-text-center">Perchè perdere l'occasione di spedire ogni giorno il tuo cibo a studenti affamati?</p>
-          <a href="signinfornitori.php" class="btn btn-primary">Registrati!</a>
+        <div class="card-body">
+          <h5 class="card-title">Elimina utente</h5>
+          <p class="card-text-center">Sicuro? nessuno vuole essere eliminato D:</p>
+          <a href="signinfornitori.php" class="btn btn-primary">Elimina!</a>
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="card">
+    <div class="col-md-4">
+      <div class="card dark">
         <div class="card-body ">
-          <h5 class="card-title">Sei già un nostro partner?</h5>
-          <p class="card-text-center">Modifica il listino aggiungendo nuovi cibi, controlla i tuoi ordini e tanto altro.</p>
-          <a href="accedi.php" class="btn btn-primary">Accedi!</a>
+          <h5 class="card-title">Convalida ristoranti</h5>
+          <p class="card-text-center">Aumenta la scelta! :D</p>
+          <a href="adminapprovazione.php" class="btn btn-primary">Approva!</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 ">
+      <div class="card dark">
+        <div class="card-body ">
+          <h5 class="card-title">Gestisci le categorie</h5>
+          <p class="card-text-center">Mi raccomando non eliminare le pizze.</p>
+          <a href="accedi.php" class="btn btn-primary">Alle categorie!</a>
         </div>
       </div>
     </div>
