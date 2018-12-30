@@ -35,7 +35,7 @@
         <div class="card-body ">
           <h5 class="card-title">Convalida ristoranti</h5>
           <p class="card-text-center">Aumenta la scelta! :D</p>
-          <a href="adminapprovazione.php" class="btn btn-primary">Approva!</a>
+          <a href="admin/approvazione.php" class="btn btn-primary">Approva!</a>
         </div>
       </div>
     </div>
