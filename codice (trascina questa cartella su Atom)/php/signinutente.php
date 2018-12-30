@@ -1,4 +1,13 @@
 <?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
+$_SESSION['fornitore']= "false";
+$_SESSION['utente']= "true";
+$_SESSION['admin']="false";
+$current= "signinutente";
+?>
+<?php
 if(isset($_POST["sent"])){
 	$errors = "";
 	$insertError = "";
@@ -67,7 +76,9 @@ if(isset($_POST["sent"])){
 
   </head>
   <body>
-  <?php include 'menu.php'; ?>
+  <?php $current= "signinutente";
+	include 'menu.php';
+	?>
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-12 col-md-4 offset-md-4">

@@ -1,3 +1,12 @@
+<?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
+$_SESSION['fornitore']= "false";
+$_SESSION['utente']= "false";
+$_SESSION['admin']="true";
+$current= "homeadmin";
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
@@ -14,7 +23,8 @@
 
   </head>
   <body>
-  <?php include 'menu.php';
+  <?php
+   include 'menu.php';
   if(! isset($_SESSION["email"])){
      header("Location: accedi.php");
   }?>

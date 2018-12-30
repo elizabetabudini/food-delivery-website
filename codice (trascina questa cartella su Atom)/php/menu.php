@@ -2,7 +2,11 @@
 // Start the session
 if (session_status() === PHP_SESSION_NONE){
   session_start();
-  var_dump($_SESSION);
+  if(!isset($_SESSION["admin"])){
+    $_SESSION["admin"]= "false";
+    $_SESSION["utente"]= "true";
+    $_SESSION["fornitore"]= "false";
+  }
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -15,14 +19,16 @@ if (session_status() === PHP_SESSION_NONE){
 <ul class="navbar-nav mr-auto">
 
 <?php
-
-if ( isset( $_SESSION['fornitore'] ) ) {
+if ($_SESSION['fornitore']=== "true") {
   include 'menufornitori.php';
 } else {
-  if ( isset( $_SESSION['admin'] ) ) {
+  if ($_SESSION['admin']=== "true") {
     include 'menuadmin.php';
   } else {
-    include 'menuutenti.php';
+    if ($_SESSION['utente']=== "true"){
+        include 'menuutenti.php';
+    }
+
   }
 }
 

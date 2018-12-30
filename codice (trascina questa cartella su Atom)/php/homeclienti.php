@@ -1,3 +1,12 @@
+<?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
+$_SESSION['fornitore']= "false";
+$_SESSION['utente']= "true";
+$_SESSION['admin']="false";
+$current= "homeclienti";
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
@@ -12,7 +21,9 @@
 
   </head>
   <body>
-    <?php include 'menu.php';?>
+    <?php $current = 'homeclienti';
+      include 'menu.php';
+     ?>
     <div class="row h-100 justify-content-center align-items-center ">
         <div class="col-12 col-md-10 col-lg-8 ">
           <form class="card card-sm center-msg-box">

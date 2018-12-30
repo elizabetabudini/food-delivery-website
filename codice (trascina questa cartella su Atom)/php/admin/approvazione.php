@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
 
 approva(){
   $servername = "localhost";
@@ -13,7 +16,6 @@ approva(){
   $sql = "DELETE FROM `ristorante` WHERE `id` = ??? ";
   $result = mysqli_query($conn, $sql);
 }
-
 
 elimina(){
   $servername = "localhost";

@@ -1,4 +1,8 @@
+
 <?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
 if(isset($_POST["sent"])){
 	$errors = "";
 	$insertError = "";
@@ -76,7 +80,12 @@ if(isset($_POST["sent"])){
  }
 }
 ?>
-
+<?php
+$_SESSION['fornitore']= "true";
+$_SESSION['utente']= "false";
+$_SESSION['admin']="false";
+$current= "signinfornitore";
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
@@ -92,7 +101,8 @@ if(isset($_POST["sent"])){
 
   </head>
   <body>
-  <?php include 'menu.php'; ?>
+  <?php $current= "signinfornitore";
+	include 'menu.php';?>
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-12 col-md-4 offset-md-4">

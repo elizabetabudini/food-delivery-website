@@ -1,6 +1,8 @@
 
 <?php
-$thisPage="About";
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
 if ( isset( $_SESSION['email'] ) ) {
   ?>
   <li class="nav-item">
@@ -27,7 +29,7 @@ if ( isset( $_SESSION['email'] ) ) {
  <?php
 } else {
  ?>
- <li class="nav-item active">
+ <li class="nav-item ">
    <a class="nav-link" href="homeclienti.php">Home <span class="sr-only">(current)</span></a>
  </li>
  <li class="nav-item">

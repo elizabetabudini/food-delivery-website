@@ -1,6 +1,5 @@
 
 <?php
-$thisPage="About";
 if ( isset( $_SESSION['email'] ) ) {
   ?>
   <li class="nav-item">

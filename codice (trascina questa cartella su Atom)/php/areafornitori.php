@@ -1,3 +1,12 @@
+<?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
+$_SESSION["fornitore"]= "true";
+$_SESSION['utente']= "false";
+$_SESSION['admin']="false";
+$current= "areafornitori";
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
@@ -12,7 +21,9 @@
 
   </head>
   <body>
-    <?php include 'menu.php'; ?>
+    <?php $current = "areafornitori";
+    include 'menu.php';
+        ?>
     <div class="card card-sm center-msg-box">
       <h1>CFU</h1>
       <h2>Cesena Food University</h2>
