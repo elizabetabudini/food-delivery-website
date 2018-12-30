@@ -2,6 +2,7 @@
 // Start the session
 if (session_status() === PHP_SESSION_NONE){
   session_start();
+  var_dump($_SESSION);
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">

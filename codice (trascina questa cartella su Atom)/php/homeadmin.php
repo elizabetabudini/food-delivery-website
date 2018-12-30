@@ -8,13 +8,16 @@
 
     <link href="./../css/form.css" rel="stylesheet">
     <link href="./../css/full.css" rel="stylesheet">
-    <link href="./../css/admin.css" rel="stylesheet">
+    <!--<link href="./../css/admin.css" rel="stylesheet"> -->
     <link href="./../css/menubar.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
   <body>
-  <?php include 'menu.php'; ?>
+  <?php include 'menu.php';
+  if(! isset($_SESSION["email"])){
+     header("Location: accedi.php");
+  }?>
   <div class="card card-sm center-msg-box transparent">
 
   <div class="row">
@@ -23,7 +26,7 @@
         <div class="card-body">
           <h5 class="card-title">Elimina utente</h5>
           <p class="card-text-center">Sicuro? nessuno vuole essere eliminato D:</p>
-          <a href="signinfornitori.php" class="btn btn-primary">Elimina!</a>
+          <a href="elencoutenti.php" class="btn btn-primary">Vai all'elenco utenti!</a>
         </div>
       </div>
     </div>
