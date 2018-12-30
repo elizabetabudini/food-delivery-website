@@ -1,20 +1,21 @@
 
 <?php
+$thisPage="About";
 if ( isset( $_SESSION['email'] ) ) {
   ?>
-  <li class="nav-item active">
+  <li class="nav-item">
     <a class="nav-link" href="homeclienti.php">Home <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">AMMINISTRATORE</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="logout.php">Logout</a>
+    <a class="nav-link" id="logout" href="logout.php">Logout</a>
   </li>
  <?php
 } else {
  ?>
- <li class="nav-item active">
+ <li class="nav-item">
    <a class="nav-link" href="homeclienti.php">Home <span class="sr-only">(current)</span></a>
  </li>
  <li class="nav-item">

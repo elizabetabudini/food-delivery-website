@@ -1,12 +1,13 @@
 
 <?php
+$thisPage="About";
 if ( isset( $_SESSION['email'] ) ) {
   ?>
-  <li class="nav-item active">
+  <li class="nav-item">
     <a class="nav-link" href="homeclienti.php">Home <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">BENVENUTO</a>
+    <a class="nav-link" href="#">Profilo <?php echo $_SESSION["nome"]; ?></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Carrello</a>

@@ -12,8 +12,7 @@
 
   </head>
   <body>
-    <?php include 'menu.php';
-    var_dump($_SESSION)?>
+    <?php include 'menu.php';?>
     <div class="row h-100 justify-content-center align-items-center ">
         <div class="col-12 col-md-10 col-lg-8 ">
           <form class="card card-sm center-msg-box">
