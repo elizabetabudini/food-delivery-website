@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 26, 2018 alle 18:05
+-- Creato il: Dic 30, 2018 alle 15:56
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -40,12 +40,33 @@ CREATE TABLE `alimento` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `carrello`
+--
+
+CREATE TABLE `carrello` (
+  `id_prenotazione` int(11) NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `id_ristorante` int(11) NOT NULL,
+  `nome_menu` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `categoria_menu`
 --
 
 CREATE TABLE `categoria_menu` (
   `nome_categoria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `categoria_menu`
+--
+
+INSERT INTO `categoria_menu` (`nome_categoria`) VALUES
+('menu panino'),
+('menu pizza');
 
 -- --------------------------------------------------------
 
@@ -57,18 +78,19 @@ CREATE TABLE `categoria_ristoranti` (
   `nome_categoria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Struttura della tabella `lista`
+-- Dump dei dati per la tabella `categoria_ristoranti`
 --
 
-CREATE TABLE `lista` (
-  `id_prenotazione` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL,
-  `id_ristorante` int(11) NOT NULL,
-  `nome_menu` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `categoria_ristoranti` (`nome_categoria`) VALUES
+('cinese'),
+('fast-food'),
+('gelateria'),
+('giapponese'),
+('indiano'),
+('paninoteca'),
+('pizzeria'),
+('ristorante');
 
 -- --------------------------------------------------------
 
@@ -79,6 +101,34 @@ CREATE TABLE `lista` (
 CREATE TABLE `luogo` (
   `nome` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `luogo`
+--
+
+INSERT INTO `luogo` (`nome`) VALUES
+('Aula 2.1'),
+('Aula 2.10'),
+('Aula 2.11'),
+('Aula 2.12'),
+('Aula 2.13'),
+('Aula 2.3'),
+('Aula 2.4'),
+('Aula 2.5'),
+('Aula 2.6'),
+('Aula 2.7'),
+('Aula 2.8'),
+('Aula 2.9'),
+('aula 3.10'),
+('Aula 3.11'),
+('Aula 3.7'),
+('Aula 4.1'),
+('Aula Magna 3.4'),
+('Biblioteca'),
+('Laboratorio 2.2'),
+('Laboratorio 3.1'),
+('Laboratorio 3.3'),
+('Punto Ristoro');
 
 -- --------------------------------------------------------
 
@@ -114,10 +164,19 @@ CREATE TABLE `persona` (
   `cognome` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
   `id_ristorante` int(11) DEFAULT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `privilegi` int(11) NOT NULL,
   `cellulare` char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `persona`
+--
+
+INSERT INTO `persona` (`nome`, `cognome`, `email`, `id_ristorante`, `password`, `privilegi`, `cellulare`) VALUES
+('admin', 'admin', 'admin@admin.it', NULL, '$2y$10$2Da8BumFyFneTSqNKzS3mOs0mA27HFBnTx9g5b7ugQFXqEKNM./ue', 2, ''),
+('fornitore', 'fornitore', 'fornitore@fornitore.it', NULL, '$2y$10$ar0tLoLUGHbZ2ARcWdg0WujSLldNHF0w1V1sQI/2letajNDGdk2A6', 1, ''),
+('utente', 'utente', 'utente@utente.it', NULL, '$2y$10$6P8599fjUtdS3UvNi/VPNOdvJyC3Dvu04DIFAMn7HB0bexVc0gcYy', 0, '');
 
 -- --------------------------------------------------------
 
@@ -156,14 +215,22 @@ CREATE TABLE `riceve` (
 --
 
 CREATE TABLE `ristorante` (
-  `info` varchar(100) NOT NULL,
   `id` int(11) NOT NULL,
   `email_proprietario` varchar(40) NOT NULL,
-  `nome_categoria` varchar(20) DEFAULT NULL,
   `nome` varchar(20) NOT NULL,
   `indirizzo` varchar(40) NOT NULL,
-  `rating` int(11) NOT NULL
+  `nome_categoria` varchar(20) DEFAULT NULL,
+  `info` varchar(100) DEFAULT NULL,
+  `rating` int(11) NOT NULL,
+  `approvato` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `ristorante`
+--
+
+INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome_categoria`, `info`, `rating`, `approvato`) VALUES
+(4, 'fornitore@fornitore.it', 'locanda', 'via prova, 1, FC', NULL, '', 0, 0);
 
 --
 -- Indici per le tabelle scaricate
@@ -177,6 +244,13 @@ ALTER TABLE `alimento`
   ADD KEY `FKpartecipa` (`id_ristorante`,`nome_menu`);
 
 --
+-- Indici per le tabelle `carrello`
+--
+ALTER TABLE `carrello`
+  ADD PRIMARY KEY (`id_prenotazione`,`nome`,`id_ristorante`,`nome_menu`),
+  ADD KEY `FKcomprende` (`nome`,`id_ristorante`,`nome_menu`);
+
+--
 -- Indici per le tabelle `categoria_menu`
 --
 ALTER TABLE `categoria_menu`
@@ -187,13 +261,6 @@ ALTER TABLE `categoria_menu`
 --
 ALTER TABLE `categoria_ristoranti`
   ADD PRIMARY KEY (`nome_categoria`);
-
---
--- Indici per le tabelle `lista`
---
-ALTER TABLE `lista`
-  ADD PRIMARY KEY (`id_prenotazione`,`nome`,`id_ristorante`,`nome_menu`),
-  ADD KEY `FKcomprende` (`nome`,`id_ristorante`,`nome_menu`);
 
 --
 -- Indici per le tabelle `luogo`
@@ -259,7 +326,7 @@ ALTER TABLE `prenotazione`
 -- AUTO_INCREMENT per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Limiti per le tabelle scaricate
@@ -269,12 +336,12 @@ ALTER TABLE `ristorante`
 -- Limiti per la tabella `alimento`
 --
 ALTER TABLE `alimento`
-  ADD CONSTRAINT `FKpartecipa` FOREIGN KEY (`id_ristorante`,`nome_menu`) REFERENCES `menu` (`id_ristorante`, `nome`);
+  ADD CONSTRAINT `FKpartecipa` FOREIGN KEY (`id_ristorante`,`nome_menu`) REFERENCES `menu` (`id_ristorante`, `nome`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `lista`
+-- Limiti per la tabella `carrello`
 --
-ALTER TABLE `lista`
+ALTER TABLE `carrello`
   ADD CONSTRAINT `FKcomprende` FOREIGN KEY (`nome`,`id_ristorante`,`nome_menu`) REFERENCES `alimento` (`nome`, `id_ristorante`, `nome_menu`),
   ADD CONSTRAINT `FKlistapre` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`);
 
@@ -289,7 +356,7 @@ ALTER TABLE `menu`
 -- Limiti per la tabella `persona`
 --
 ALTER TABLE `persona`
-  ADD CONSTRAINT `FKappartiene` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`);
+  ADD CONSTRAINT `FKappartiene` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `prenotazione`
@@ -310,8 +377,8 @@ ALTER TABLE `riceve`
 -- Limiti per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
-  ADD CONSTRAINT `FKappartiene_FK` FOREIGN KEY (`email_proprietario`) REFERENCES `persona` (`email`),
-  ADD CONSTRAINT `FKinclude_FK` FOREIGN KEY (`nome_categoria`) REFERENCES `categoria_ristoranti` (`nome_categoria`);
+  ADD CONSTRAINT `FKappartiene_FK` FOREIGN KEY (`email_proprietario`) REFERENCES `persona` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FKinclude_FK` FOREIGN KEY (`nome_categoria`) REFERENCES `categoria_ristoranti` (`nome_categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

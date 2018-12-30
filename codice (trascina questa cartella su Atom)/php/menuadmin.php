@@ -1,25 +1,12 @@
 
 <?php
-
 if ( isset( $_SESSION['email'] ) ) {
   ?>
   <li class="nav-item active">
     <a class="nav-link" href="homeclienti.php">Home <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">BENVENUTO</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Listino</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="homeclienti.php">Area Clienti</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Contatti</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="accedi.php">Amministratore</a>
+    <a class="nav-link" href="#">AMMINISTRATORE</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="logout.php">Logout</a>
@@ -28,16 +15,16 @@ if ( isset( $_SESSION['email'] ) ) {
 } else {
  ?>
  <li class="nav-item active">
-   <a class="nav-link" href="areafornitori.php">Home <span class="sr-only">(current)</span></a>
+   <a class="nav-link" href="homeclienti.php">Home <span class="sr-only">(current)</span></a>
  </li>
  <li class="nav-item">
    <a class="nav-link" href="accedi.php">Accedi</a>
  </li>
  <li class="nav-item">
-   <a class="nav-link" href="signinfornitore.php">Registrati</a>
+   <a class="nav-link" href="signinutente.php">Registrati</a>
  </li>
  <li class="nav-item">
-   <a class="nav-link" href="homeclienti.php">Area Clienti</a>
+   <a class="nav-link" href="areafornitori.php">Area Fornitori</a>
  </li>
  <li class="nav-item">
    <a class="nav-link" href="#">Contatti</a>

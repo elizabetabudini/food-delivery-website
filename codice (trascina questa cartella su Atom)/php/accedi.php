@@ -28,19 +28,29 @@ if(isset($_POST["sent"])){
 		if($user===NULL){
 				$errors .= "L'email ".$_POST['email']." non è ancora registrata!<br/>";
 		} else {
-			$inserted= $_POST["password"];
-			/*var_dump($user->password);*/
 
 			// Verify user password and set $_SESSION
-	  	if ( password_verify($inserted, $user->password)) {
-				foreach ($_POST as $key => $value)
-				 $_SESSION['sessione'][$key] = $value;
+	  	if ( password_verify($_POST["password"], $user->password)) {
+				 $_SESSION['email']= $user->email;
+				 $_SESSION['nome']= $user->nome;
+				 $_SESSION['cognome']= $user->cognome;
+				 if($user->privilegi==0){
+					 $_SESSION['utente']= $user->privilegi;
+					 header("Location: homeclienti.php");
+				 }
+				 if($user->privilegi==1){
+					 header("Location: areafornitori.php");
+					 $_SESSION['fornitore']= $user->privilegi;
+				 }
+				 if($user->privilegi==2){
+					 header("Location: homeadmin.php");
+					 $_SESSION['admin']= $user->privilegi;
+				 }
+
 	  	} else {
 				$errors .= "La password non è corretta<br/>";
 			}
 		}
-
-		/*var_dump($_SESSION);*/
  }
 }
 ?>
@@ -90,12 +100,12 @@ if(isset($_POST["sent"])){
 
   <form method="post" action="#" id="signupform" >
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" autofocus required>
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Enter email" autofocus required>
 
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
+      <label for="password">Password</label>
       <input type="password" class="form-control" name= "password" id="password" placeholder="Password" required>
     </div>
   	<input type="hidden" name="sent" value="true" />

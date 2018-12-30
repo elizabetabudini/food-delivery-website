@@ -34,7 +34,7 @@ if(isset($_POST["sent"])){
 		$nome = $_POST["nome"];
 		$cognome = $_POST["cognome"];
 		$email = $_POST["email"];
-		$pwd = $_POST["password"];
+		$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
 		$privilegi = "0";
 		$cell = "";
 
@@ -99,19 +99,19 @@ if(isset($_POST["sent"])){
 			<form id="insertform" method="post" action="#">
 				<div class="form-group">
 				<label for="inputNome">Nome</label>
-				<input type="text" name="nome" class="form-control" id="inputNome" placeholder="Inserisci Nome" autofocus="true" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+				<input type="text" name="nome" class="form-control" id="nome" placeholder="Inserisci Nome" autofocus="true" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
 				</div>
 				<div class="form-group">
 				<label for="inputCognome">Cognome</label>
-				<input type="text" name="cognome" class="form-control" id="inputCognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+				<input type="text" name="cognome" class="form-control" id="cognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
 				</div>
 				<div class="form-group">
 				<label for="inputEmail">Indirizzo Email</label>
-				<input type="email" name="email"  class="form-control" id="inputEmail" placeholder="Inserisci Email" required >
+				<input type="email" name="email"  class="form-control" id="email" placeholder="Inserisci Email" required >
 				</div>
 				<div class="form-group">
 				<label for="inputPassword">Password</label>
-				<input type="password" name="password"  class="form-control" id="inputPassword" placeholder="Inserisci Password" required pattern=".{4,}" title="Inserisci almeno 4 caratteri">
+				<input type="password" name="password"  class="form-control" id="password" placeholder="Inserisci Password" required pattern=".{4,}" title="Inserisci almeno 4 caratteri">
 				</div>
 				<input type="hidden" name="sent" value="true" />
 				<button type="submit" class="btn btn-primary">Registrati</button>

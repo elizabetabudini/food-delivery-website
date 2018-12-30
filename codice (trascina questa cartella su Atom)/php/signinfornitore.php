@@ -38,7 +38,7 @@ if(isset($_POST["sent"])){
 		$nome = $_POST["nome"];
 		$cognome = $_POST["cognome"];
 		$email = $_POST["email"];
-		$pwd = $_POST["password"];
+		$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
 		$privilegi = "1";
 		$cell = "";
 		$rating = "0";
@@ -102,7 +102,7 @@ if(isset($_POST["sent"])){
 				{
 			?>
 			<div class="alert alert-success alert-php" role="alert">
-				Inserimento avvenuto correttamente!
+				Inserimento avvenuto correttamente! Riceverai una notifica quando l'iscrizione sarà approvatadal nostro Team
 			</div>
 			<?php
 				}

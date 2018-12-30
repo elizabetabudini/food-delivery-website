@@ -12,7 +12,7 @@
 
   </head>
   <body>
-    <?php include 'menufornitori.php'; ?>
+    <?php include 'menu.php'; ?>
     <div class="card card-sm center-msg-box">
       <h1>CFU</h1>
       <h2>Cesena Food University</h2>
