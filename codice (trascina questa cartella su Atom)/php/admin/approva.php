@@ -1,5 +1,18 @@
 <?php
-if(isset($_POST["sent"])){
+
+function elimina($id){
+  $stmt = $conn->prepare("DELETE FROM `ristorante` WHERE `id` = ? ");
+  $stmt->bind_param("s", $id);
+  $stmt->execute();
+}
+function approva($id){
+  $stmt = $conn->prepare("UPDATE `ristorante` SET `approvato`= `1` WHERE `id` = ? ");
+  $stmt->bind_param("s", $id);
+  $stmt->execute();
+}
+  if (session_status() === PHP_SESSION_NONE){
+    session_start();
+  }
 
   $servername = "localhost";
   $username = "root";
@@ -7,22 +20,11 @@ if(isset($_POST["sent"])){
   $dbname = "cfu";
   $conn = new mysqli($servername, $username, $password, $dbname);
 
-  if ($conn->connect_error) {
+ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  if($_POST['action'] == "Approva"){
-    $stmt = $conn->prepare("UPDATE `ristorante` SET `approvato`= `1` WHERE `id` = ? ");
-    $stmt->bind_param("s", $_POST['id']);
-    $stmt->execute();
-  }
 
-  if($_POST['action'] == "Elimina" ){
-    $stmt = $conn->prepare("DELETE FROM `ristorante` r,`persona` p WHERE `r.email_proprietario` = `p.email` WHERE `r.id` = ? ");
-    $stmt->bind_param("s", $id);
-    $stmt->execute();
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -54,12 +56,9 @@ if(isset($_POST["sent"])){
     $dbname = "cfu";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
-
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-
-
     foreach($conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0') as $row) {
       echo '
         <div class="row card-sm">
@@ -67,17 +66,42 @@ if(isset($_POST["sent"])){
             <p>'. $row['nome'] .'</p>
             <p>'. $row['email_proprietario'] .'</p>
           </div>
-          <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
-            <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
-            <br/>
-            <input type="submit" class="btn btn-primary" name="action" value="Elimna"/>
-            <input type="hidden" name = "id" value="'.$row["id"].'">
-            <input type="hidden" name="sent" value="true" />
-          </form>
+          <div class="card card-sm center-msg-box transparent col-sm-4">
+              <a href="#" class="btn btn-primary" onclick = "approva('. $row['id'] .')">Approva!</a>
+              <br/>
+              <a href="#" class="btn btn-primary" onclick = "elimina('. $row['id'] .')">Elimina!</a>
+          </div>
         </div>';
-      }
-    ?>
+    }?>
+    <!-- parte in php dove va messo la query che restituisce tutti i ristoranti in attesa di conferma
+    <div class="row">
+      <div class="card card-sm center-msg-box transparent col-sm-8">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisic culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="card card-sm center-msg-box transparent col-sm-4">
+          <a href="#" class="btn btn-primary">Approva!</a>
+          <br/>
+          <a href="#" class="btn btn-primary">Elimina!</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card card-sm center-msg-box transparent col-sm-8">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisic culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="card card-sm center-msg-box transparent col-sm-4">
+          <a href="#" class="btn btn-primary">Approva!</a>
+          <br/>
+          <a href="#" class="btn btn-primary">Elimina!</a>
+      </div>
+    </div>-->
   </div>
+
+
+
+
+
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="./../../js/bootstrap.min.js"></script>
   </body>
