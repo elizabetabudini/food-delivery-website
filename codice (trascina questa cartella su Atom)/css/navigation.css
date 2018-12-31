@@ -1,0 +1,8 @@
+#current{
+  border-bottom-style: solid;
+  border-color: white;
+  border-bottom-width: 1.5px;
+  color: white;
+  background-color: rgb(68, 76, 84);
+  border-top-left-radius: 9px;
+}

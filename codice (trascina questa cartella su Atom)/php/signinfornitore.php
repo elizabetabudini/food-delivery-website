@@ -1,5 +1,6 @@
 
 <?php
+$current= "signinfornitore";
 if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
@@ -98,6 +99,7 @@ $current= "signinfornitore";
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
+    <link href="./../css/navigation.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
