@@ -1,12 +1,13 @@
 <?php if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
+$current="home";
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CFU - Accedi</title>
+    <title>CFU - Home</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
@@ -33,9 +34,6 @@
 				  <tbody>
 				  </tbody>
 				</table>
-
-				<nav aria-label="Page navigation example" class="d-flex">
-				  <ul class="pagination mx-auto">
 				  </ul>
 				</nav>
 

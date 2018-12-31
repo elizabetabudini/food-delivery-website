@@ -11,7 +11,7 @@ $current= "homeadmin";
 <html lang="it" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CFU - Accedi</title>
+    <title>CFU - Home Admin</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
 
@@ -26,7 +26,7 @@ $current= "homeadmin";
   <body>
   <?php
    include 'menu.php';
-  if(! isset($_SESSION["email"])){
+   if(! isset($_SESSION["email"])){
      header("Location: accedi.php");
   }?>
   <div class="card card-sm center-msg-box transparent">
@@ -46,7 +46,7 @@ $current= "homeadmin";
         <div class="card-body ">
           <h5 class="card-title">Convalida ristoranti</h5>
           <p class="card-text-center">Aumenta la scelta! :D</p>
-          <a href="admin/approvazione.php" class="btn btn-primary">Approva!</a>
+          <a href="approvazione.php" class="btn btn-primary">Approva!</a>
         </div>
       </div>
     </div>

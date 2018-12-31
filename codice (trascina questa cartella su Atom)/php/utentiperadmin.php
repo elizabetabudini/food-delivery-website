@@ -15,8 +15,6 @@ if(isset($_GET["request"]))
 		die("Connection failed: " . $conn->connect_error);
 	}
 
-	$rows_per_page = 5;
-
 	switch ($_GET["request"]) {
 		case "num_pages_users":
 			$stmt = $conn->prepare("SELECT COUNT(*) AS num_utenti FROM persona");

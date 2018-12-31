@@ -9,7 +9,7 @@ if ( isset( $_SESSION['email'] ) ) {
     <a class="nav-link" href="areafornitori.php"<?php if($current == 'areafornitori') {echo 'id="current"';} ?>>Home <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#"<?php if($current == 'profilo') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?></a>
+    <a class="nav-link" href="profilofornitore.php"<?php if($current == 'profilofornitore') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Listino</a>

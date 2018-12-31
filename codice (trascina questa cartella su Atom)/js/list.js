@@ -58,7 +58,7 @@ $(document).ready(function(){
 				$.getJSON("./../php/utentiperadmin.php?request=users&page="+page, function(data) {
 					var html_code = "";
 					for(var i = 0; i < data.length; i++){
-						html_code += '<tr><th scope="row">'+data[i]["id"]+'</th><td>'+data[i]["nome"]+'</td><td>'+data[i]["cognome"]+'</td><td>'+data[i]["email"]+'</td></tr>';
+						html_code += '<tr><th scope="row">'+data[i]["email"]+'</th><td>'+data[i]["nome"]+'</td><td>'+data[i]["cognome"]+'</td></td>'+data[i]["privilegi"]+'</td></tr>';
 					}
 
 					$("table tbody").html(html_code);

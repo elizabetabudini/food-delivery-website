@@ -1,4 +1,5 @@
 <?php
+$current= "homeadmin";
 if(isset($_POST["sent"])){
 
   $servername = "localhost";
@@ -31,19 +32,19 @@ if(isset($_POST["sent"])){
     <meta charset="utf-8">
     <title>CFU - Accedi</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="./../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../css/bootstrap.min.css">
 
-    <link href="./../../css/form.css" rel="stylesheet">
-    <link href="./../../css/full.css" rel="stylesheet">
-    <link href="./../../css/admin.css" rel="stylesheet">
-    <link href="./../../css/menubar.css" rel="stylesheet">
-    <link href="./../../css/approvazione.css" rel="stylesheet">
+    <link href="./../css/form.css" rel="stylesheet">
+    <link href="./../css/full.css" rel="stylesheet">
+    <link href="./../css/menubar.css" rel="stylesheet">
+    <link href="./../css/adminapprova.css" rel="stylesheet">
+    <link href="./../css/navigation.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
   <body>
-  <?php include '../menu.php'; ?>
+  <?php include 'menu.php'; ?>
 
   <div class="card card-sm center-msg-box transparent ">
     <h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l'approvazione</h3>
@@ -70,7 +71,7 @@ if(isset($_POST["sent"])){
           <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
             <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
             <br/>
-            <input type="submit" class="btn btn-primary" name="action" value="Elimna"/>
+            <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
             <input type="hidden" name = "id" value="'.$row["id"].'">
             <input type="hidden" name="sent" value="true" />
           </form>
@@ -79,6 +80,6 @@ if(isset($_POST["sent"])){
     ?>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="./../../js/bootstrap.min.js"></script>
+  <script src="./../js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -11,7 +11,7 @@ $current= "homeclienti";
 <html lang="it" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CFU - Home</title>
+    <title>CFU - Home Clienti</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">

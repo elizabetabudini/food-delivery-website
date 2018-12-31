@@ -33,19 +33,19 @@ function approva($id){
     <meta charset="utf-8">
     <title>CFU - Accedi</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="./../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../css/bootstrap.min.css">
 
-    <link href="./../../css/form.css" rel="stylesheet">
-    <link href="./../../css/full.css" rel="stylesheet">
-    <link href="./../../css/admin.css" rel="stylesheet">
-    <link href="./../../css/menubar.css" rel="stylesheet">
-    <link href="./../../css/approvazione.css" rel="stylesheet">
+    <link href="./../css/form.css" rel="stylesheet">
+    <link href="./../css/full.css" rel="stylesheet">
+    <link href="./../css/admin.css" rel="stylesheet">
+    <link href="./../css/menubar.css" rel="stylesheet">
+    <link href="./../css/approvazione.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
   <body>
-  <?php include '../menu.php'; ?>
+  <?php include 'menu.php'; ?>
 
   <div class="card card-sm center-msg-box transparent ">
     <h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l'approvazione</h3>
@@ -103,6 +103,6 @@ function approva($id){
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="./../../js/bootstrap.min.js"></script>
+  <script src="./../js/bootstrap.min.js"></script>
   </body>
 </html>
