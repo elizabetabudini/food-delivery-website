@@ -42,7 +42,7 @@ $current= "homeclienti";
               </div>
               <!--end of col-->
               <div class="col-auto">
-                  <button class="btn btn-lg btn-success" type="submit">Cerca</button>
+                  <button class="btn btn-lg btn-success" type="submit" action = "prenotazione.php">Cerca</button>
               </div>
               <!--end of col-->
             </div>
