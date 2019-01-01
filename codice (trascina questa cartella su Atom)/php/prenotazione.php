@@ -35,6 +35,5 @@
   $stmt = $conn->prepare("SELECT id FROM prenotazione WHERE email_cliente = ?  AND data = ? AND luogo_consegna = ? LIMIT 1");
   $stmt->bind_param("sss", $email, $_SESSION['data'], $_POST["luogo"]);
   $_SESSION["id"] = $stmt->execute();
-  echo  $_SESSION["id"]
-//  header("Location: ricerca.php");
+  header("Location: ricerca.php");
   ?>
