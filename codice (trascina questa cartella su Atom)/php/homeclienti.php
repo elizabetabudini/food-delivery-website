@@ -28,7 +28,7 @@ $current= "homeclienti";
      ?>
     <div class="row h-100 justify-content-center align-items-center ">
         <div class="col-12 col-md-10 col-lg-8 ">
-          <form class="card card-sm center-msg-box">
+          <form class="card card-sm center-msg-box" action="prenotazione.php" method="post" name ="ricerca" id="ricerca">
             <h1>CFU</h1>
             <h2>Cesena Food University</h2>
             <h3>Their food at your university</h3>
@@ -37,12 +37,12 @@ $current= "homeclienti";
                   <i class="fas fa-search h4 text-body"></i>
               </div>
               <!--end of col-->
-              <div class="col">
-                  <input class="form-control form-control-lg form-control-borderless" type="search" autofocus="on" placeholder="Aula 2.2, Laboratorio 3.3, Studio 4.2 ...">
-              </div>
-              <!--end of col-->
+                <div class="col">
+                    <input class="form-control form-control-lg form-control-borderless" type="search" name = "luogo" autofocus="on" placeholder="Aula 2.2, Laboratorio 3.3, Studio 4.2 ...">
+                </div>
+                <!--end of col-->
               <div class="col-auto">
-                  <button class="btn btn-lg btn-success" type="submit" action = "prenotazione.php">Cerca</button>
+                  <button class="btn btn-lg btn-success" id = "submit" type="submit" >Cerca</button>
               </div>
               <!--end of col-->
             </div>
