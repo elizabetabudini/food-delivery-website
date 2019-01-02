@@ -16,7 +16,7 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $data = date(" Y m d");
+  $data = date("Y\-m\-d");
   $stato= 0;
   $info = "";
   $totale = 0;
@@ -33,21 +33,20 @@
   $stmt->execute();
   $stmt->close();
 
-
-  var_dump("ciao");
-
   $stmt2 = $conn->prepare("SELECT id FROM prenotazione WHERE email_cliente = ?  AND data = ? AND luogo_consegna = ? LIMIT 1");
   $stmt2->bind_param("sss", $email, $data, $_POST["luogo"]);
   $stmt2->execute();
+
   /* bind result variables */
    $stmt2->bind_result($id);
 
    /* fetch value */
    $stmt2->fetch();
+   echo $data;
+   echo $id;
 
   $_SESSION["id_prenotazione"] = $id;
   header("Location: ricerca.php");
   $stmt2->close();
-
   $conn->close();
   ?>
