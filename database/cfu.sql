@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 02, 2019 alle 15:25
+-- Creato il: Gen 02, 2019 alle 18:31
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -145,17 +145,6 @@ CREATE TABLE `menu` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `notifica`
---
-
-CREATE TABLE `notifica` (
-  `codice` int(11) NOT NULL,
-  `testo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `persona`
 --
 
@@ -175,13 +164,9 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`nome`, `cognome`, `email`, `id_ristorante`, `password`, `privilegi`, `cellulare`) VALUES
 ('admin', 'admin', 'admin@admin.it', NULL, '$2y$10$2Da8BumFyFneTSqNKzS3mOs0mA27HFBnTx9g5b7ugQFXqEKNM./ue', 2, ''),
-('Giovanni', 'Santi', 'fornitore2@fornitore.it', 5, '$2y$10$DMBzaOgVYlXFy7Kx0N27OuYeyoqI2oFyKb3/WNgWdRNbM6djsI.wm', 1, ''),
-('Antonio', 'Galli', 'fornitore3@fornitore.it', NULL, '$2y$10$o/flpPSskymLG6fHAdDGfu0gpLh4/MdWEi.ENlGwIedfYUjOdgTj6', 1, ''),
-('Davide', 'Bagli', 'fornitore4@fornitore.it', NULL, '$2y$10$9ae.YPRoZiKhf15EPJJLGOk2UaUl.4JNiJoffxX/6VWcCrbFhim1a', 1, ''),
-('Antonietta', 'Salli', 'fornitore5@fornitore.it', NULL, '$2y$10$0LzuZh1PCBlSMFZF2X754.Rs3fsREAN60fy0zCtWMiqK0RRUDpsoy', 1, ''),
-('fornitore', 'fornitore', 'fornitore@fornitore.it', 4, '$2y$10$ar0tLoLUGHbZ2ARcWdg0WujSLldNHF0w1V1sQI/2letajNDGdk2A6', 1, ''),
+('Giovanni', 'Santi', 'fornitore@fornitore.it', 5, '$2y$10$DMBzaOgVYlXFy7Kx0N27OuYeyoqI2oFyKb3/WNgWdRNbM6djsI.wm', 1, ''),
 ('prova', 'prova', 'not_logged_in', NULL, 'ciao', 0, ''),
-('utente', 'utente', 'utente@utente.it', NULL, '$2y$10$6P8599fjUtdS3UvNi/VPNOdvJyC3Dvu04DIFAMn7HB0bexVc0gcYy', 0, '');
+('utente', 'utente', 'utente@utente.it', NULL, '$2y$10$chbbTNGLligQsLPsF.Lzf.cywbwY9IOazChEiTDFFIkYUZXxIfbAu', 0, '');
 
 -- --------------------------------------------------------
 
@@ -212,17 +197,6 @@ INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_c
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `riceve`
---
-
-CREATE TABLE `riceve` (
-  `codice_notifica` int(11) NOT NULL,
-  `email` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `ristorante`
 --
 
@@ -242,11 +216,7 @@ CREATE TABLE `ristorante` (
 --
 
 INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome_categoria`, `info`, `rating`, `approvato`) VALUES
-(4, 'fornitore@fornitore.it', 'locanda', 'via prova, 1, FC', NULL, 'sdasdas', 0, 0),
-(5, 'fornitore2@fornitore.it', 'villamarina', 'via mare 12', NULL, '', 0, 0),
-(6, 'fornitore3@fornitore.it', 'pappareale', 'piazza cesena', NULL, '', 0, 0),
-(7, 'fornitore4@fornitore.it', 'daghigo', 'via santa chiara', NULL, '', 0, 0),
-(12, 'fornitore5@fornitore.it', 'fortnite', 'piazza cesena', NULL, '', 0, 0);
+(5, 'fornitore@fornitore.it', 'villamarina', 'via mare 12', NULL, '', 0, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -292,12 +262,6 @@ ALTER TABLE `menu`
   ADD KEY `FKpartecipa2` (`nome_categoria`);
 
 --
--- Indici per le tabelle `notifica`
---
-ALTER TABLE `notifica`
-  ADD PRIMARY KEY (`codice`);
-
---
 -- Indici per le tabelle `persona`
 --
 ALTER TABLE `persona`
@@ -312,13 +276,6 @@ ALTER TABLE `prenotazione`
   ADD KEY `FKeffettua` (`email_cliente`),
   ADD KEY `FKconsegna` (`luogo_consegna`),
   ADD KEY `FKriferisce` (`id_ristorante`);
-
---
--- Indici per le tabelle `riceve`
---
-ALTER TABLE `riceve`
-  ADD PRIMARY KEY (`email`,`codice_notifica`),
-  ADD KEY `FKric_not` (`codice_notifica`);
 
 --
 -- Indici per le tabelle `ristorante`
@@ -378,16 +335,9 @@ ALTER TABLE `persona`
 -- Limiti per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  ADD CONSTRAINT `FKconsegna` FOREIGN KEY (`luogo_consegna`) REFERENCES `luogo` (`nome`),
-  ADD CONSTRAINT `FKeffettua` FOREIGN KEY (`email_cliente`) REFERENCES `persona` (`email`),
-  ADD CONSTRAINT `FKriferisce` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`);
-
---
--- Limiti per la tabella `riceve`
---
-ALTER TABLE `riceve`
-  ADD CONSTRAINT `FKric_not` FOREIGN KEY (`codice_notifica`) REFERENCES `notifica` (`codice`),
-  ADD CONSTRAINT `FKric_per` FOREIGN KEY (`email`) REFERENCES `persona` (`email`);
+  ADD CONSTRAINT `FKconsegna` FOREIGN KEY (`luogo_consegna`) REFERENCES `luogo` (`nome`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FKeffettua` FOREIGN KEY (`email_cliente`) REFERENCES `persona` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FKriferisce` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limiti per la tabella `ristorante`
