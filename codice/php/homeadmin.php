@@ -55,7 +55,7 @@ $current= "homeadmin";
         <div class="card-body ">
           <h5 class="card-title">Gestisci le categorie</h5>
           <p class="card-text-center">Mi raccomando non eliminare le pizze.</p>
-          <a href="accedi.php" class="btn btn-primary">Alle categorie!</a>
+          <a href="#" class="btn btn-primary">Alle categorie!</a>
         </div>
       </div>
     </div>
