@@ -6,6 +6,7 @@ $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
 ?>
+
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
@@ -17,7 +18,8 @@ $_SESSION['admin']="false";
     <link href="./../css/form.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
-    <link href="./../css/navigation.css" rel="stylesheet">
+    <link href="./../css/admin.css" rel="stylesheet">
+    <link href="./../css/sidebar.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
@@ -25,7 +27,45 @@ $_SESSION['admin']="false";
   <?php $current= "ricerca";
 	include 'menu.php';
   var_dump($_SESSION["id_prenotazione"]); ?>
-  <!-- pagina dove creare la finestra con i ristoranti che scorrono -->
+
+  <div class="sidenav">
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="card card-sm center-msg-box main">
+ <button type="button" name="button"  onclick="openNav()">open</button>
+  <?php
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "cfu";
+
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+  foreach($conn->query('SELECT * FROM ristorante ORDER BY nome_categoria') as $row) {
+    echo'
+    <div class="row">
+      <div class="card card-sm center-msg-box col-sm-8">
+        <h3>'.$row["nome"].'</h3>
+        <h4>'.$row["nome_categoria"].'</h4>
+        <h6>'.$row["indirizzo"].'</h6>
+      </div>
+      <div class="card card-sm center-msg-box col-sm-4">
+        <h5> '.$row["rating"].'/10 utenti raccomandano </h5>
+        QUASI QUASI IL RATING LO TOGLIEREI
+      </div>
+    </div>
+      ';
+    }
+    ?>
+
+  </div>
+
   <?php include 'footer.php'; ?>
   <!-- Bootstrap core JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
