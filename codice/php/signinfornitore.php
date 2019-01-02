@@ -62,22 +62,22 @@ if(isset($_POST["sent"])){
 		$stmt2->bind_param("sssss", $info, $email, $nomerist, $indirizzorist, $rating);
     $res= $stmt2->execute();
 
-  	$stmt2->close();
-		$stmt->close();
-		$sql = "SELECT id FROM `ristorante` WHERE `email_proprietario`= 'elizabeta.budini@gmail.com'";
-		$result = mysqli_query($conn, $sql);
-		var_dump($result);
-		if (mysqli_num_rows($result) > 0) {
-		    // output data of each row
-		    while($row = mysqli_fetch_assoc($result)) {
-		        echo "trovati <br>";
-		    }
-		} else {
-		    echo "0 results";
-		}
+		$stmt3 = $conn->prepare("SELECT id FROM ristorante WHERE email_proprietario = ?");
+    $stmt3->bind_param("s", $_POST['email']);
+    $stmt3->execute();
+    /* bind result variables */
+    $stmt3->bind_result($id);
+    /* fetch value */
+    $stmt3->fetch();
 
-		$sql = "UPDATE `persona` SET `id_ristorante`='3' WHERE `email`='elizabeta.budini@gmail.com'";
-		$result = mysqli_query($conn, $sql);
+    $stmt2->close();
+    $stmt->close();
+    $stmt3->close();
+
+    $stmt4 = $conn->prepare("UPDATE persona SET id_ristorante=? WHERE email=?");
+    $stmt4->bind_param("ss", $id, $_POST['email']);
+    $stmt4->execute();
+    $stmt4->close();
  }
 }
 ?>
@@ -115,7 +115,7 @@ $current= "signinfornitore";
 				{
 			?>
 			<div class="alert alert-success alert-php" role="alert">
-				Inserimento avvenuto correttamente! Riceverai una notifica quando l'iscrizione sarà approvatadal nostro Team
+				Inserimento avvenuto correttamente! Riceverai una notifica quando l'iscrizione sarà approvata dal nostro Team
 			</div>
 			<?php
 				}
@@ -154,7 +154,7 @@ $current= "signinfornitore";
 				</div>
 				<div class="form-group">
 				<label for="inputEmail">Indirizzo Email</label>
-				<input type="email" name="email"  class="form-control" id="inputEmail" placeholder="Inserisci Email" required >
+				<input type="email" name="email"  class="form-control" id="inputEmail" placeholder="Inserisci Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Email non valida! Esempio valido: mario.rossi@gmail.com">
 				</div>
         <div class="form-group">
 				<label for="inputPassword">Password</label>

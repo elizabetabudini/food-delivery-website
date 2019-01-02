@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 }
 
 
-foreach($conn->query('SELECT nome , id_ristorante, nome_menu FROM carrello WHERE id_prenotazione = '.$_SESSION['id'].'') as $row) {
+  foreach($conn->query('SELECT nome , id_ristorante, nome_menu FROM carrello WHERE id_prenotazione = '.$_SESSION['id'].'') as $row) {
   echo */
   ?>
 <!DOCTYPE html>
@@ -25,14 +25,13 @@ foreach($conn->query('SELECT nome , id_ristorante, nome_menu FROM carrello WHERE
     <link href="./../css/form.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
-    <link href="./../css/admin.css" rel="stylesheet">
     <link href="./../css/carrello.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
   <body>
-  <?php $current= "ricerca";
+  <?php $current= "carrello";
 	include 'menu.php'; ?>
   <div class="center-msg-box card card-sm dark">
     <h1 class = "title">Carrello</h1>

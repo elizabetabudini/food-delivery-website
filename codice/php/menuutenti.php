@@ -12,7 +12,7 @@ if ( isset( $_SESSION['email'] ) ) {
     <a class="nav-link" href="#"<?php if($current == 'profilo') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#"<?php if($current == 'carrello') {echo 'id="current"';} ?>>Carrello</a>
+    <a class="nav-link" href="carrello.php"<?php if($current == 'carrello') {echo 'id="current"';} ?>>Carrello</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti</a>
