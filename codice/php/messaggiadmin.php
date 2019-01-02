@@ -1,12 +1,12 @@
 <?php
-$current= "norificheutente";
+$current= "messaggiadmin";
 ?>
 
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CFU - Norifiche</title>
+    <title>CFU - Messaggi</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
 
@@ -14,6 +14,7 @@ $current= "norificheutente";
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
+    <link href="./../css/messaggi.css" rel="stylesheet">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
@@ -36,8 +37,8 @@ $current= "norificheutente";
   <?php include 'menu.php'; ?>
 
   <div class="card card-sm center-msg-box transparent ">
-    <h3 class="title text-center">Ecco i tuoi messaggi</h3>
-    <div id="element"></div>
+    <h3 class="title text-center">I tuoi messaggi</h3>
+    <p id="element"></p>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="./../js/bootstrap.min.js"></script>

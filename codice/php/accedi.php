@@ -20,7 +20,6 @@ if(isset($_POST["sent"])){
 		$username = "root";
 		$password = "";
 		$dbname = "cfu";
-		session_start();
     // Getting submitted user data from database
     $con = new mysqli($servername, $username, $password, $dbname);
     $stmt = $con->prepare("SELECT * FROM persona WHERE email = ?");

@@ -9,6 +9,10 @@ if ( isset( $_SESSION['email'] ) ) {
     <a class="nav-link" href="#">AMMINISTRATORE</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="messaggiadmin.php"<?php if($current == 'messaggiadmin') {echo 'id="current"';} ?>>Messaggi <span class="badge badge-primary">1</span>
+  <span class="sr-only">unread messages</span></a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" id="logout" href="logout.php"<?php if($current == 'logout') {echo 'id="current"';} ?>>Logout</a>
   </li>
  <?php

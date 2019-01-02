@@ -78,6 +78,16 @@ if(isset($_POST["sent"])){
     $stmt4->bind_param("ss", $id, $_POST['email']);
     $stmt4->execute();
     $stmt4->close();
+
+    $mess= "Hai un ristorante da approvare controlla la tua Home";
+    $data= date('Y-m-d-h-m');
+    $letto="0";
+    $email="admin@admin.it";
+    $stmt5 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
+    $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
+    $stmt5->execute();
+    $stmt5->close();
+
  }
 }
 ?>

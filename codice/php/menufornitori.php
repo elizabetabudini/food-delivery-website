@@ -9,7 +9,10 @@ if ( isset( $_SESSION['email'] ) ) {
     <a class="nav-link" href="areafornitori.php"<?php if($current == 'areafornitori') {echo 'id="current"';} ?>>Home <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="profilofornitore.php"<?php if($current == 'profilofornitore') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?><span href="#" class="badge badge-primary">1</span>
+    <a class="nav-link" href="profilofornitore.php"<?php if($current == 'profilofornitore') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="messaggifornitore.php"<?php if($current == 'messaggifornitore') {echo 'id="current"';} ?>>Messaggi <span class="badge badge-primary">1</span>
   <span class="sr-only">unread messages</span></a>
   </li>
   <li class="nav-item">

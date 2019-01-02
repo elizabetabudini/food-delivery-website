@@ -13,15 +13,23 @@ if(isset($_POST["sent"])){
   }
 
   if($_POST['action'] == "Approva"){
-    $stmt = $conn->prepare("UPDATE ristorante SET approvato = '1' WHERE id = ? ");
-    $stmt->bind_param("s", $_POST['id']);
+    $stmt = $conn->prepare("UPDATE ristorante SET approvato = '1' WHERE email_proprietario = ? ");
+    $stmt->bind_param("s", $_POST['email']);
     $stmt->execute();
     $stmt->close();
+
+    $mess= "Buone notizie! Il tuo ristorante è stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!";
+    $data= date('Y-m-d-h-m');
+    $letto="0";
+    $stmt2 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
+    $stmt2->bind_param("ssss", $mess, $_POST['email'], $data, $letto);
+    $stmt2->execute();
+    $stmt2->close();
   }
 
   if($_POST['action'] == "Elimina" ){
-    $stmt2 = $conn->prepare("DELETE FROM ristorante WHERE id = ? ");
-    $stmt2->bind_param("s", $_POST['id']);
+    $stmt2 = $conn->prepare("DELETE FROM ristorante WHERE email_proprietario = ? ");
+    $stmt2->bind_param("s", $_POST['email']);
     $stmt2->execute();
     $stmt2->close();
   }
@@ -72,10 +80,10 @@ if(isset($_POST["sent"])){
           </div>
           <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
             <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
-            <input type="hidden" name = "id" value="'.$row["id"].'">
+            <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
             <br/>
             <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
-            <input type="hidden" name = "id" value="'.$row["id"].'">
+            <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
             <input type="hidden" name="sent" value="true" />
           </form>
         </div>';
