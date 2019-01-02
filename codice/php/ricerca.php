@@ -6,6 +6,16 @@ $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
 ?>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
 
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -28,14 +38,20 @@ $_SESSION['admin']="false";
 	include 'menu.php';
   var_dump($_SESSION["id_prenotazione"]); ?>
 
-  <div class="sidenav">
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <br/>
     <a href="#">About</a>
+    <br/>
     <a href="#">Services</a>
-    <a href="#">Clients</a>
+    <br/>
     <a href="#">Contact</a>
+    <br/>
+    <a href="#">Clients</a>
   </div>
-  <div class="card card-sm center-msg-box main">
- <button type="button" name="button"  onclick="openNav()">open</button>
+
+ <div class="main card card-sm center-msg-box main">
+ <button type="button" name="button"  onclick="openNav()">Categories</button>
   <?php
   $servername = "localhost";
   $username = "root";
