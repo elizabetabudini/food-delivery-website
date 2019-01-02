@@ -2,25 +2,6 @@
   session_start();
 }
 $current="elencoutenti";
-if(isset($_POST["sent"])){
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "cfu";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
-    if($_POST['action'] == "Elimina" ){
-      var_dump($_POST['email']);
-      $stmt2 = $conn->prepare("DELETE FROM persona WHERE email = ? ");
-      $stmt2->bind_param("s", $_POST['email']);
-      $stmt2->execute();
-      $stmt2->close();
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -31,7 +12,7 @@ if(isset($_POST["sent"])){
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
-    <link href="./../css/adminapprova.css" rel="stylesheet">
+    <link href="./../css/approvazione.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
@@ -51,6 +32,11 @@ if(isset($_POST["sent"])){
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
+    if(isset($_POST['delete'])){
+      $user  = $_POST['delete'];
+      $delet_query = mysqli_query($conn,"DELETE FROM persona WHERE email = '$user' ") or die(mysqli_error($conn));
+
+    }
 
     $result = mysqli_query($conn,"SELECT nome, cognome, email FROM persona WHERE privilegi ='0'");
 
@@ -61,18 +47,21 @@ if(isset($_POST["sent"])){
     <th>Email</th>
     <th>Elimina utente</th>
     </tr>";
-
+    if($result->num_rows==0){
+      echo '<div id="nouser"> Non ci sono utenti </div>';
+    }
     while($row = mysqli_fetch_array($result))
     {
-    echo "<tr>";
-    echo "<td>" . $row['nome'] . "</td>";
-    echo "<td>" . $row['cognome'] . "</td>";
-    echo "<td>" . $row['email'] . "</td>";
-    echo '<td><form action="#" method="post" id="form1">
-    <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
-    <input type="hidden" name = "email" value="'.$row['email'].'">
-    <input type="hidden" name="sent" value="true" </td>';
-    echo "</tr>";
+    echo ' <tr>
+    <td> '. $row['nome'] .' </td>
+    <td> '. $row['cognome'] .' </td>
+    <td> '. $row['email'] .' </td>
+    <td>
+    <form action="#" method="POST">
+    <input type="submit" class= "btn btn-primary name="delete" value="Elimina" />
+    <input type="hidden" name = "delete" value="'.$row["email"].'">
+    </td>
+    </form></tr>"';
     }
     echo "</table>";
 ?>
@@ -82,7 +71,6 @@ if(isset($_POST["sent"])){
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity=
 	"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script src="./../js/list.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   </body>

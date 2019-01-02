@@ -1,12 +1,15 @@
 <?php
 $current= "messaggifornitore";
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CFU - Notifiche</title>
+    <title>CFU - Messaggi</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
 

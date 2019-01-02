@@ -3,10 +3,7 @@
 if ( isset( $_SESSION['email'] ) ) {
   ?>
   <li class="nav-item">
-    <a class="nav-link" href="homeadmin.php"<?php if($current == 'homeadmin') {echo 'id="current"';} ?>>Home <span class="sr-only">(current)</span></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">AMMINISTRATORE</a>
+    <a class="nav-link" href="homeadmin.php"<?php if($current == 'homeadmin') {echo 'id="current"';} ?>>Strumenti <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="messaggiadmin.php"<?php if($current == 'messaggiadmin') {echo 'id="current"';} ?>>Messaggi <span class="badge badge-primary">1</span>

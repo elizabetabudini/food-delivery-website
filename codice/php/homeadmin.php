@@ -62,6 +62,7 @@ $current= "homeadmin";
     </div>
   </div>
 </div>
+
 <?php
  include 'footer.php';
  ?>

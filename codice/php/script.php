@@ -7,10 +7,26 @@ if (session_status() === PHP_SESSION_NONE){
 		$username = "root";
 		$password = "";
 		$dbname = "cfu";
+
     // Getting submitted user data from database
     $con = new mysqli($servername, $username, $password, $dbname);
-    $result = mysqli_query($con,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."'");
-		if($row_cnt = $result->num_rows==0){
+		if(isset($_POST["sent"])){
+			if($_POST['action'] == "Segna come letto"){
+				$stmt = $conn->prepare("UPDATE messaggio SET letto = '1' WHERE id = ? ");
+				$stmt->bind_param("s", $_POST['id']);
+				$stmt->execute();
+				$stmt->close();
+			}
+
+			if($_POST['action'] == "Elimina" ){
+				$stmt2 = $conn->prepare("DELETE FROM messaggio WHERE id = ? ");
+				$stmt2->bind_param("s", $_POST['id']);
+				$stmt2->execute();
+				$stmt2->close();
+			}
+		}
+    $result = mysqli_query($con,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' AND letto='0'");
+		if($result->num_rows==0){
 			echo "<form><p class='card-text' id='no_mess'>Non hai messaggi nella tua casella</p></form>";
 		} else {
 			while($row = mysqli_fetch_array($result)) {
@@ -20,10 +36,10 @@ if (session_status() === PHP_SESSION_NONE){
 
 			echo '
 			 <input type="submit" class="btn btn-primary" name="action" value="Segna come letto"/>
-			 <input type="hidden" name = "id" value="'.$row["email"].'">
+			 <input type="hidden" name = "id" value="'.$row["id"].'">
 			 <br/>
 			 <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
-			 <input type="hidden" name = "id" value="'.$row["email"].'">
+			 <input type="hidden" name = "id" value="'.$row["id"].'">
 			 <input type="hidden" name="sent" value="true" />
 		 </form>';
 		 }

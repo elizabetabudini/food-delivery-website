@@ -19,7 +19,7 @@ if(isset($_POST["sent"])){
     $stmt->close();
 
     $mess= "Buone notizie! Il tuo ristorante è stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!";
-    $data= date('Y-m-d-h-m');
+    $data= date('Y-m-d-H-m');
     $letto="0";
     $stmt2 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
     $stmt2->bind_param("ssss", $mess, $_POST['email'], $data, $letto);
@@ -47,7 +47,7 @@ if(isset($_POST["sent"])){
     <link href="./../css/form.css" rel="stylesheet">
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
-    <link href="./../css/adminapprova.css" rel="stylesheet">
+    <link href="./../css/approvazione.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,6 @@ if(isset($_POST["sent"])){
   <?php include 'menu.php'; ?>
 
   <div class="card card-sm center-msg-box transparent ">
-    <h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l'approvazione</h3>
     <?php
     $servername = "localhost";
     $username = "root";
@@ -70,7 +69,7 @@ if(isset($_POST["sent"])){
       die("Connection failed: " . $conn->connect_error);
     }
 
-
+    echo '<h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l approvazione</h3>';
     foreach($conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0') as $row) {
       echo '
         <div class="row card-sm">
