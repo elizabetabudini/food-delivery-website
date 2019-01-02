@@ -5,11 +5,13 @@ if (session_status() === PHP_SESSION_NONE){
 }
 if ( isset( $_SESSION['email'] ) ) {
   ?>
+
   <li class="nav-item">
     <a class="nav-link" href="homeclienti.php"<?php if($current == 'homeclienti') {echo 'id="current"';} ?>>Home <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#"<?php if($current == 'profilo') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?></a>
+    <a class="nav-link" href="#"<?php if($current == 'profilo') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?> <span href="#" class="badge badge-primary">1</span>
+  <span class="sr-only">unread messages</span></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="carrello.php"<?php if($current == 'carrello') {echo 'id="current"';} ?>>Carrello</a>
