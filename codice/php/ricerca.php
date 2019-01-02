@@ -1,9 +1,16 @@
-
+<?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
+$_SESSION['fornitore']= "false";
+$_SESSION['utente']= "true";
+$_SESSION['admin']="false";
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>CFU - Accedi</title>
+    <title>CFU - Ricerca</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
@@ -16,7 +23,8 @@
   </head>
   <body>
   <?php $current= "ricerca";
-	include 'menu.php'; ?>
+	include 'menu.php';
+  var_dump($_SESSION["id_prenotazione"]); ?>
   <!-- pagina dove creare la finestra con i ristoranti che scorrono -->
   <?php include 'footer.php'; ?>
   <!-- Bootstrap core JavaScript -->

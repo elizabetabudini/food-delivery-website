@@ -16,24 +16,38 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $_SESSION['data'] = date(" Y m d");
-  $_SESSION['stato'] = 0;
-  $_SESSION['info'] = "";
-  $_SESSION['totale'] = 0;
+  $data = date(" Y m d");
+  $stato= 0;
+  $info = "";
+  $totale = 0;
   if(isset($_SESSION['email'])){
     $email = $_SESSION['email'];
 
   }else {
-    $email = "";
+    $email = "not_logged_in";
   }
-  $stmt = $conn->prepare("INSERT INTO prenotazione (info_prenotazione,	email_cliente,	data,
-                                      stato,	totale,	luogo_consegna)
-                                      VALUES (?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("ssssss", $_SESSION['info'], $email, $_SESSION['data'], $_SESSION['stato'], $_SESSION['totale'], $_POST["luogo"]);
-  $stmt->execute();
 
-  $stmt = $conn->prepare("SELECT id FROM prenotazione WHERE email_cliente = ?  AND data = ? AND luogo_consegna = ? LIMIT 1");
-  $stmt->bind_param("sss", $email, $_SESSION['data'], $_POST["luogo"]);
-  $_SESSION["id"] = $stmt->execute();
+  $stmt = $conn->prepare("INSERT INTO prenotazione (info_prenotazione,	email_cliente,	data,
+                                      stato,	totale,	luogo_consegna) VALUES (?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("ssssss", $info, $email, $data, $stato, $totale, $_POST["luogo"]);
+  $stmt->execute();
+  $stmt->close();
+
+
+  var_dump("ciao");
+
+  $stmt2 = $conn->prepare("SELECT id FROM prenotazione WHERE email_cliente = ?  AND data = ? AND luogo_consegna = ? LIMIT 1");
+  $stmt2->bind_param("sss", $email, $data, $_POST["luogo"]);
+  $stmt2->execute();
+  /* bind result variables */
+   $stmt2->bind_result($id);
+
+   /* fetch value */
+   $stmt2->fetch();
+
+  $_SESSION["id_prenotazione"] = $id;
   header("Location: ricerca.php");
+  $stmt2->close();
+
+  $conn->close();
   ?>

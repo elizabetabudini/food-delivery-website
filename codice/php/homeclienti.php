@@ -37,6 +37,28 @@ $current= "homeclienti";
                   <i class="fas fa-search h4 text-body"></i>
               </div>
               <!--end of col-->
+              <div class="form-group">
+              <label for="sel1">Seleziona il luogo di consegna</label>
+              <select class="form-control" id="sel1" name="luogo">
+                <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "cfu";
+
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
+                }
+                  $sql = mysqli_query($conn, "SELECT nome FROM luogo");
+                  while ($row = $sql->fetch_assoc()){
+                  echo "<option value=\"luogo1\">" . $row['nome'] . "</option>";
+                }
+                ?>
+              </select>
+            </div>
+
                 <div class="col">
                     <input class="form-control form-control-lg form-control-borderless" type="search" name = "luogo" autofocus="on" placeholder="Aula 2.2, Laboratorio 3.3, Studio 4.2 ...">
                 </div>
