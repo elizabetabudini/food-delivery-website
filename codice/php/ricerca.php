@@ -25,7 +25,6 @@ function closeNav() {
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
-    <!--<link href="./../css/form.css" rel="stylesheet">-->
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
     <link href="./../css/search.css" rel="stylesheet">
