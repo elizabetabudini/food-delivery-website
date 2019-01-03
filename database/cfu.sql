@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 03, 2019 alle 14:09
+-- Creato il: Gen 03, 2019 alle 14:32
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -37,18 +37,23 @@ CREATE TABLE `alimento` (
   `nome_menu` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Struttura della tabella `carrello`
+-- Dump dei dati per la tabella `alimento`
 --
 
-CREATE TABLE `carrello` (
-  `id_prenotazione` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL,
-  `id_ristorante` int(11) NOT NULL,
-  `nome_menu` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `alimento` (`disponibilita`, `nome`, `info`, `prezzo`, `id_ristorante`, `nome_menu`) VALUES
+('', 'panino 2', '', '0.00', 32, 'panino '),
+('', 'panino 3', '', '0.00', 5, 'panino'),
+('', 'panino m', '', '0.00', 34, 'panino'),
+('1', 'panino1', '1', '1.00', 5, 'panino'),
+('1', 'panino2', '1', '1.00', 34, 'panino'),
+('1', 'panino3', '1', '1.00', 32, 'panino'),
+('', 'pixxs2', '', '0.00', 32, 'pizza'),
+('', 'pizza 4', '', '0.00', 5, 'pizza'),
+('1', 'pizza1', '1', '1.00', 5, 'pizza'),
+('1', 'pizza2', '1', '1.00', 34, 'pizza'),
+('1', 'pizza3', '1', '1.00', 32, 'pizza'),
+('', 'pizza3', '', '0.00', 34, 'pizza');
 
 -- --------------------------------------------------------
 
@@ -142,33 +147,17 @@ CREATE TABLE `menu` (
   `nome_categoria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Struttura della tabella `messaggio`
+-- Dump dei dati per la tabella `menu`
 --
 
-CREATE TABLE `messaggio` (
-  `id` int(11) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `testo` text NOT NULL,
-  `data` datetime NOT NULL,
-  `letto` varchar(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `messaggio`
---
-
-INSERT INTO `messaggio` (`id`, `email`, `testo`, `data`, `letto`) VALUES
-(1, 'admin@admin.it', 'dhfagfsdfasdfds', '2019-01-02 08:16:00', '0'),
-(2, 'fornitore6@fornitore.it', 'Buone notizie! Il tuo ristorante Ã¨ stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!', '2019-01-03 00:01:00', '0'),
-(3, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(5, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(6, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(7, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(8, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(9, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0');
+INSERT INTO `menu` (`id_ristorante`, `nome`, `nome_categoria`) VALUES
+(5, 'panino', 'menu panino'),
+(32, 'panino', 'menu panino'),
+(34, 'panino ', 'menu panino'),
+(5, 'pizza', 'menu pizza'),
+(32, 'pizza', 'menu pizza'),
+(34, 'pizza', 'menu pizza');
 
 -- --------------------------------------------------------
 
@@ -247,7 +236,7 @@ CREATE TABLE `ristorante` (
 
 INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome_categoria`, `info`, `rating`, `approvato`) VALUES
 (5, 'fornitore@fornitore.it', 'villamarina', 'via mare 12', NULL, '', 0, 1),
-(32, 'fornitore3@fornitore.it', 'fadsadsa', 'dasdsa', NULL, '', 0, 1),
+(32, 'fornitore3@fornitore.it', 'lul', 'simpa', 'cinese', '', 0, 1),
 (34, 'fornitore6@fornitore.it', 'Elizabeta Budini', 'via A. Severini nÂ°11', NULL, '', 0, 1);
 
 --
@@ -260,13 +249,6 @@ INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome
 ALTER TABLE `alimento`
   ADD PRIMARY KEY (`nome`,`id_ristorante`,`nome_menu`),
   ADD KEY `FKpartecipa` (`id_ristorante`,`nome_menu`);
-
---
--- Indici per le tabelle `carrello`
---
-ALTER TABLE `carrello`
-  ADD PRIMARY KEY (`id_prenotazione`,`nome`,`id_ristorante`,`nome_menu`),
-  ADD KEY `FKcomprende` (`nome`,`id_ristorante`,`nome_menu`);
 
 --
 -- Indici per le tabelle `categoria_menu`
@@ -292,13 +274,6 @@ ALTER TABLE `luogo`
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_ristorante`,`nome`),
   ADD KEY `FKpartecipa2` (`nome_categoria`);
-
---
--- Indici per le tabelle `messaggio`
---
-ALTER TABLE `messaggio`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `destinatario` (`email`);
 
 --
 -- Indici per le tabelle `persona`
@@ -329,16 +304,10 @@ ALTER TABLE `ristorante`
 --
 
 --
--- AUTO_INCREMENT per la tabella `messaggio`
---
-ALTER TABLE `messaggio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
@@ -357,24 +326,11 @@ ALTER TABLE `alimento`
   ADD CONSTRAINT `FKpartecipa` FOREIGN KEY (`id_ristorante`,`nome_menu`) REFERENCES `menu` (`id_ristorante`, `nome`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `carrello`
---
-ALTER TABLE `carrello`
-  ADD CONSTRAINT `FKcomprende` FOREIGN KEY (`nome`,`id_ristorante`,`nome_menu`) REFERENCES `alimento` (`nome`, `id_ristorante`, `nome_menu`),
-  ADD CONSTRAINT `FKlistapre` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`);
-
---
 -- Limiti per la tabella `menu`
 --
 ALTER TABLE `menu`
   ADD CONSTRAINT `FKoffre` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`),
   ADD CONSTRAINT `FKpartecipa2` FOREIGN KEY (`nome_categoria`) REFERENCES `categoria_menu` (`nome_categoria`);
-
---
--- Limiti per la tabella `messaggio`
---
-ALTER TABLE `messaggio`
-  ADD CONSTRAINT `destinatario` FOREIGN KEY (`email`) REFERENCES `persona` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `persona`
