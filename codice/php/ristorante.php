@@ -1,6 +1,11 @@
 <?php if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
+if(!isset($_SESSION['email'])){
+  $_SESSION['Redirect']= "ristorante.php";
+  header('location:accedi.php');
+}
+
 $current="ristorante";
 ?>
 <!DOCTYPE html>
@@ -18,7 +23,7 @@ $current="ristorante";
 
   </head>
   <body>
-  <?php include 'menu.php'; ?>
+  <?php include './../php/menu.php'; ?>
 
   <!--<div class="card card-sm center-msg-box transparent ">
     <h3 class="title text-center">Elenco utenti</h3> -->

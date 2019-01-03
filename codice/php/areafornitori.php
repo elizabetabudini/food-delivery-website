@@ -6,6 +6,7 @@ $_SESSION["fornitore"]= "true";
 $_SESSION['utente']= "false";
 $_SESSION['admin']="false";
 $current= "areafornitori";
+$_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">

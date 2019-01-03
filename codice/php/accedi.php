@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
+
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+
 $current= "accedi";
 if(isset($_POST["sent"])){
 	$errors = "";
@@ -37,18 +40,23 @@ if(isset($_POST["sent"])){
 				 $_SESSION['email']= $user->email;
 				 $_SESSION['nome']= $user->nome;
 				 $_SESSION['cognome']= $user->cognome;
+         $URL= $_SESSION["Redirect"];
 				 if($user->privilegi==0){
 					 $_SESSION['utente']= $user->privilegi;
-					 header("Location: homeclienti.php");
+           $_SESSION['utente']=true;
+					 /*header("Location: homeclienti.php");*/
 				 }
 				 if($user->privilegi==1){
-					 header("Location: areafornitori.php");
+					 /*header("Location: areafornitori.php");*/
 					 $_SESSION['fornitore']= $user->privilegi;
+           $_SESSION['fornitore']=true;
 				 }
 				 if($user->privilegi==2){
-					 header("Location: homeadmin.php");
+					 /*header("Location: homeadmin.php");*/
 					 $_SESSION['admin']= $user->privilegi;
+           $_SESSION['admin']=true;
 				 }
+         header("Location:".$URL."");
 
 	  	} else {
 				$errors .= "La password non è corretta<br/>";
@@ -75,7 +83,8 @@ if(isset($_POST["sent"])){
   </head>
   <body>
   <?php $current= "accedi";
-	include 'menu.php'; ?>
+	include 'menu.php';?>
+
   <div class="container-fluid">
   <div class="row">
 		<div class="col-12 col-md-4 offset-md-4">
@@ -107,7 +116,7 @@ if(isset($_POST["sent"])){
   <form method="post" action="#" id="signupform" >
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Enter email" autofocus required>
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus required>
 
     </div>
     <div class="form-group">

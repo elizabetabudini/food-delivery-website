@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE){
 $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
+$_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
 ?>
 <script>
 function openNav() {

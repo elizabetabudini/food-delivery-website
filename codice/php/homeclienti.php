@@ -6,6 +6,7 @@ $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
 $current= "homeclienti";
+$_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -46,13 +47,10 @@ $current= "homeclienti";
             <h2>Cesena Food University</h2>
             <h3>Their food at your university</h3>
             <div class="card-body row no-gutters align-items-center">
-              <div class="col-auto">
-                  <i class="fas fa-search h4 text-body"></i>
-              </div>
               <!--end of col-->
-              <div class="form-group">
-              <label for="sel1">Seleziona il luogo di consegna</label>
-              <select class="form-control" id="sel1" name="luogo">
+              <div class="col">
+                <form method="post">
+              <select autofocus="on" class="form-control form-control-lg form-control-borderless" id="sel1" name="luogo">
                 <?php
                 $servername = "localhost";
                 $username = "root";
@@ -66,18 +64,16 @@ $current= "homeclienti";
                 }
                   $sql = mysqli_query($conn, "SELECT nome FROM luogo");
                   while ($row = $sql->fetch_assoc()){
-                  echo "<option value=\"luogo1\">" . $row['nome'] . "</option>";
+                  echo "<option value='". $row['nome'] ."'>" . $row['nome'] . "</option>";
                 }
                 ?>
               </select>
+            </form>
             </div>
-
-                <div class="col">
-                    <input class="form-control form-control-lg form-control-borderless" type="search" name = "luogo" autofocus="on" placeholder="Aula 2.2, Laboratorio 3.3, Studio 4.2 ...">
-                </div>
                 <!--end of col-->
               <div class="col-auto">
-                  <button class="btn btn-lg btn-success" id = "submit" type="submit" >Cerca</button>
+                  <button class="btn btn-lg btn-success" id = "submit" type="submit" >Risultati</button>
+                  <?php if(isset($_POST['luogo'])) $selectOption = $_POST['luogo']; ?>
               </div>
               <!--end of col-->
             </div>

@@ -1,5 +1,6 @@
 
 <?php
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 $current= "signinfornitore";
 if (session_status() === PHP_SESSION_NONE){
   session_start();

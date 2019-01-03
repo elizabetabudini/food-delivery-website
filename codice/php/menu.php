@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE){
 }
 ?>
 <?php
-if ($_SESSION['fornitore']=== "true") {
+if ($_SESSION['fornitore']== "true") {
   echo '<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span><span id="notifica" class="badge badge-primary"></span>
@@ -23,7 +23,7 @@ if ($_SESSION['fornitore']=== "true") {
 
   include 'menufornitori.php';
 } else {
-  if ($_SESSION['admin']=== "true") {
+  if ($_SESSION['admin']== "true") {
     echo '<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span><span id="notifica" class="badge badge-primary"></span>
@@ -36,7 +36,7 @@ if ($_SESSION['fornitore']=== "true") {
 
     include 'menuadmin.php';
   } else {
-    if ($_SESSION['utente']=== "true"){
+    if ($_SESSION['utente']== "true"){
       echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span><span id="notifica" class="badge badge-primary"></span>

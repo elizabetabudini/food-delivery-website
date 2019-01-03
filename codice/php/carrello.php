@@ -32,6 +32,7 @@ if ($conn->connect_error) {
   </head>
   <body>
   <?php $current= "carrello";
+  $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
 	include 'menu.php'; ?>
   <div class="center-msg-box card card-sm dark">
     <h1 class = "title">Carrello</h1>
