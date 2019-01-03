@@ -1,7 +1,7 @@
 <?php if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
-$current="elencoutenti";
+$current="ristorante";
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -33,34 +33,45 @@ $current="elencoutenti";
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-    if(isset($_POST['delete'])){
-      $user  = $_POST['delete'];
-      $delet_query = mysqli_query($conn,"DELETE FROM persona WHERE email = '$user' ") or die(mysqli_error($conn));
+    if(isset($_POST['id_ristorante'])){
+      $ristorante  = $_POST['id_ristorante'];
+      $select_query = mysqli_query($conn,"SELECT nome FROM ristorante WHERE id = '$ristorante' ") or die(mysqli_error($conn));
+      $row = mysqli_fetch_array($select_query);
+      $_SESSION["nome_ristorante"]=$row["nome"];
+      $_SESSION["id_ristorante"]=$ristorante;
+
+
+    }
+    if(isset($_POST['aggiungi'])){
+      $user  = $_POST['aggiungi'];
+      $aggiungi_query = mysqli_query($conn,"INSERT INTO carrello VALUES email = '$user' ") or die(mysqli_error($conn));
 
     }
 
-    $result = mysqli_query($conn,"SELECT nome, cognome, email FROM persona WHERE privilegi ='0'");
+    $stmt = $conn->prepare("SELECT nome, nome_categoria FROM menu WHERE id_ristorante = ?");
+    $stmt->bind_param('s', $_SESSION["id_ristorante"]);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
 
     echo "<table class='table table-light table-hover'>
     <tr>
-    <th>Nome</th>
-    <th>Cognome</th>
-    <th>Email</th>
-    <th>Elimina utente</th>
+    <th>Cibo</th>
+    <th>Categoria</th>
+    <th>Aggiungi</th>
     </tr>";
     if($result->num_rows==0){
-      echo '<div id="nouser"> Non ci sono utenti </div>';
+      echo '<div id="nouser"> Non ci sono cibi nel ristorante '.$_SESSION["nome_ristorante"].'</div>';
     }
     while($row = mysqli_fetch_array($result))
     {
     echo ' <tr>
     <td> '. $row['nome'] .' </td>
-    <td> '. $row['cognome'] .' </td>
-    <td> '. $row['email'] .' </td>
+    <td> '. $row['nome_categoria'] .' </td>
     <td>
     <form action="#" method="POST">
-    <input type="submit" class= "btn btn-primary name="delete" value="Elimina" />
-    <input type="hidden" name = "delete" value="'.$row["email"].'">
+    <input type="submit" class= "btn btn-primary name="aggiungi" value="Aggiungi al carrello" />
+    <input type="hidden" name = "delete" value="'.$row["nome"].'">
     </td>
     </form></tr>"';
     }
