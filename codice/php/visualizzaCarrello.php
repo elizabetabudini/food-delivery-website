@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
 // initializ shopping cart class
 include 'carrello.php';
 $current="carrello";

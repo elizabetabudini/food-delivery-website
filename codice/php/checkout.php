@@ -1,9 +1,16 @@
 <?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
 $current="carrello";
 $servernome = "localhost";
 $usernome = "root";
 $password = "";
 $dbnome = "cfu";
+if(!isset($_SESSION['email'])){
+  $_SESSION['Redirect']= "checkout.php";
+  header('location:accedi.php');
+}
 
 $con = new mysqli($servernome, $usernome, $password, $dbnome);
 

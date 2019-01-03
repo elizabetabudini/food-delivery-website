@@ -1,12 +1,25 @@
 <?php if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
-/*if(!isset($_SESSION['email'])){
-  $_SESSION['Redirect']= "ristorante.php";
-  header('location:accedi.php');
-}*/
-var_dump($_SESSION["id_ristorante"]);
-$current="ristorante";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cfu";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+if(isset($_POST['id_ristorante'])){
+  $ristorante  = $_POST['id_ristorante'];
+  $select_query = mysqli_query($conn,"SELECT nome FROM ristorante WHERE id = '$ristorante' ") or die(mysqli_error($conn));
+  $row = mysqli_fetch_array($select_query);
+  $_SESSION["nome_ristorante"]=$row["nome"];
+  $_SESSION["id_ristorante"]=$ristorante;
+}
+
+$current="home";
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -35,31 +48,14 @@ $current="ristorante";
 
   </head>
   <body>
-  <?php include './../php/menu.php'; ?>
+  <?php include 'menu.php'; ?>
 
   <!--<div class="card card-sm center-msg-box transparent ">
     <h3 class="title text-center">Elenco utenti</h3> -->
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "cfu";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
-    if(isset($_POST['id_ristorante'])){
-      $ristorante  = $_POST['id_ristorante'];
-      $select_query = mysqli_query($conn,"SELECT nome FROM ristorante WHERE id = '$ristorante' ") or die(mysqli_error($conn));
-      $row = mysqli_fetch_array($select_query);
-      $_SESSION["nome_ristorante"]=$row["nome"];
-      $_SESSION["id_ristorante"]=$ristorante;
-    }
     ?>
-    <a href="ricerca.php" id="torna" class="btn btn-primary"> < Torna ai ristoranti</a>
-    <a href="visualizzaCarrello.php" class="btn btn-primary" id="carrello" title="View Cart"> Carrello > </a>
+    <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success"> < Torna ai ristoranti</a>
+    <a href="visualizzaCarrello.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello > </a>
     <div class="container">
     <h1>Ecco cosa offre <?php echo $_SESSION["nome_ristorante"]?> </h1>
 
@@ -92,7 +88,7 @@ $current="ristorante";
             </div>
         </div>
         <?php } }else{ ?>
-        <p>Product(s) not found.....</p>
+        <p>Nessun prodotto trovato</p>
         <?php } ?>
     </div>
 </div>

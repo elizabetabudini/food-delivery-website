@@ -12,7 +12,7 @@ $current= "profiloutente";
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
-    <link href="./../css/areafornitori.css" rel="stylesheet">
+    <link href="./../css/home.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
@@ -29,7 +29,7 @@ $current= "profiloutente";
       <h3>Nome: </h3>
       <h3>Cognome: </h3>
 
-      <a href="#" class="btn btn-primary">Modifica dati</a>
+      <a href="#" class="btn btn-success">Modifica dati</a>
     </div>
 
 <?php include 'footer.php'; ?>

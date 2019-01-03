@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
+}
 // initialize shopping cart class
 include 'carrello.php';
 $cart = new Cart;
@@ -17,8 +20,8 @@ if ($db->connect_error) {
 
 if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     if($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])){
-      var_dump($_REQUEST['id']);
         $productID = $_REQUEST['id'];
+
         // get product details
         $query = $db->query("SELECT * FROM alimento WHERE id = ".$productID);
         $row = $query->fetch_assoc();
@@ -39,6 +42,9 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         );
         $updateItem = $cart->update($itemData);
         echo $updateItem?'ok':'err';die;
+    }elseif($_REQUEST['action'] == 'resetCart'){
+      $cart->destroy();
+      header("Location: ricerca.php");
     }elseif($_REQUEST['action'] == 'removeCartItem' && !empty($_REQUEST['id'])){
         $deleteItem = $cart->remove($_REQUEST['id']);
         header("Location: visualizzaCarrello.php");
@@ -54,6 +60,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
           $stmt4->bind_param("sssssss", $email, $_SESSION["id_ristorante"], $totale, $stato,
           $data, $_SESSION["luogo"],  $_SESSION["id_prenotazione"]);
           $insertOrder=$stmt4->execute();
+          $stmt4->close;
         } else {
         echo 'Bad Programmatore Exception: la query non è andata a buon fine </br>';
         }
@@ -62,6 +69,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             $orderID = $_SESSION["id_prenotazione"];
             // get cart items
             $cartItems = $cart->contents();
+
             foreach($cartItems as $alimento){
                 $sql .= "INSERT INTO alimenti_prenotati (id_prenotazione, id_alimento, quantità) VALUES ('".$orderID."', '".$alimento['id']."', '".$alimento['quantità']."');";
             }
@@ -75,6 +83,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
                 header("Location: checkout.php");
             }
         }else{
+          
             header("Location: checkout.php");
         }
     }else{

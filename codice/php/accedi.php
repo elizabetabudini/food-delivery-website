@@ -49,11 +49,16 @@ if(isset($_POST["sent"])){
 				 $_SESSION['email']= $user->email;
 				 $_SESSION['nome']= $user->nome;
 				 $_SESSION['cognome']= $user->cognome;
-         $URL= $_SESSION["Redirect"];
+         if(isset($_SESSION["Redirect"])){
+           $URL= $_SESSION["Redirect"];
+         }
 				 if($user->privilegi==0){
 					 $_SESSION['utente']= $user->privilegi;
            $_SESSION['utente']=true;
-					 header("Location:".$URL."");
+           if(isset($_SESSION["Redirect"])){
+            header("Location:".$URL."");
+           }
+
 				 }
 				 if($user->privilegi==1){
 					 $_SESSION['fornitore']= $user->privilegi;

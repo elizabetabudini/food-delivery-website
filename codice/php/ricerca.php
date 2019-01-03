@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE){
 $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
-$_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
 ?>
 <script>
 function openNav() {
@@ -34,9 +33,8 @@ function closeNav() {
 
   </head>
   <body>
-  <?php $current= "ricerca";
-	include 'menu.php';
-  var_dump($_SESSION["id_prenotazione"]); ?>
+  <?php $current= "home";
+	include 'menu.php';?>
 
   <div id="mySidenav" class="sidenav">
     <div class ="margin">
