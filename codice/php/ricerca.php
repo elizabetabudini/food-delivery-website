@@ -25,12 +25,11 @@ function closeNav() {
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
-    <link href="./../css/form.css" rel="stylesheet">
+    <!--<link href="./../css/form.css" rel="stylesheet">-->
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
-    <link href="./../css/admin.css" rel="stylesheet">
+    <link href="./../css/search.css" rel="stylesheet">
     <link href="./../css/sidebar.css" rel="stylesheet">
-    <link href="./../css/ricerca.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
@@ -81,9 +80,9 @@ function closeNav() {
     </div>
   </div>
 
-  <button type="button" name="button"  onclick="openNav()">Categories</button>
+  <button class=" btn btn-primary" type="button" name="button"  onclick="openNav()">Applica filtri</button>
 
- <div class="main card card-sm center-msg-box main">
+ <div class="container">
   <?php
   $servername = "localhost";
   $username = "root";
@@ -108,21 +107,26 @@ function closeNav() {
   echo implode(' ',$filter);
   $query = 'SELECT * FROM ristorante WHERE 1=1'.implode(' AND ', $filter);
   echo $query;
-  foreach($conn->query($query) as $row) {
-    echo'
-    <div class="row">
-      <div class="card card-sm center-msg-box col-sm-9">
-        <h2>'.$row["nome"].'</h2>
-        <h3>'.$row["nome_categoria"].'</h3>
-        <h4>'.$row["indirizzo"].'</h4>
-      </div>
-      <form class=" col-sm-3 card card-sm center-msg-box" action="ristorante.php" method="post" name ="seleziona" id="seleziona">
-        <input type = "hidden" name="id_ristorante" value="'.$row["id"].'">
-        <button class="btn btn-sm btn-outline-info allign_center" id = "submit" type="submit" >Guarda Listino</button>
-      </form>
-    </div>
-      ';
-    }
+  $result=$conn->query($query);
+  echo "<ul class='list-group'>";
+  if($result->num_rows==0){
+    echo '<div id="nouser"> Non ci sono ristoranti </div>';
+  }
+  foreach($conn->query($query) as $row)
+  {
+  echo '
+  <li class="list-group-item">'.$row["nome"].'
+  '.$row["nome_categoria"].'
+  '.$row["indirizzo"].'
+
+  <form action="ristorante.php" method="post" name ="seleziona" id="seleziona">
+    <input type = "hidden" name="id_ristorante" value="'.$row["id"].'">
+    <button class="btn btn-sm btn-primary " id = "submit" type="submit" >Guarda Listino</button>
+  </form>
+  </li>"';
+
+  }
+  echo "</ul>";
     $conn->close();
     ?>
 

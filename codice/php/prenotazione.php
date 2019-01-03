@@ -42,8 +42,6 @@
 
    /* fetch value */
    $stmt2->fetch();
-   echo $data;
-   echo $id;
 
   $_SESSION["id_prenotazione"] = $id;
   header("Location: ricerca.php");

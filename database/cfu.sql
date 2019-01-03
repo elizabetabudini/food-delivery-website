@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 03, 2019 alle 00:27
+-- Creato il: Gen 03, 2019 alle 14:09
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -145,6 +145,34 @@ CREATE TABLE `menu` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `messaggio`
+--
+
+CREATE TABLE `messaggio` (
+  `id` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `testo` text NOT NULL,
+  `data` datetime NOT NULL,
+  `letto` varchar(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `messaggio`
+--
+
+INSERT INTO `messaggio` (`id`, `email`, `testo`, `data`, `letto`) VALUES
+(1, 'admin@admin.it', 'dhfagfsdfasdfds', '2019-01-02 08:16:00', '0'),
+(2, 'fornitore6@fornitore.it', 'Buone notizie! Il tuo ristorante Ã¨ stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!', '2019-01-03 00:01:00', '0'),
+(3, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
+(5, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
+(6, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
+(7, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
+(8, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
+(9, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `persona`
 --
 
@@ -164,10 +192,10 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`nome`, `cognome`, `email`, `id_ristorante`, `password`, `privilegi`, `cellulare`) VALUES
 ('admin', 'admin', 'admin@admin.it', NULL, '$2y$10$2Da8BumFyFneTSqNKzS3mOs0mA27HFBnTx9g5b7ugQFXqEKNM./ue', 2, ''),
-('Elizabeta', 'Budini', 'elizabeta.budini@gmail.com', 33, '$2y$10$MxG9yNeWAKffvjUOe0zvbefLBddg1xJJw1KULk4QngbyJfagR0Twu', 1, ''),
 ('dasdsad', 'dasdas', 'fornitore3@fornitore.it', 32, '$2y$10$zCL.39lKdz4uV.0FBjAhhe24j4XuP8HPnGvTAo/DA6qWosJiMLdp.', 1, ''),
 ('Elizabeta', 'Budini', 'fornitore6@fornitore.it', 34, '$2y$10$QDAR1sqaamqF8u4O28637ORaGVS9h6chwyqncC/UNFwVeN50QHApW', 1, ''),
 ('Giovanni', 'Santi', 'fornitore@fornitore.it', 5, '$2y$10$DMBzaOgVYlXFy7Kx0N27OuYeyoqI2oFyKb3/WNgWdRNbM6djsI.wm', 1, ''),
+('prova', 'prova', 'not_logged_in', NULL, 'ciao', 0, ''),
 ('utente', 'utente', 'utente@utente.it', NULL, '$2y$10$R3RXjbjdBvYryUTSbtjUFOTVfyfGMc45hK6rzNMITUlQDCF6DycKS', 0, '');
 
 -- --------------------------------------------------------
@@ -188,6 +216,13 @@ CREATE TABLE `prenotazione` (
   `totale` int(11) NOT NULL,
   `luogo_consegna` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `prenotazione`
+--
+
+INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_cliente`, `data`, `ora_accettazione`, `stato`, `ora_consegna`, `totale`, `luogo_consegna`) VALUES
+('', 2, NULL, 'not_logged_in', '2019-01-03', NULL, 0, NULL, 0, 'aula 2.3');
 
 -- --------------------------------------------------------
 
@@ -213,7 +248,6 @@ CREATE TABLE `ristorante` (
 INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome_categoria`, `info`, `rating`, `approvato`) VALUES
 (5, 'fornitore@fornitore.it', 'villamarina', 'via mare 12', NULL, '', 0, 1),
 (32, 'fornitore3@fornitore.it', 'fadsadsa', 'dasdsa', NULL, '', 0, 1),
-(33, 'elizabeta.budini@gmail.com', 'Elizabeta Budini', 'via A. Severini nÂ°11', NULL, '', 0, 1),
 (34, 'fornitore6@fornitore.it', 'Elizabeta Budini', 'via A. Severini nÂ°11', NULL, '', 0, 1);
 
 --
@@ -260,6 +294,13 @@ ALTER TABLE `menu`
   ADD KEY `FKpartecipa2` (`nome_categoria`);
 
 --
+-- Indici per le tabelle `messaggio`
+--
+ALTER TABLE `messaggio`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `destinatario` (`email`);
+
+--
 -- Indici per le tabelle `persona`
 --
 ALTER TABLE `persona`
@@ -288,16 +329,22 @@ ALTER TABLE `ristorante`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `messaggio`
+--
+ALTER TABLE `messaggio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Limiti per le tabelle scaricate
@@ -322,6 +369,12 @@ ALTER TABLE `carrello`
 ALTER TABLE `menu`
   ADD CONSTRAINT `FKoffre` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`),
   ADD CONSTRAINT `FKpartecipa2` FOREIGN KEY (`nome_categoria`) REFERENCES `categoria_menu` (`nome_categoria`);
+
+--
+-- Limiti per la tabella `messaggio`
+--
+ALTER TABLE `messaggio`
+  ADD CONSTRAINT `destinatario` FOREIGN KEY (`email`) REFERENCES `persona` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `persona`
