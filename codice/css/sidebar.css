@@ -9,10 +9,17 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 100px;
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-
+}
+.margin{
+  margin-left: 5%;
 }
 
-
+form > btn{
+  
+}
 .main {
   padding: 0px 10px;
+}
+.closebtn{
+
 }
