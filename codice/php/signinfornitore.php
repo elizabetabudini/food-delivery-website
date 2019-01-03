@@ -51,42 +51,63 @@ if(isset($_POST["sent"])){
 		$cat ="";
 
 		$stmt = $conn->prepare("INSERT INTO persona (nome, cognome, email, password, privilegi, cellulare) VALUES (?, ?, ?, ?, ?, ?)");
-		$stmt->bind_param("ssssss", $nome, $cognome, $email, $pwd, $privilegi, $cell);
+    $isInserted="";
+    if($stmt!=false){
+      $stmt->bind_param("ssssss", $nome, $cognome, $email, $pwd, $privilegi, $cell);
 
-		$isInserted = $stmt->execute();
-		if(!$isInserted){
-			$insertError = $stmt->error;
-		}
+  		$isInserted = $stmt->execute();
+  		if(!$isInserted){
+  			$insertError = $stmt->error;
+  		}
+      $stmt->close();
+    }
+    else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 65 signinfornitore.php </br>";
+    }
 
 		$stmt2 = $conn->prepare("INSERT INTO ristorante ( info, email_proprietario, nome, indirizzo, rating) VALUES (?, ?, ?, ?, ?)");
-		$stmt2->bind_param("sssss", $info, $email, $nomerist, $indirizzorist, $rating);
-    $res= $stmt2->execute();
+    if($stmt2!=false){
+      $stmt2->bind_param("sssss", $info, $email, $nomerist, $indirizzorist, $rating);
+      $res= $stmt2->execute();
+      $stmt2->close();
+    } else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 74 signinfornitore.php </br>";
+    }
 
 		$stmt3 = $conn->prepare("SELECT id FROM ristorante WHERE email_proprietario = ?");
-    $stmt3->bind_param("s", $_POST['email']);
-    $stmt3->execute();
-    /* bind result variables */
-    $stmt3->bind_result($id);
-    /* fetch value */
-    $stmt3->fetch();
-
-    $stmt2->close();
-    $stmt->close();
-    $stmt3->close();
+    if($stmt3!=false){
+      $stmt3->bind_param("s", $_POST['email']);
+      $stmt3->execute();
+      /* bind result variables */
+      $stmt3->bind_result($id);
+      /* fetch value */
+      $stmt3->fetch();
+      $stmt3->close();
+    } else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 87 signinfornitore.php </br>";
+    }
 
     $stmt4 = $conn->prepare("UPDATE persona SET id_ristorante=? WHERE email=?");
-    $stmt4->bind_param("ss", $id, $_POST['email']);
-    $stmt4->execute();
-    $stmt4->close();
+    if($stmt4!=false){
+      $stmt4->bind_param("ss", $id, $_POST['email']);
+      $stmt4->execute();
+      $stmt4->close();
+    } else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 96 signinfornitore.php </br>";
+    }
 
     $mess= "Hai un ristorante da approvare controlla la tua Home";
     $data= date('Y-m-d-h-m');
     $letto="0";
     $email="admin@admin.it";
     $stmt5 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
-    $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
-    $stmt5->execute();
-    $stmt5->close();
+    if($stmt5!=false){
+      $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
+      $stmt5->execute();
+      $stmt5->close();
+    } else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 109 signinfornitore.php </br>";
+    }
 
  }
 }

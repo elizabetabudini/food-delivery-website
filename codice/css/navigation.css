@@ -1,8 +1,7 @@
 #current{
   border-bottom-style: solid;
-  border-color: white;
+  border-color: #cacaca;
   border-bottom-width: 1.5px;
   color: white;
-  background-color: rgb(68, 76, 84);
-  padding-left: 2px;
+  background-color: rgb(111, 111, 111);
 }

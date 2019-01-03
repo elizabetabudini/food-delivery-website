@@ -2,5 +2,8 @@
   .navbar-brand{
     font-size: 1rem;
   }
+  .nav-link{
+    padding-left: 10px !important;
+}
 
 }

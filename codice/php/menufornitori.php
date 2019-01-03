@@ -34,7 +34,7 @@ if ( isset( $_SESSION['email'] ) ) {
    <a class="nav-link" href="accedi.php"<?php if($current == 'accedi') {echo 'id="current"';} ?>>Accedi</a>
  </li>
  <li class="nav-item">
-   <a class="nav-link" href="signinfornitore.php"<?php if($current == 'signinfornitore') {echo 'id="current"';} ?>>Registrati</a>
+   <a class="nav-link" href="signinfornitore.php"<?php if($current == 'signinfornitore') {echo 'id="current"';} ?>>Registra ristorante</a>
  </li>
  <li class="nav-item">
    <a class="nav-link" href="homeclienti.php"<?php if($current == 'homeclienti') {echo 'id="current"';} ?>>Area Clienti</a>
