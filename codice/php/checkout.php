@@ -1,5 +1,5 @@
 <?php
-$current="";
+$current="carrello";
 $servernome = "localhost";
 $usernome = "root";
 $password = "";
