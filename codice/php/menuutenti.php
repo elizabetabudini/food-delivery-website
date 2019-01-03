@@ -17,7 +17,7 @@ if ( isset( $_SESSION['email'] ) ) {
   <span class="sr-only">unread messages</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="carrello.php"<?php if($current == 'carrello') {echo 'id="current"';} ?>>Carrello</a>
+    <a class="nav-link" href="visualizzaCarrello.php"<?php if($current == 'carrello') {echo 'id="current"';} ?>>Carrello</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti</a>

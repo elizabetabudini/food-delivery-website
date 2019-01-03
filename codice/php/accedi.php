@@ -5,6 +5,13 @@ if (session_status() === PHP_SESSION_NONE){
 
 $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
+/*se sono già loggato*/
+if(isset($_SESSION["email"])){
+  if(isset($URL)){
+      header("Location:".$URL."");
+  }
+}
+
 $current= "accedi";
 if(isset($_POST["sent"])){
 	$errors = "";
@@ -17,25 +24,27 @@ if(isset($_POST["sent"])){
 		$errors .= "Password è obbligatoria <br/>";
 	}
 
+  /*se non ci sono errori sui dati inseriti dall'utente*/
 	if(strlen($errors) == 0){
 
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
 		$dbname = "cfu";
-    // Getting submitted user data from database
     $con = new mysqli($servername, $username, $password, $dbname);
+
+    /*Controllo che sul DB sia registrata la mail inserita dall'utente*/
     $stmt = $con->prepare("SELECT * FROM persona WHERE email = ?");
     $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
-
     $result = $stmt->get_result();
 	  $user = $result->fetch_object();
+
 		if($user===NULL){
 				$errors .= "L'email ".$_POST['email']." non è ancora registrata!<br/>";
 		} else {
 
-			// Verify user password and set $_SESSION
+			//*Controllo che la password inserita si corretta*/
 	  	if ( password_verify($_POST["password"], $user->password)) {
 				 $_SESSION['email']= $user->email;
 				 $_SESSION['nome']= $user->nome;
@@ -44,19 +53,18 @@ if(isset($_POST["sent"])){
 				 if($user->privilegi==0){
 					 $_SESSION['utente']= $user->privilegi;
            $_SESSION['utente']=true;
-					 /*header("Location: homeclienti.php");*/
+					 header("Location:".$URL."");
 				 }
 				 if($user->privilegi==1){
-					 /*header("Location: areafornitori.php");*/
 					 $_SESSION['fornitore']= $user->privilegi;
            $_SESSION['fornitore']=true;
+           header("Location: areafornitori.php");
 				 }
 				 if($user->privilegi==2){
-					 /*header("Location: homeadmin.php");*/
 					 $_SESSION['admin']= $user->privilegi;
            $_SESSION['admin']=true;
+           header("Location: homeadmin.php");
 				 }
-         header("Location:".$URL."");
 
 	  	} else {
 				$errors .= "La password non è corretta<br/>";

@@ -26,7 +26,7 @@
   }else {
     $email = "not_logged_in";
   }
-
+  $_SESSION["luogo"]=$_POST["luogo"];
   $stmt = $conn->prepare("INSERT INTO prenotazione (info_prenotazione,	email_cliente,	data,
                                       stato,	totale,	luogo_consegna) VALUES (?, ?, ?, ?, ?, ?)");
   $stmt->bind_param("ssssss", $info, $email, $data, $stato, $totale, $_POST["luogo"]);
