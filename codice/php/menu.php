@@ -65,15 +65,12 @@ if ($_SESSION['fornitore']== "true") {
 echo '</script>
       <script src="./../js/notifica.js" type="text/javascript"></script>
       </script>
-      <div class="row h-100 justify-content-center align-items-center ">
-        <div class="col-12 col-md-10 col-lg-8 ">
-          <div id="overlay">
-              <div id="popup">
-                  <div id="close">X</div>
-                  <h2>Hai un nuovo messaggio</h2>
-                  <p>Controlla la tua casella dei messaggi!</p>
-              </div>
-          </div>
+
+      <div id="overlay">
+        <div id="popup">
+            <div id="close">X</div>
+            <h2>Hai un nuovo messaggio</h2>
+            <p>Controlla la tua casella dei messaggi!</p>
         </div>
       </div>';
       ?>
