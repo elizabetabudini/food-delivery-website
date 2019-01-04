@@ -2,9 +2,6 @@
 if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
-header('Content-Type: application/json');
-if(isset($_GET["request"]))
-{
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -15,36 +12,36 @@ if(isset($_GET["request"]))
 		die("Connection failed: " . $conn->connect_error);
 	}
 
-  if(isset($_REQUEST["action"]) && !empy($_REQUEST["id"])){
-    if ($_REQUEST["request"]=="messages") {
-  			if(isset($_SESSION["email"])){
-  				$email = $_SESSION["email"];
-  			}
-        $stmt = $conn->prepare("SELECT * FROM messaggio WHERE email= ?");
-  			$stmt->bind_param("s", $email);
-  			$stmt->execute();
-
-  			$result = $stmt->get_result();
-
-  			$output = array();
-  			while($row = $result->fetch_assoc()) {
-  				$output[] = $row;
-  			}
-  			$stmt->close();
-  			print json_encode($output);
-  	} elseif($_REQUEST["action"]=="letto"){
-      $stmt = $conn->prepare("SELECT * FROM messaggio WHERE email= ?");
-      $stmt->bind_param("s", $email);
+  if(isset($_REQUEST["action"]) && !empty($_REQUEST["id"])){
+    if($_REQUEST["action"]=="letto"){
+      $id=$_REQUEST["id"];
+      $letto="1";
+      $stmt = $conn->prepare("UPDATE messaggio SET letto=? WHERE id= ?");
+      $stmt->bind_param("ss", $letto, $id);
       $stmt->execute();
       $stmt->close();
 
-    } elseif($_REQUEST["action"]=="elimina"){
-      $stmt = $conn->prepare("DELETE * FROM messaggio WHERE email= ?");
-      $stmt->bind_param("s", $email);
+    } elseif($_REQUEST["action"]=="elimina" && !empty($_REQUEST["id"])){
+      $id=$_REQUEST["id"];
+      $stmt = $conn->prepare("DELETE FROM messaggio WHERE id= ?");
+      $stmt->bind_param("s", $id);
       $stmt->execute();
       $stmt->close();
+    } elseif($_REQUEST["action"]=="nuovimessaggi"){
+      if(isset($_SESSION["email"])){
+        $result = mysqli_query($con,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' AND letto='0'");
+    		if($result->num_rows==0){
+    			$_SESSION["nuovimessaggi"]='false';
+    		} else {
+          $_SESSION["nuovimessaggi"]='true';
+        }
+      }
+
     }
   }
 
-}
+
+  $conn->close();
+  header("Location: messaggi.php");
+
 ?>

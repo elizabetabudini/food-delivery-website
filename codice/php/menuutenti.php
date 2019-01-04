@@ -13,7 +13,7 @@ if ( isset( $_SESSION['email'] ) ) {
     <a class="nav-link" href="profiloutente.php"<?php if($current == 'profiloutente') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?> </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="messaggiutente.php"<?php if($current == 'messaggiutente') {echo 'id="current"';} ?>>Messaggi <span class="badge badge-primary">1</span>
+    <a class="nav-link" href="messaggi.php"<?php if($current == 'messaggi') {echo 'id="current"';} ?>>Messaggi <span class="badge badge-primary">1</span>
   <span class="sr-only">unread messages</span></a>
   </li>
   <li class="nav-item">
