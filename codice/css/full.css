@@ -6,6 +6,10 @@ body {
   -o-background-size: cover;
 }
 
+.align{
+  align-content: center;
+}
+
 .center-msg-box{
   padding:30px;
   margin:40px auto;

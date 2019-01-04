@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 03, 2019 alle 20:53
+-- Creato il: Gen 04, 2019 alle 17:47
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -25,22 +25,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `alimenti_prenotati`
---
-
-CREATE TABLE `alimenti_prenotati` (
-  `id_prenotazione` int(11) NOT NULL,
-  `id_alimento` int(11) NOT NULL,
-  `quantità` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `alimento`
 --
 
 CREATE TABLE `alimento` (
+  `disponibilita` char(1) NOT NULL,
   `nome` varchar(20) NOT NULL,
   `info` varchar(100) NOT NULL,
   `prezzo` decimal(5,2) NOT NULL,
@@ -53,19 +42,8 @@ CREATE TABLE `alimento` (
 -- Dump dei dati per la tabella `alimento`
 --
 
-INSERT INTO `alimento` (`nome`, `info`, `prezzo`, `id_ristorante`, `nome_menu`, `id`) VALUES
-('panino 2', '', '0.00', 32, 'panino ', 1),
-('panino 3', '', '0.00', 5, 'panino', 2),
-('panino m', '', '0.00', 34, 'panino', 3),
-('panino1', '1', '1.00', 5, 'panino', 4),
-('panino2', '1', '1.00', 34, 'panino', 5),
-('panino3', '1', '1.00', 32, 'panino', 6),
-('pixxs2', '', '0.00', 32, 'pizza', 7),
-('pizza 4', '', '0.00', 5, 'pizza', 8),
-('pizza1', '1', '1.00', 5, 'pizza', 9),
-('pizza2', '1', '1.00', 34, 'pizza', 10),
-('pizza3', '1', '1.00', 32, 'pizza', 11),
-('pizza3', '', '0.00', 34, 'pizza', 12);
+INSERT INTO `alimento` (`disponibilita`, `nome`, `info`, `prezzo`, `id_ristorante`, `nome_menu`, `id`) VALUES
+('1', 'laboratorio 2.888', 'ciao', '1.00', 34, 'laboratorio 2.2', 1);
 
 -- --------------------------------------------------------
 
@@ -164,12 +142,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id_ristorante`, `nome`, `nome_categoria`) VALUES
-(5, 'panino', 'menu panino'),
-(32, 'panino', 'menu panino'),
-(34, 'panino ', 'menu panino'),
-(5, 'pizza', 'menu pizza'),
-(32, 'pizza', 'menu pizza'),
-(34, 'pizza', 'menu pizza');
+(34, 'laboratorio 2.2', 'menu pizza');
 
 -- --------------------------------------------------------
 
@@ -193,7 +166,6 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`nome`, `cognome`, `email`, `id_ristorante`, `password`, `privilegi`, `cellulare`) VALUES
 ('admin', 'admin', 'admin@admin.it', NULL, '$2y$10$2Da8BumFyFneTSqNKzS3mOs0mA27HFBnTx9g5b7ugQFXqEKNM./ue', 2, ''),
-('Elizabeta', 'Budini', 'eeelizabeta.budini@gmail.com', 42, '$2y$10$KgGpcrirKLoGUccqO6eAuuv1/htCg8bInQXCDsrMguAYyh5McwRee', 1, ''),
 ('dasdsad', 'dasdas', 'fornitore3@fornitore.it', 32, '$2y$10$zCL.39lKdz4uV.0FBjAhhe24j4XuP8HPnGvTAo/DA6qWosJiMLdp.', 1, ''),
 ('Elizabeta', 'Budini', 'fornitore6@fornitore.it', 34, '$2y$10$QDAR1sqaamqF8u4O28637ORaGVS9h6chwyqncC/UNFwVeN50QHApW', 1, ''),
 ('Giovanni', 'Santi', 'fornitore@fornitore.it', 5, '$2y$10$DMBzaOgVYlXFy7Kx0N27OuYeyoqI2oFyKb3/WNgWdRNbM6djsI.wm', 1, ''),
@@ -219,6 +191,14 @@ CREATE TABLE `prenotazione` (
   `luogo_consegna` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `prenotazione`
+--
+
+INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_cliente`, `data`, `ora_accettazione`, `stato`, `ora_consegna`, `totale`, `luogo_consegna`) VALUES
+('', 2, NULL, 'not_logged_in', '2019-01-03', NULL, 0, NULL, 0, 'aula 2.3'),
+('', 3, 34, 'utente@utente.it', '2019-01-04', NULL, 1, NULL, 1, 'Aula 2.1');
+
 -- --------------------------------------------------------
 
 --
@@ -242,26 +222,19 @@ CREATE TABLE `ristorante` (
 
 INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome_categoria`, `info`, `rating`, `approvato`) VALUES
 (5, 'fornitore@fornitore.it', 'villamarina', 'via mare 12', NULL, '', 0, 1),
-(32, 'fornitore3@fornitore.it', 'lul', 'simpa', 'cinese', '', 0, 1),
-(34, 'fornitore6@fornitore.it', 'Elizabeta Budini', 'via A. Severini nÂ°11', NULL, '', 0, 1),
-(42, 'eeelizabeta.budini@gmail.com', 'farfalla', 'via A. Severini nÂ°11', NULL, '', 0, 0);
+(32, 'fornitore3@fornitore.it', 'fadsadsa', 'dasdsa', NULL, '', 0, 1),
+(34, 'fornitore6@fornitore.it', 'Elizabeta Budini', 'via A. Severini nÂ°11', NULL, '', 0, 1);
 
 --
 -- Indici per le tabelle scaricate
 --
 
 --
--- Indici per le tabelle `alimenti_prenotati`
---
-ALTER TABLE `alimenti_prenotati`
-  ADD KEY `prenotati` (`id_prenotazione`),
-  ADD KEY `prenotati2` (`id_alimento`);
-
---
 -- Indici per le tabelle `alimento`
 --
 ALTER TABLE `alimento`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKpartecipa` (`id_ristorante`,`nome_menu`);
 
 --
 -- Indici per le tabelle `categoria_menu`
@@ -320,30 +293,29 @@ ALTER TABLE `ristorante`
 -- AUTO_INCREMENT per la tabella `alimento`
 --
 ALTER TABLE `alimento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Limiti per le tabelle scaricate
 --
 
 --
--- Limiti per la tabella `alimenti_prenotati`
+-- Limiti per la tabella `alimento`
 --
-ALTER TABLE `alimenti_prenotati`
-  ADD CONSTRAINT `prenotati` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `prenotati2` FOREIGN KEY (`id_alimento`) REFERENCES `alimento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `alimento`
+  ADD CONSTRAINT `FKpartecipa` FOREIGN KEY (`id_ristorante`,`nome_menu`) REFERENCES `menu` (`id_ristorante`, `nome`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `menu`

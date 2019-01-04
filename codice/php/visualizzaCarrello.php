@@ -38,7 +38,7 @@ $carrello = new Cart;
 </head>
 <body>
   <?php include 'menu.php'; ?>
-<div class="container">
+<div class="container align">
     <h1>Carrello</h1>
     <table class="table">
     <thead>
