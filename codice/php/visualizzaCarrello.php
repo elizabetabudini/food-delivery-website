@@ -72,8 +72,14 @@ $carrello = new Cart;
     </tbody>
     <tfoot>
         <tr>
-            <td><a href="ristorante.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a></td>
-            <td colspan="2"></td>
+          <?php if(isset($_SESSION("id_ristorante"))){
+            echo '<td><a href="ristorante.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a></td>
+            <td colspan="2"></td>'
+          } else {
+            echo '<td><a href="ricerca.php" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a></td>
+            <td colspan="2"></td>'
+          }
+
             <?php if($carrello->total_items() > 0){ ?>
             <td class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></td>
             <td><a href="checkout.php" class="btn btn-success btn-block">Checkout ></a></td>
