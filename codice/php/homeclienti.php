@@ -22,9 +22,7 @@ $current= "homeclienti";
     <link href="./../css/notificapopup.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
-</script>
-<script src="./../js/notifica.js" type="text/javascript"></script>
-</script>
+
 
   </head>
   <body>
@@ -34,13 +32,6 @@ $current= "homeclienti";
 
     <div class="row h-100 justify-content-center align-items-center ">
         <div class="col-12 col-md-10 col-lg-8 ">
-              <div id="overlay">
-                  <div id="popup">
-                      <div id="close">X</div>
-                      <h2>Hai un nuovo messaggio</h2>
-                      <p>Controlla la tua casella dei messaggi!</p>
-                  </div>
-              </div>
           <form class="card card-sm center-msg-box" action="prenotazione.php" method="post" name ="ricerca" id="ricerca">
             <h1>CFU</h1>
             <h2>Cesena Food University</h2>
