@@ -1,11 +1,31 @@
 <?php
-if (session_status() === PHP_SESSION_NONE){
-  session_start();
-}
-$_SESSION["fornitore"]= "true";
-$_SESSION['utente']= "false";
-$_SESSION['admin']="false";
-$current= "areafornitori";
+  if (session_status() === PHP_SESSION_NONE){
+    session_start();
+  }
+  $_SESSION["fornitore"]= "true";
+  $_SESSION['utente']= "false";
+  $_SESSION['admin']="false";
+  $current= "profilofornitore";
+
+  $servernome = "localhost";
+  $usernome = "root";
+  $password = "";
+  $dbnome = "cfu";
+
+  $db = new mysqli($servernome, $usernome, $password, $dbnome);
+
+  if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+  }
+
+  $query = $db->query("SELECT * FROM ristorante WHERE email_proprietario = '".$_SESSION["email"]."'");
+  $row = $query->fetch_assoc();
+  $nome_rist = $row["nome"];
+  $info = $row["info"];
+  $indirizzo = $row["indirizzo"];
+  $categoria= $row["nome_categoria"];
+  $rating = $row["rating"];
+  $approvazione = $row["approvato"]
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -27,16 +47,22 @@ $current= "areafornitori";
     include 'menu.php';
         ?>
     <div class="card card-sm center-msg-box">
-      <h1>Profilo <?php echo $_SESSION["nome"]; ?></h1>
-      <h3>La tua mail: <?php echo $_SESSION["email"]; ?></h3>
-      <h3>Nome ristorante: </h3>
-      <h3>Indirizzo: </h3>
-      <h3>Categoria: </h3>
-      <h3>Info: </h3>
-      <h3>Rating: </h3>
-      <h3>Approvato: </h3>
+      <h1>Profilo <?php echo $_SESSION["nome"]; ?> </h1>
+      <h3>La tua mail: <?php echo $_SESSION["email"]; ?> </h3>
+      <h3>Nome ristorante: <?php echo $nome_rist; ?> </h3>
+      <h3>Indirizzo:<?php echo $indirizzo; ?> </h3>
+      <h3>Categoria: <?php echo $categoria; ?> </h3>
+      <h3>Info: <?php echo $info; ?> </h3>
+      <h3>Rating: <?php echo $rating; ?> </h3>
+      <?php
+        if($approvazione == 1){
+          echo'<h3>Approvato! :) </h3>';
+        }else{
+          echo'<h3> Non ancora approvato :(</h3>';
+        } ?>
 
-      <a href="#" class="btn btn-primary">Modifica dati</a>
+
+      <a href="modificadati.php" class="btn btn-primary">Modifica dati</a>
       <a href="notifiche" class="btn btn-primary">Modifica dati</a>
     </div>
 
