@@ -15,23 +15,36 @@ if(isset($_GET["request"]))
 		die("Connection failed: " . $conn->connect_error);
 	}
 
-	if ($_GET["request"]=="messages") {
-			$page = 0;
-			if(isset($_SESSION["email"])){
-				$email = $_SESSION["email"];
-			}
+  if(isset($_REQUEST["action"]) && !empy($_REQUEST["id"])){
+    if ($_REQUEST["request"]=="messages") {
+  			if(isset($_SESSION["email"])){
+  				$email = $_SESSION["email"];
+  			}
+        $stmt = $conn->prepare("SELECT * FROM messaggio WHERE email= ?");
+  			$stmt->bind_param("s", $email);
+  			$stmt->execute();
+
+  			$result = $stmt->get_result();
+
+  			$output = array();
+  			while($row = $result->fetch_assoc()) {
+  				$output[] = $row;
+  			}
+  			$stmt->close();
+  			print json_encode($output);
+  	} elseif($_REQUEST["action"]=="letto"){
       $stmt = $conn->prepare("SELECT * FROM messaggio WHERE email= ?");
-			$stmt->bind_param("s", $email);
-			$stmt->execute();
+      $stmt->bind_param("s", $email);
+      $stmt->execute();
+      $stmt->close();
 
-			$result = $stmt->get_result();
+    } elseif($_REQUEST["action"]=="elimina"){
+      $stmt = $conn->prepare("DELETE * FROM messaggio WHERE email= ?");
+      $stmt->bind_param("s", $email);
+      $stmt->execute();
+      $stmt->close();
+    }
+  }
 
-			$output = array();
-			while($row = $result->fetch_assoc()) {
-				$output[] = $row;
-			}
-			$stmt->close();
-			print json_encode($output);
-	}
 }
 ?>

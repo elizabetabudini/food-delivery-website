@@ -50,6 +50,7 @@ if ($_SESSION['fornitore']== "true") {
     }
 
   }
+
 }
 
 ?>
@@ -57,3 +58,19 @@ if ($_SESSION['fornitore']== "true") {
 </ul>
 </div>
 </nav>
+
+
+<?php
+
+echo '</script>
+      <script src="./../js/notifica.js" type="text/javascript"></script>
+      </script>
+
+      <div id="overlay">
+        <div id="popup">
+            <div id="close">X</div>
+            <h2>Hai un nuovo messaggio</h2>
+            <p>Controlla la tua casella dei messaggi!</p>
+        </div>
+      </div>';
+      ?>

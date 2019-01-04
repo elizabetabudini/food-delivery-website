@@ -62,6 +62,7 @@ $current="home";
     <div id="products" class="row list-group">
         <?php
         //get rows query
+        var_dump($_SESSION["id_ristorante"]);
         $stmt = $conn->prepare("SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ?");
         $stmt->bind_param('s', $_SESSION["id_ristorante"]);
         $stmt->execute();
