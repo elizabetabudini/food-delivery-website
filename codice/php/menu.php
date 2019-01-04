@@ -62,7 +62,29 @@ if ($_SESSION['fornitore']== "true") {
 
 <?php
 
-echo '</script>
+echo '
+<script>
+  $(function() {
+    setInterval(function() {
+      $.ajax({
+        type: "GET",
+        url: "apimessaggi.php?action=nuovimessaggi",
+        success: function(html) {
+           // html is a string of all output of the server script.
+           if($_SESSION["nuovimessaggi"]==true){
+              $("#overlay").fadeIn(300);
+           } else {
+             $("#overlay").fadeOut(300);
+           }
+
+         }
+
+      });
+    }, 1000);
+  });
+</script>
+
+</script>
       <script src="./../js/notifica.js" type="text/javascript"></script>
       </script>
 
