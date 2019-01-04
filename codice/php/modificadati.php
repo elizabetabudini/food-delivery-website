@@ -1,13 +1,41 @@
 <?php
+  if (session_status() === PHP_SESSION_NONE){
+    session_start();
+  }
   $servername = "localhost";
   $username = "root";
   $password = "";
   $dbname = "cfu";
+  $current= "profilofornitore";
+
   $conn = new mysqli($servername, $username, $password, $dbname);
 
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+
+  if(isset($_POST["sent"])){
+    $stmt = $conn->prepare("UPDATE ristorante SET nome = ?, indirizzo = ?, info = ?, nome_categoria = ?  WHERE email_proprietario = ?");
+    if($stmt!=false){
+      $stmt->bind_param("sssss", $_POST["nomerist"], $_POST["indirizzorist"], $_POST["info"], $_POST["Categoria"], $_SESSION["email"]);
+      $stmt->execute();
+      $stmt->close();
+    }
+    else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 65 signinfornitore.php </br>";
+    }
+    header("Location: profilofornitore.php");
+  }
+
+  $query = $conn->query("SELECT * FROM ristorante WHERE email_proprietario = '".$_SESSION["email"]."'");
+  $row = $query->fetch_assoc();
+  $nome_rist = $row["nome"];
+  $info = $row["info"];
+  $indirizzo = $row["indirizzo"];
+  $categoria= $row["nome_categoria"];
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -29,20 +57,14 @@
   <?php $current= "signinfornitore";
 	include 'menu.php';?>
 	<div class="container">
-
-			<div class="alert alert-danger alert-js" role="alert" style="display: None">
-				Dati inseriti non corretti
-				<p></p>
-			</div>
-
 			<form id="fornitoreform" method="post" action="#">
         <div class="form-group">
 				<label for="inputRist">Nome Ristorante</label>
-				<input type="text" name="nomerist"  class="form-control" id="inputRist" autofocus placeholder="Inserisci nome ristorante"  pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+				<input type="text" name="nomerist"  class="form-control" id="inputRist" autofocus placeholder="Inserisci nome ristorante" value="<?php echo $nome_rist; ?>" title="Inserisci almeno 2 caratteri">
 				</div>
         <div class="form-group">
 				<label for="inputIndirizzo">Indirizzo Ristorante</label>
-        <input type="text" name="indirizzorist"  class="form-control" id="inputIndirizzo" placeholder="Inserisci indirizzo ristorante" >
+        <input type="text" name="indirizzorist" value="<?php echo $indirizzo; ?>" class="form-control" id="inputIndirizzo" placeholder="Inserisci indirizzo ristorante" >
         <small id="Help" class="form-text text-muted">Ad es. "Viale Bovio, 11, Cesena, FC"</small>
         </div>
 				<div class="form-group">
@@ -52,14 +74,18 @@
               $conn = new mysqli($servername, $username, $password, $dbname);
               $sql = mysqli_query($conn, "SELECT nome_categoria FROM categoria_ristoranti");
               while ($row = $sql->fetch_assoc()){
-                echo "<option value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
-            }
+                if($row['nome_categoria'] == $categoria){
+                  echo "<option selected value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
+                }else{
+                  echo "<option value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
+                }
+              }
             ?>
           </select>
         </div>
 				<div class="form-group">
-				<label for="inputCognome">Info</label>
-				<textarea type="text" name="cognome" class="form-control" id="inputCognome" placeholder="Inserisci Info"  pattern=".{2,}" title="Inserisci almeno 2 caratteri"></textarea>
+				    <label for="info">Info</label>
+				    <textarea type="text" name="info" class="form-control" id="info"><?php echo $info; ?></textarea>
         </div>
 
 				<input type="hidden" name="sent" value="true" />
