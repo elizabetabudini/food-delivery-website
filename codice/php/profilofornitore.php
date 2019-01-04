@@ -47,13 +47,19 @@
     include 'menu.php';
         ?>
     <div class="card card-sm center-msg-box">
-      <h1>Profilo <?php echo $_SESSION["nome"]; ?> </h1>
-      <h3>La tua mail: <?php echo $_SESSION["email"]; ?> </h3>
-      <h3>Nome ristorante: <?php echo $nome_rist; ?> </h3>
-      <h3>Indirizzo:<?php echo $indirizzo; ?> </h3>
-      <h3>Categoria: <?php echo $categoria; ?> </h3>
-      <h3>Info: <?php echo $info; ?> </h3>
-      <h3>Rating: <?php echo $rating; ?> </h3>
+      <h1 class="title">Profilo <?php echo $_SESSION["nome"]; ?> </h1>
+      <h2>La tua mail:</h2><br/>
+      <h3><?php echo $_SESSION["email"]; ?> </h3>
+      <h2>Nome ristorante:</h2> <br/>
+      <h3><?php echo $nome_rist; ?></h3>
+      <h2>Indirizzo:</h2> <br/>
+      <h3><?php echo $indirizzo; ?></h3>
+      <h2>Categoria:</h2> <br/>
+      <h3><?php echo $categoria; ?></h3>
+      <h2>Info:</h2> <br/>
+      <h3><?php echo $info; ?></h3>
+      <h2>Rating:</h2> <br/>
+      <h3><?php echo $rating; ?></h3>
       <?php
         if($approvazione == 1){
           echo'<h3>Approvato! :) </h3>';
@@ -62,8 +68,7 @@
         } ?>
 
 
-      <a href="modificadati.php" class="btn btn-primary">Modifica dati</a>
-      <a href="notifiche" class="btn btn-primary">Modifica dati</a>
+        <button href="modificadati.php" class="btn btn-primary">Modifica dati</a>
     </div>
 
 <?php include 'footer.php'; ?>

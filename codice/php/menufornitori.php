@@ -16,7 +16,7 @@ if ( isset( $_SESSION['email'] ) ) {
   <span class="sr-only">unread messages</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Listino</a>
+    <a class="nav-link" href="modificaprodotti.php">Listino</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti</a>

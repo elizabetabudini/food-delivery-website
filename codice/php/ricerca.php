@@ -5,6 +5,17 @@ if (session_status() === PHP_SESSION_NONE){
 $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cfu";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 ?>
 <script>
 function openNav() {
@@ -41,24 +52,15 @@ function closeNav() {
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <br/>
       <h3>Categories</h3>
-      <form  action="#" method="post" id="Categories">
+      <form  action="ricerca.php" method="post" id="Categories">
         <div class="margin">
 
           <?php
-          $servername = "localhost";
-          $username = "root";
-          $password = "";
-          $dbname = "cfu";
 
-          $conn = new mysqli($servername, $username, $password, $dbname);
-
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
           foreach($conn->query('SELECT * FROM categoria_ristoranti ORDER BY nome_categoria') as $row) {
             echo'
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="'.$row['nome_categoria'].' name="check[]" id="'.$row['nome_categoria'].'">
+                <input class="form-check-input" type="checkbox" value="'.$row['nome_categoria'].'" name="check[]" id="'.$row['nome_categoria'].'">
                 <label class="form-check-label" for="'.$row['nome_categoria'].'">
                   '.$row['nome_categoria'].'
                 </label>
@@ -68,11 +70,10 @@ function closeNav() {
           ?>
         </div>
         <br/>
+        <input type="submit" class="btn btn-primary col-sm-6" name="action" value="Modifica"/>
       </form>
     </div>
     <div class="row margin">
-      <input type="submit" class="btn btn-primary col-sm-6" name="action" value="Modifica" form="Categories"/>
-      <input type="submit" class="btn btn-primary col-sm-6" name="action" value="Modifica" form="Categories"/>
     </div>
 
     </div>
@@ -95,20 +96,25 @@ function closeNav() {
   $filter = array();
 /*  foreach($conn->query('SELECT * FROM categoria_ristoranti ORDER BY nome_categoria') as $row) {
     echo $row["nome_categoria"];*/
-    echo 'true';
-  if(isset($_POST['check[]'])){
+  if(isset($_POST['check'])){
+    $aCat = $_POST['check'];
     $N = count($aCat);
     for($i=0;$i < $N ; $i++){
-      $filter[$i] = 'nome_categoria = '.$aCat[$i];
+      $filter[$i] = 'nome_categoria = "'.$aCat[$i].'"';
     }
   }
-  echo implode(' ',$filter);
-  $query = 'SELECT * FROM ristorante WHERE 1=1'.implode(' AND ', $filter);
-  echo $query;
+  if(!empty($filter)){
+    $query = 'SELECT * FROM ristorante WHERE '.implode(' OR ', $filter);
+  }else{
+    $query = 'SELECT * FROM ristorante';
+  }
   $result=$conn->query($query);
-  echo "<ul class='list-group'>";
   if($result->num_rows==0){
-    echo '<div id="nouser"> Non ci sono ristoranti </div>';
+    echo '<div class="card card-sm center-msg-box ">
+            <h1 class = "title">Nessun ristorante trovato </h1>
+            <br/>
+            <h3>Siamo spiacenti però la budo è una troia ;) </h3>
+          </div>';
   }
   foreach($conn->query($query) as $row)
   {
@@ -125,7 +131,7 @@ function closeNav() {
 
   }
   echo "</ul>";
-    $conn->close();
+  $conn->close();
     ?>
 
   </div>
