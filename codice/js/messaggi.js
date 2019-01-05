@@ -1,13 +1,16 @@
 $(document).ready(function(){
 
-	$.getJSON("apimessaggi.php?request=messages", function(data) {
-		      var html_code = "";
-					if(data.length>0){
-								$('#overlay').fadeIn(300);
-					}
+	setInterval(function() {
+		$.post("unread.php")
+		.done(function(data) {
+			var data=$(data);
+			if(data>0){
+				$('#msg').html(data);
 
-					$('#close').click(function() {
-							$('#overlay').fadeOut(300);
-					});
-				});
-	}
+			} else {
+				$('#msg').html(data);
+			}
+		})
+	}, 1000);
+
+})

@@ -6,7 +6,7 @@ if ( isset( $_SESSION['email'] ) ) {
     <a class="nav-link" href="homeadmin.php"<?php if($current == 'homeadmin') {echo 'id="current"';} ?>>Strumenti <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="messaggi.php"<?php if($current == 'messaggi') {echo 'id="current"';} ?>>Messaggi <span class="badge badge-primary">1</span>
+    <a class="nav-link" href="messaggi.php"<?php if($current == 'messaggi') {echo 'id="current"';} ?>>Messaggi <span id="msg" class="badge badge-primary"><?php if($_SESSION["unread"]>0) echo $_SESSION["unread"];?></span>
   <span class="sr-only">unread messages</span></a>
   </li>
   <li class="nav-item">
