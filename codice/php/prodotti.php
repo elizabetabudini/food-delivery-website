@@ -44,7 +44,6 @@
 
 
     if(isset($_POST['modify'])){
-
       if($_POST["btn"]== "true"){
         if($_POST["Categoria"] != "notf"){
           $stmt5 = $conn->prepare("UPDATE alimento SET nome = ?, info = ?, prezzo = ?, nome_menu = ? WHERE id = ?");
