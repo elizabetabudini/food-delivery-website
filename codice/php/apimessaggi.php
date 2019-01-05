@@ -20,6 +20,7 @@ if (session_status() === PHP_SESSION_NONE){
       $stmt->bind_param("ss", $letto, $id);
       $stmt->execute();
       $stmt->close();
+      header("Location: messaggi.php");
 
     } elseif($_REQUEST["action"]=="elimina" && !empty($_REQUEST["id"])){
       $id=$_REQUEST["id"];
@@ -27,6 +28,7 @@ if (session_status() === PHP_SESSION_NONE){
       $stmt->bind_param("s", $id);
       $stmt->execute();
       $stmt->close();
+      header("Location: messaggi.php");
     } elseif($_REQUEST["action"]=="nuovimessaggi"){
       if(isset($_SESSION["email"])){
         $result = mysqli_query($conn,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' AND letto='0'");

@@ -56,39 +56,46 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
           $data= date('Y-m-d-H-m');
           $email=$_SESSION["email"];
           $totale= $cart->total();
-          $stato="1";
+          $stato="0";
           $stmt4->bind_param("sssssss", $email, $_SESSION["id_ristorante"], $totale, $stato,
           $data, $_SESSION["luogo"],  $_SESSION["id_prenotazione"]);
           $insertOrder=$stmt4->execute();
-          $stmt4->close;
+          $stmt4->close();
         } else {
         echo 'Bad Programmatore Exception: la query non è andata a buon fine </br>';
         }
+        $stmt5 = $db->prepare("SELECT email_proprietario FROM ristorante WHERE id=?");
+        if($stmt5!=false){
+          $stmt5->bind_param("s", $_SESSION["id_ristorante"]);
+          $stmt5->execute();
+          $result = $stmt5->get_result();
+      	  $email = $result->fetch_object();
+          $email=$email->email_proprietario;
+          $stmt5->close();
 
-        if($insertOrder){
-            $orderID = $_SESSION["id_prenotazione"];
-            // get cart items
-            $cartItems = $cart->contents();
+        }
+        $mess= "L'ordine ".$_SESSION['id_prenotazione']." attende di essere evaso. Vai nei tuoi Strumenti";
+        $data= date('Y-m-d-h-m');
+        $letto="0";
+        $stmt5 = $db->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
+        if($stmt5!=false){
+          $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
+          $stmt5->execute();
+          $stmt5->close();
+        } else {
+          $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 109 signinfornitore.php </br>";
+        }
 
-            foreach($cartItems as $alimento){
-                $sql .= "INSERT INTO alimenti_prenotati (id_prenotazione, id_alimento, quantità) VALUES ('".$orderID."', '".$alimento['id']."', '".$alimento['quantità']."');";
-            }
-            // insert order items into database
-            $insertOrderItems = $db->multi_query($sql);
-
-            if($insertOrderItems){
+            if($insertOrder){
                 $cart->destroy();
-                header("Location: orderSuccess.php?id=$orderID");
+                header("Location: orderSuccess.php");
             }else{
                 header("Location: checkout.php");
             }
         }else{
-          
+
             header("Location: checkout.php");
         }
     }else{
         header("Location: ristorante.php");
     }
-}else{
-    header("Location: ristorante.php");
-}

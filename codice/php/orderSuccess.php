@@ -1,6 +1,6 @@
 <?php
-if(!isset($_REQUEST['id'])){
-    header("Location: ristorante.php");
+if (session_status() === PHP_SESSION_NONE){
+  session_start();
 }
 $current="";
 ?>
@@ -17,16 +17,23 @@ $current="";
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
     <style>
-    .container{width: 100%;padding: 50px;}
-    p{color: #34a853;font-size: 18px;}
+    h1,h3, p{text-align: center; color:white;}
+    a{float:right;}
+    .card{width: 450px;background: rgba(0,0,0,0.7);border-radius: 10px;
+    -webkit-border-radius: 10px;-moz-border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    }
     </style>
 </head>
 </head>
 <body>
   <?php include 'menu.php'; ?>
-<div class="container">
-    <h1>Order Status</h1>
-    <p>Your order has submitted successfully. Order ID is #<?php echo $_GET['id']; ?></p>
+  <div class="card card-sm center-msg-box transparent">
+  <div class="container">
+    <h1>Stato dell'ordine</h1>
+    <p>IL TUO ORDINE E' ANDATO A BUON FINE!</br> Riceverai un messaggio quando l'ordine partirà. Grazie per aver prenotato con CFU!</p>
+</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity=

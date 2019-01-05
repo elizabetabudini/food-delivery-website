@@ -16,7 +16,7 @@ if ( isset( $_SESSION['email'] ) ) {
   <span class="sr-only">unread messages</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="modificaprodotti.php">Listino</a>
+    <a class="nav-link" href="strumenti.php"<?php if($current == 'strumenti') {echo 'id="current"';} ?>>Strumenti</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti</a>
@@ -48,3 +48,12 @@ if ( isset( $_SESSION['email'] ) ) {
 <?php
 }
 ?>
+<?php
+ include 'footer.php';
+ ?>
+
+ <!-- Bootstrap core JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="./../js/bootstrap.min.js"></script>
+  </body>
+</html>
