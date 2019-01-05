@@ -89,8 +89,13 @@ $carrello = new Cart;
 
             if($carrello->total_items() > 0){ ?>
             <td class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></td>
-            <td><a href="checkout.php" class="btn btn-success btn-block">Checkout ></a></td>
-             <?php } ?>
+              <?php if (isset($_SESSION["luogo"])){
+                echo '<td><a href="checkout.php" class="btn btn-success btn-block">Checkout ></a></td>';
+              } else {
+                echo '<td><a href="sceltaluogo.php" class="btn btn-success btn-block">Checkout ></a></td>';
+              }
+
+           } ?>
         </tr>
     </tfoot>
     </table>

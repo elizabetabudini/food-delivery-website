@@ -12,10 +12,10 @@ if (session_status() === PHP_SESSION_NONE){
     $con = new mysqli($servername, $username, $password, $dbname);
     $result = mysqli_query($con,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' ORDER BY letto");
 		if($result->num_rows==0){
-			echo "<form><p class='card-text' id='no_mess'>Non hai messaggi nella tua casella</p></form>";
+			echo "<form><p class='card-text mobile' id='no_mess'>Non hai messaggi nella tua casella</p></form>";
 		} else {
 			while($row = mysqli_fetch_array($result)) {
-			echo '<form action="#" method="post" id="form1" >';
+			echo '<form action="#" class="mobile" method="post" id="form1" >';
 			echo "<p class='card-text'id='data'>Data: ".$row['data']."</p>";
 			echo "<p class='card-text' id='mess'>Messaggio: ".$row['testo']."</p>";
 
