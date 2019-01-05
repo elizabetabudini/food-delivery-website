@@ -92,12 +92,6 @@ function closeNav() {
 
  <div class="container">
   <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "cfu";
-
-  $conn = new mysqli($servername, $username, $password, $dbname);
 
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

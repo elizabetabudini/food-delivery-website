@@ -41,7 +41,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     h1,h3{text-align: center; color:white;}
-    a{float:right;}
+    .a{float:right;}
     .card{width: 450px;background: rgba(0,0,0,0.7);border-radius: 10px;
     -webkit-border-radius: 10px;-moz-border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
@@ -56,7 +56,7 @@
     <?php $current = "profilofornitore";
     include 'menu.php';
         ?>
-        <div class="card card-sm center-msg-box transparent">
+        <div class="card mobile card-sm center-msg-box transparent">
         <div class="container">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -110,7 +110,7 @@
 
 
 
-        <a href="modificadati.php" class="btn btn-success">Modifica dati</a>
+        <a class"a" href="modificadati.php" class="btn btn-success">Modifica dati</a>
     </div>
   </div>
   </div>
