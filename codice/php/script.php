@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE){
 
     // Getting submitted user data from database
     $con = new mysqli($servername, $username, $password, $dbname);
-    $result = mysqli_query($con,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' ORDER BY letto DESC");
+    $result = mysqli_query($con,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' ORDER BY letto");
 		if($result->num_rows==0){
 			echo "<form><p class='card-text' id='no_mess'>Non hai messaggi nella tua casella</p></form>";
 		} else {
@@ -19,7 +19,7 @@ if (session_status() === PHP_SESSION_NONE){
 			echo "<p class='card-text'id='data'>Data: ".$row['data']."</p>";
 			echo "<p class='card-text' id='mess'>Messaggio: ".$row['testo']."</p>";
 
-			if($row["letto"]==1){
+			if($row["letto"]==0){
 
 			echo '<a href="apimessaggi.php?action=letto&id='.$row["id"].'" class="btn btn-success" >Letto</a>
 				<input type="hidden" name="sent" value="true" />';

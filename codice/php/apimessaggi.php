@@ -29,19 +29,17 @@ if (session_status() === PHP_SESSION_NONE){
       $stmt->close();
     } elseif($_REQUEST["action"]=="nuovimessaggi"){
       if(isset($_SESSION["email"])){
-        $result = mysqli_query($con,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' AND letto='0'");
+        $result = mysqli_query($conn,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' AND letto='0'");
     		if($result->num_rows==0){
-    			$_SESSION["nuovimessaggi"]='false';
+    			$_SESSION["nuovimsg"]="false";
     		} else {
-          $_SESSION["nuovimessaggi"]='true';
+          $_SESSION["nuovimsg"]="true";
         }
+
       }
 
     }
   }
-
-
   $conn->close();
-  header("Location: messaggi.php");
 
 ?>

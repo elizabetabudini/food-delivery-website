@@ -40,23 +40,27 @@ $utente  = $result->fetch_object();
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
     <style>
-    .container{width: 100%; padding: 50px; color:#dee2e6;}
-    .table{width: 65%;float: left; background-color: rgba(0,0,0, 50%);}
-    .shipAddr{background-color: rgba(0,0,0, 50%); padding:10px; width: 30%;float: left;margin-left: 30px;}
+      h1,h3, h4{text-align: center; color:white;}
+      p{text-align: center;}
+      a{float:right;}
+      .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
+      -webkit-border-radius: 10px;-moz-border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+      -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+      }
+    .table{background-color: rgba(255,255,255,65%);}
     .footBtn{width: 95%;float: left;}
     .orderBtn {float: right;}
     </style>
 </head>
 <body>
   <?php include 'menu.php'; ?>
-<div class="container">
+  <div class="card card-sm center-msg-box transparent">
+  <div class="container">
     <h1>Anteprima dell'ordine</h1>
     <table class="table ">
     <thead>
@@ -93,8 +97,8 @@ $utente  = $result->fetch_object();
         </tr>
     </tfoot>
     </table>
-    <div class="shipAddr">
-        <h4>Dettagli di spedizione</h4>
+      <h4>Dettagli di spedizione</h4>
+    <div class="table">
         <p><?php echo $utente->nome; ?></p>
         <p><?php echo $utente->cognome; ?></p>
         <p><?php echo $utente->email; ?></p>
@@ -104,6 +108,7 @@ $utente  = $result->fetch_object();
         <a href="ristorante.php" class="btn btn-warning"> < Continua gli acquisti</a>
         <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn">Invia ordine > </a>
     </div>
+</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity=

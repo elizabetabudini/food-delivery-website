@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE){
 					   }
 
 					});
-				}, 1000);
+				}, 300);
 			});
 		</script>
   </head>

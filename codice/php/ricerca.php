@@ -38,9 +38,18 @@ function closeNav() {
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
-    <link href="./../css/search.css" rel="stylesheet">
     <link href="./../css/sidebar.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      h1,h3{text-align: center; color:white;}
+      .list-group-item{    background-color: rgba(255,255,255, 65%)  }
+      a{float:right;}
+      .card{width: 90%;background: rgba(0,0,0,0.7);border-radius: 10px;
+      -webkit-border-radius: 10px;-moz-border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+      -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);}
+      .table{background-color: rgba(255,255,255,65%);}
+    </style>
 
   </head>
   <body>
@@ -113,9 +122,11 @@ function closeNav() {
     echo '<div class="card card-sm center-msg-box ">
             <h1 class = "title">Nessun ristorante trovato </h1>
             <br/>
-            <h3>Siamo spiacenti però la budo è una troia ;) </h3>
           </div>';
   }
+  echo '
+  <div class="card card-sm center-msg-box transparent">
+  <div class="container">';
   foreach($conn->query($query) as $row)
   {
   echo '
@@ -125,7 +136,7 @@ function closeNav() {
 
   <form action="ristorante.php" method="post" name ="seleziona" id="seleziona">
     <input type = "hidden" name="id_ristorante" value="'.$row["id"].'">
-    <button class="btn btn-sm btn-primary " id = "submit" type="submit" >Guarda Listino</button>
+    <button class="btn btn-sm btn-success " id = "submit" type="submit" >Guarda Listino </button>
   </form>
   </li>"';
 
@@ -133,7 +144,8 @@ function closeNav() {
   echo "</ul>";
   $conn->close();
     ?>
-
+  </div>
+  </div>
   </div>
 
   <?php include 'footer.php'; ?>

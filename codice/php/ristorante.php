@@ -35,9 +35,14 @@ $current="home";
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
     <style>
-    .container{padding: 50px; background-color: rgba(255,255,255, 30%);}
+      h1,h3, .nores{text-align: center; color:white;}
+      a{float:right;}
+      .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
+      -webkit-border-radius: 10px;-moz-border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+      -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);}
     .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
-    .caption{color:white;background-color: rgba(0,0,0, 60%); padding: 20px;margin: 10px;}
+    .caption{color:black;background-color: rgba(255,255,255, 60%); padding: 20px;margin: 10px;}
     .btn-success{
           float: right;
     }
@@ -50,19 +55,17 @@ $current="home";
   <body>
   <?php include 'menu.php'; ?>
 
-  <!--<div class="card card-sm center-msg-box transparent ">
-    <h3 class="title text-center">Elenco utenti</h3> -->
     <?php
     ?>
     <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success"> < Torna ai ristoranti</a>
     <a href="visualizzaCarrello.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello > </a>
+    <div class="card card-sm center-msg-box transparent">
     <div class="container">
     <h1>Ecco cosa offre <?php echo $_SESSION["nome_ristorante"]?> </h1>
 
     <div id="products" class="row list-group">
         <?php
         //get rows query
-        var_dump($_SESSION["id_ristorante"]);
         $stmt = $conn->prepare("SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ?");
         $stmt->bind_param('s', $_SESSION["id_ristorante"]);
         $stmt->execute();
@@ -89,9 +92,10 @@ $current="home";
             </div>
         </div>
         <?php } }else{ ?>
-        <p>Nessun prodotto trovato</p>
+        <p class="nores">Nessun prodotto trovato</p>
         <?php } ?>
     </div>
+</div>
 </div>
 
     <!-- Optional JavaScript -->

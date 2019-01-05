@@ -35,41 +35,85 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
     <link href="./../css/full.css" rel="stylesheet">
-    <link href="./../css/areafornitori.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    h1,h3{text-align: center; color:white;}
+    a{float:right;}
+    .card{width: 450px;background: rgba(0,0,0,0.7);border-radius: 10px;
+    -webkit-border-radius: 10px;-moz-border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    }
+    .table{background-color: rgba(255,255,255,65%);}
+    .table td, .table th{border-top: none;}
+</style>
 
   </head>
   <body>
     <?php $current = "profilofornitore";
     include 'menu.php';
         ?>
-    <div class="card card-sm center-msg-box">
-      <h1 class="title">Profilo <?php echo $_SESSION["nome"]; ?> </h1>
-      <h2>La tua mail:</h2><br/>
-      <h3><?php echo $_SESSION["email"]; ?> </h3>
-      <h2>Nome ristorante:</h2> <br/>
-      <h3><?php echo $nome_rist; ?></h3>
-      <h2>Indirizzo:</h2> <br/>
-      <h3><?php echo $indirizzo; ?></h3>
-      <h2>Categoria:</h2> <br/>
-      <h3><?php echo $categoria; ?></h3>
-      <h2>Info:</h2> <br/>
-      <h3><?php echo $info; ?></h3>
-      <h2>Rating:</h2> <br/>
-      <h3><?php echo $rating; ?></h3>
-      <?php
-        if($approvazione == 1){
-          echo'<h3>Approvato! :) </h3>';
-        }else{
-          echo'<h3> Non ancora approvato :(</h3>';
-        } ?>
+        <div class="card card-sm center-msg-box transparent">
+        <div class="container">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="title">Profilo <?php echo $_SESSION["nome"]; ?> </h1>
+            </div>
+
+                  <table class="table table-light">
+                    <tbody>
+                      <tr>
+                        <td>La tua mail:</td>
+                        <td><?php echo $_SESSION["email"]; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Nome ristorante:</td>
+                        <td><?php echo $nome_rist; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Indirizzo:</td>
+                        <td><?php echo $indirizzo; ?></td>
+                      </tr>
+
+                         <tr>
+                             <tr>
+                        <td>Categoria:</td>
+                        <td><?php echo $categoria; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Info:</td>
+                        <td><?php echo $info; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Rating:</td>
+                        <td><?php echo $rating; ?></td>
+                      </tr>
+
+                      <?php
+                        if($approvazione == 1){
+                          echo'<tr>
+                            <td>Approvato</td>
+                            <td>YESSS!</td>
+                          </tr>';
+                        }else{
+                          echo'<tr>
+                            <td>Approvato</td>
+                            <td>IN ATTESA DI APPROVAZIONE</td>
+                          </tr>';
+                        } ?>
+
+                    </tbody>
+                  </table>
 
 
-        <button href="modificadati.php" class="btn btn-primary">Modifica dati</a>
+
+        <a href="modificadati.php" class="btn btn-success">Modifica dati</a>
     </div>
+  </div>
+  </div>
 
 <?php include 'footer.php'; ?>
 <!-- Bootstrap core JavaScript -->

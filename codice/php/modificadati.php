@@ -54,13 +54,13 @@
 
   </head>
   <body>
-  <?php $current= "signinfornitore";
+  <?php $current= "profilofornitore";
 	include 'menu.php';?>
 	<div class="container">
 			<form id="fornitoreform" method="post" action="#">
         <div class="form-group">
 				<label for="inputRist">Nome Ristorante</label>
-				<input type="text" name="nomerist"  class="form-control" id="inputRist" autofocus placeholder="Inserisci nome ristorante" value="<?php echo $nome_rist; ?>" title="Inserisci almeno 2 caratteri">
+				<input type="text" name="nomerist"  class="form-control" id="inputRist" placeholder="Inserisci nome ristorante" value="<?php echo $nome_rist; ?>" title="Inserisci almeno 2 caratteri">
 				</div>
         <div class="form-group">
 				<label for="inputIndirizzo">Indirizzo Ristorante</label>
@@ -89,8 +89,8 @@
         </div>
 
 				<input type="hidden" name="sent" value="true" />
-				<a href = "profilofornitore.php"><button type="button"  class="btn btn-primary">Annulla</button></a>
-				<button type="submit" class="btn btn-primary" style="float: right">Modifica</button>
+				<a href = "profilofornitore.php"><button type="button"  class="btn btn-success">Annulla</button></a>
+				<button type="submit" class="btn btn-success" style="float: right">Modifica</button>
 			</form>
 		</div>
 	</div>

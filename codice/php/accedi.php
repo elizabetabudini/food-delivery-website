@@ -57,7 +57,9 @@ if(isset($_POST["sent"])){
            $_SESSION['utente']=true;
            if(isset($_SESSION["Redirect"])){
             header("Location:".$URL."");
-           }
+          } else {
+            header("Location: homeclienti.php");
+          }
 
 				 }
 				 if($user->privilegi==1){
@@ -68,7 +70,7 @@ if(isset($_POST["sent"])){
 				 if($user->privilegi==2){
 					 $_SESSION['admin']= $user->privilegi;
            $_SESSION['admin']=true;
-           header("Location: homeadmin.php");
+           header("Location: profilofornitore.php");
 				 }
 
 	  	} else {
