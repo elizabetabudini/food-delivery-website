@@ -43,6 +43,7 @@ $utente  = $result->fetch_object();
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       h1,h3, h4{text-align: center; color:white;}
       p{text-align: center;}
@@ -59,10 +60,10 @@ $utente  = $result->fetch_object();
 </head>
 <body>
   <?php include 'menu.php'; ?>
-  <div class="card card-sm center-msg-box transparent">
+  <div class="card card-sm center-msg-box transparent mobile">
   <div class="container">
     <h1>Anteprima dell'ordine</h1>
-    <table class="table ">
+    <table class="table mobile">
     <thead>
         <tr>
             <th>Alimento</th>

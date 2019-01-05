@@ -36,7 +36,7 @@ $current="home";
     <link href="./../css/navigation.css" rel="stylesheet">
     <style>
       h1,h3, .nores{text-align: center; color:white;}
-      a{float:right;}
+      .a{float:right;}
       .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
       -webkit-border-radius: 10px;-moz-border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
@@ -84,7 +84,7 @@ $current="home";
                             <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
                         </div>
                         <div class="col-md-6">
-                            <a class="btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
+                            <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
                         </div>
                     </div>
                 </div>

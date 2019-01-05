@@ -55,7 +55,7 @@
   <?php $current= "profiloutente";
 	include 'menu.php';?>
 	<div class="container">
-			<form id="utenteform" method="post" action="#">
+			<form id="utenteform" method="post" action="#" class="mobile">
         <div class="form-group">
 				<label for="input">Nome</label>
 				<input type="text" name="nome"  class="form-control" id="inputNome" placeholder="Inserisci nome" value="<?php echo $nome; ?>" title="Inserisci almeno 2 caratteri">

@@ -32,10 +32,10 @@ h3{
 @media screen and (max-width:600px){
   .mobile{
     width: auto;
-    max-width:100%;
+    max-width:95%;
   }
   .container {
-    max-width:100%;
-    width: 100%;
+    max-width:95%;
+    width: 95%;
   }
 }

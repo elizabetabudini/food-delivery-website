@@ -10,12 +10,10 @@ $current="";
     <title>CFU - Ordine inviato</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./../css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     h1,h3, p{text-align: center; color:white;}
     a{float:right;}
@@ -29,7 +27,7 @@ $current="";
 </head>
 <body>
   <?php include 'menu.php'; ?>
-  <div class="card card-sm center-msg-box transparent">
+  <div class="card card-sm center-msg-box transparent mobile">
   <div class="container">
     <h1>Stato dell'ordine</h1>
     <p>IL TUO ORDINE E' ANDATO A BUON FINE!</br> Riceverai un messaggio quando l'ordine partirà. Grazie per aver prenotato con CFU!</p>
