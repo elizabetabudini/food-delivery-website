@@ -137,7 +137,7 @@ $current= "signinfornitore";
   <body>
   <?php $current= "signinfornitore";
 	include 'menu.php';?>
-	<div class="container-fluid">
+	<div class="container-fluid mobile">
 	<div class="row">
 		<div class="col-12 col-md-4 offset-md-4">
 		<?php

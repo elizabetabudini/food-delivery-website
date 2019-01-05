@@ -42,9 +42,10 @@ function closeNav() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       h1,h3{text-align: center; color:white;}
-      .list-group-item{    background-color: rgba(255,255,255, 65%)  }
-      a{float:right;}
-      .card{width: 90%;background: rgba(0,0,0,0.7);border-radius: 10px;
+      .list-group-item{background-color: rgba(255,255,255, 65%)  }
+      .a{float:right;margin-right: 2%}
+      .filtri{margin-left: 7%; margin-top: 3%; }
+      .card{background: rgba(0,0,0,0.7);border-radius: 10px;
       -webkit-border-radius: 10px;-moz-border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
       -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);}
@@ -79,7 +80,7 @@ function closeNav() {
           ?>
         </div>
         <br/>
-        <input type="submit" class="btn btn-primary col-sm-6" name="action" value="Modifica"/>
+        <input type="submit" class="a btn btn-success" name="action" value="Modifica"/>
       </form>
     </div>
     <div class="row margin">
@@ -88,7 +89,7 @@ function closeNav() {
     </div>
   </div>
 
-  <button class=" btn btn-primary" type="button" name="button"  onclick="openNav()">Applica filtri</button>
+  <button class=" filtri btn btn-success" type="button" name="button"  onclick="openNav()">Applica filtri</button>
 
  <div class="container">
   <?php
@@ -131,7 +132,7 @@ function closeNav() {
 
   <form action="ristorante.php" method="post" name ="seleziona" id="seleziona">
     <input type = "hidden" name="id_ristorante" value="'.$row["id"].'">
-    <button class="btn btn-sm btn-success " id = "submit" type="submit" >Guarda Listino </button>
+    <button class="a btn btn-sm btn-success " id = "submit" type="submit" >Guarda Listino </button>
   </form>
   </li>"';
 
@@ -145,7 +146,8 @@ function closeNav() {
 
   <?php include 'footer.php'; ?>
   <!-- Bootstrap core JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="./../js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

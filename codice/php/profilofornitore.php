@@ -56,7 +56,10 @@
     <?php $current = "profilofornitore";
     include 'menu.php';
         ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a2f1862db1132db53fdf2a4cab8c2af875322f85
         <div class="card card-sm center-msg-box transparent mobile">
         <div class="container">
         <div class="panel panel-info">

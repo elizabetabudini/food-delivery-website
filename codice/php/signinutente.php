@@ -74,6 +74,7 @@ if(isset($_POST["sent"])){
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/footer.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
@@ -97,8 +98,10 @@ if(isset($_POST["sent"])){
 				else{
 			?>
 			<div class="alert alert-danger alert-php" role="alert">
-				Errore durante l'inserimento!
-				<p><?=$errors?><?=$insertError?></p>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Errore:</span>
+          Errore durante l'inserimento! <?=$errors?><?=$insertError?>
+      </div>
 			</div>
 			<?php
 				}
