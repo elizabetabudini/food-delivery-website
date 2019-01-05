@@ -81,7 +81,7 @@ if(isset($_POST["sent"])){
   <?php $current= "signinutente";
 	include 'menu.php';
 	?>
-	<div class="container-fluid">
+	<div class="container-fluid ">
 	<div class="row">
 		<div class="col-12 col-md-4 offset-md-4">
 		<?php
@@ -109,7 +109,7 @@ if(isset($_POST["sent"])){
 				<p></p>
 			</div>
 
-			<form id="insertform" method="post" action="#">
+			<form id="insertform" method="post" action="#" class ="mobile">
 				<div class="form-group">
 				<label for="inputNome">Nome</label>
 				<input type="text" name="nome" class="form-control" id="nome" placeholder="Inserisci Nome" autofocus="true" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">

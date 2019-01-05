@@ -57,7 +57,7 @@
   <?php $current= "profilofornitore";
 	include 'menu.php';?>
 	<div class="container">
-			<form id="fornitoreform" method="post" action="#">
+			<form id="fornitoreform" class="mobile" method="post" action="#">
         <div class="form-group">
 				<label for="inputRist">Nome Ristorante</label>
 				<input type="text" name="nomerist"  class="form-control" id="inputRist" placeholder="Inserisci nome ristorante" value="<?php echo $nome_rist; ?>" title="Inserisci almeno 2 caratteri">

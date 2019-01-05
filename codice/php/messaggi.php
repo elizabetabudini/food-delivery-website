@@ -39,7 +39,7 @@ if (session_status() === PHP_SESSION_NONE){
   <body>
   <?php include 'menu.php'; ?>
 
-  <div class="card card-sm center-msg-box transparent ">
+  <div class="card card-sm center-msg-box transparent mobile ">
     <h3 class="title text-center">I tuoi messaggi</h3>
     <p id="element"></p>
   </div>

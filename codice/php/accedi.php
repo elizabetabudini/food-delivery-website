@@ -128,7 +128,7 @@ if(isset($_POST["sent"])){
 				<p></p>
 			</div>
 
-  <form method="post" action="#" id="signupform" >
+  <form method="post" action="#" id="signupform" class = "mobile" >
     <div class="form-group">
       <label for="email">Email address</label>
       <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus required>

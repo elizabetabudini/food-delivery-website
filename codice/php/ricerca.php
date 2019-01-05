@@ -130,9 +130,10 @@ function closeNav() {
   foreach($conn->query($query) as $row)
   {
   echo '
-  <li class="list-group-item">'.$row["nome"].'
-  '.$row["nome_categoria"].'
-  '.$row["indirizzo"].'
+  <li class="list-group-item">
+  <h2>'.$row["nome"].'</h2>
+  <h5>'.$row["nome_categoria"].' </h5>
+  <h5>'.$row["indirizzo"].' </h5>
 
   <form action="ristorante.php" method="post" name ="seleziona" id="seleziona">
     <input type = "hidden" name="id_ristorante" value="'.$row["id"].'">

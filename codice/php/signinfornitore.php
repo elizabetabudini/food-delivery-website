@@ -165,7 +165,7 @@ $current= "signinfornitore";
 				<p></p>
 			</div>
 
-			<form id="fornitoreform" method="post" action="#">
+			<form id="fornitoreform" method="post" action="#" class = "mobile">
         <div class="form-group">
 				<label for="inputRist">Nome Ristorante</label>
 				<input type="text" name="nomerist"  class="form-control" id="inputRist" autofocus placeholder="Inserisci nome ristorante" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
