@@ -70,7 +70,7 @@ if(isset($_POST["sent"])){
 				 if($user->privilegi==2){
 					 $_SESSION['admin']= $user->privilegi;
            $_SESSION['admin']=true;
-           header("Location: profilofornitore.php");
+           header("Location: homeadmin.php");
 				 }
 
 	  	} else {
