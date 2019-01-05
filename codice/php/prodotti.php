@@ -20,13 +20,13 @@
   $id_rist = $result->fetch_object();
   $id_rist = $id_rist->id;
   $stmt->close();
+  $disponibile = 1;
 
-  if(isset($_POST['sent'])){
-    $disponibile = 1;
+  if(isset($_POST['add'])){
     if($_POST["Categoria"] != "notf"){
       $stmt5 = $conn->prepare("INSERT INTO alimento (disponibilita, nome, info, prezzo, id_ristorante, nome_menu) VALUES (?, ?, ?, ?, ?, ?)");
       if($stmt5!=false){
-        $stmt5->bind_param("ssssss", $disponibile, $_POST["nomeprod"],  $_POST["info"],  $_POST["prezzo"], $id_rist , $_POST["Categoria"]);
+        $stmt5->bind_param("ssssss", $disponibile, $_POST["nomeprod"],  $_POST["info"],  $_POST["prezzo"], $id_rist, $_POST["Categoria"]);
         $stmt5->execute();
         $stmt5->close();
       }
@@ -38,8 +38,38 @@
           $stmt5->close();
         }
       }
+      header("Location: prodotti.php");
     }
 
+
+
+    if(isset($_POST['modify'])){
+      if($_POST["btn"]== "true"){
+        if($_POST["Categoria"] != "notf"){
+          $stmt5 = $conn->prepare("UPDATE alimento SET nome = ?, info = ?, prezzo = ?, nome_menu = ? WHERE id = ?");
+          if($stmt5!=false){
+            $stmt5->bind_param("sssss", $_POST["nomeprod"],  $_POST["info"],  $_POST["prezzo"], $_POST["Categoria"], $_POST["prod"] );
+            $stmt5->execute();
+            $stmt5->close();
+          }
+        }else{
+          $stmt5 = $conn->prepare("UPDATE alimento SET nome = ?, info = ?, prezzo = ? WHERE id = ?");
+          if($stmt5!=false){
+            $stmt5->bind_param("ssss", $_POST["nomeprod"],  $_POST["info"],  $_POST["prezzo"], $_POST["prod"] );
+            $stmt5->execute();
+            $stmt5->close();
+          }
+        }
+      }else{
+        $stmt5 = $conn->prepare("DELETE FROM alimento WHERE id = ?");
+        if($stmt5!=false){
+          $stmt5->bind_param("s", $_POST["prod"] );
+          $stmt5->execute();
+          $stmt5->close();
+        }
+      }
+    //header("Location: prodotti.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -70,7 +100,7 @@
 				    <input type="text" name="nomeprod"  class="form-control" id="nomeprod" placeholder="" pattern=".{2,}" title="Inserisci almeno 2 caratteri">
 				  </div>
           <div class="form-group col-sm-3">
-            <label for="inputRist">Menu</label>
+            <label for="Categoria">Menu</label>
             <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
               <?php
                 $sql = mysqli_query($conn, 'SELECT nome FROM menu WHERE id_ristorante = "'.$_SESSION["id_ristorante"].'"');
@@ -79,7 +109,7 @@
                       echo "<option value='". $row['nome'] ."'>" . $row['nome_categoria'] . "</option>";
                   }
                 }else{
-                  echo "<option value='notf'>Nessun Menu trovato</option>";
+                  echo "<option value='notf'>Nessun Menu </option>";
                 }
               ?>
             </select>
@@ -94,14 +124,12 @@
           </div>
           <div class="col-md-2">
             </br>
-            <input type="hidden" name= "sent" value="true">
+            <input type="hidden" name= "add" value="true">
             <button type="submit" class="btn btn-success">Aggiungi</a>
           </div>
         </div>
       </form>
-      </div>
-
-      <div  class="row list-group">
+      <h3 class="list-group-item-heading">Modifica i Prodotti gia esistenti</h3>
         <?php
         //get rows query
           $stmt = $conn->prepare("SELECT nome, nome_menu, prezzo, info, id FROM alimento WHERE id_ristorante = ?");
@@ -113,18 +141,49 @@
           if($query->num_rows > 0){
             while($row = $query->fetch_assoc()){
               ?>
-              <div>
-                <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
-                <p class="list-group-item-text"><?php echo 'menu: '.$row["nome_menu"]; ?></p>
+              <form id ="modify" class ="card card-sm mobile"  method="post" action = "#">
                 <div class="row">
-                  <div class="col-md-6">
-                    <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
+                  <div class="form-group col-sm-3">
+        				    <label for="nomeprod">Nome Prodotto</label>
+        				    <input type="text" name="nomeprod"  class="form-control" id="nomeprod" value="<?php echo $row["nome"]; ?>" placeholder="">
+        				  </div>
+                  <div class="form-group col-sm-3">
+                    <label for="inputMenu">Menu</label>
+                    <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
+                      <?php
+                        $sql = mysqli_query($conn, 'SELECT nome FROM menu WHERE id_ristorante = "'.$_SESSION["id_ristorante"].'"');
+                        if(mysqli_num_rows($sql) != 0){
+                          while ($row2 = $sql->fetch_assoc()){
+                            if($row2['nome_menu'] == $row["nome_menu"]){
+                              echo "<option selected value='".$row2['nome_menu']."'>" . $row2['nome_menu'] . "</option>";
+                            }else{
+                              echo "<option value='".$row2['nome_menu']."'>" . $row2['nome_menu'] . "</option>";
+                            }
+                          }
+                        }else{
+                          echo "<option value='notf'>Nessun Menu </option>";
+                        }
+                      ?>
+                    </select>
                   </div>
-                  <div class="col-md-6">
-                    <a class="btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
+                  <div class="form-group col-md-2">
+                    <label for="prezzo">prezzo</label>
+        				    <input type="text" name="prezzo"  class="form-control" value = "<?php echo $row["prezzo"]; ?>" id="inputRist">
+                  </div>
+                  <div class="form-group col-md-2">
+        				    <label for="info">Info</label>
+        				    <textarea type="text" name="info" class="form-control" id="info"><?php echo $row["info"]; ?></textarea>
+                  </div>
+                  <div class="col-md-2">
+
+                    <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
+                    <br/>
+                    <button type="submit" class="btn btn-success" name="btn" value = "false">Elimina</button>
                   </div>
                 </div>
-              </div>
+                <input type="hidden" name= "prod" value="<?php echo $row["id"]; ?>">
+                <input type="hidden" name= "modify" value="true">
+              </form>
               <?php
             }
           }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 04, 2019 alle 18:59
+-- Creato il: Gen 05, 2019 alle 19:06
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -46,7 +46,7 @@ CREATE TABLE `alimento` (
   `info` varchar(100) NOT NULL,
   `prezzo` decimal(5,2) NOT NULL,
   `id_ristorante` int(11) NOT NULL,
-  `nome_menu` varchar(20) NOT NULL,
+  `nome_menu` varchar(20) DEFAULT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -55,7 +55,11 @@ CREATE TABLE `alimento` (
 --
 
 INSERT INTO `alimento` (`disponibilita`, `nome`, `info`, `prezzo`, `id_ristorante`, `nome_menu`, `id`) VALUES
-('1', 'laboratorio 2.888', 'ciao', '1.00', 34, 'laboratorio 2.2', 1);
+('1', 'laboratorio 2.888', 'ciao', '1.00', 34, 'laboratorio 2.2', 1),
+('1', 'aega', '', '3.00', 42, NULL, 23),
+('1', '', '', '0.00', 42, NULL, 24),
+('1', '', '', '0.00', 42, NULL, 25),
+('1', '', '', '0.00', 42, NULL, 26);
 
 -- --------------------------------------------------------
 
@@ -69,24 +73,6 @@ CREATE TABLE `carrello` (
   `id_ristorante` int(11) NOT NULL,
   `nome_menu` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `categoria_menu`
---
-
-CREATE TABLE `categoria_menu` (
-  `nome_categoria` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `categoria_menu`
---
-
-INSERT INTO `categoria_menu` (`nome_categoria`) VALUES
-('menu panino'),
-('menu pizza');
 
 -- --------------------------------------------------------
 
@@ -158,16 +144,16 @@ INSERT INTO `luogo` (`nome`) VALUES
 
 CREATE TABLE `menu` (
   `id_ristorante` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL,
-  `nome_categoria` varchar(20) NOT NULL
+  `nome` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `menu`
 --
 
-INSERT INTO `menu` (`id_ristorante`, `nome`, `nome_categoria`) VALUES
-(34, 'laboratorio 2.2', 'menu pizza');
+INSERT INTO `menu` (`id_ristorante`, `nome`) VALUES
+(34, 'laboratorio 2.2'),
+(42, 'pizza');
 
 -- --------------------------------------------------------
 
@@ -188,16 +174,7 @@ CREATE TABLE `messaggio` (
 --
 
 INSERT INTO `messaggio` (`id`, `email`, `testo`, `data`, `letto`) VALUES
-(1, 'admin@admin.it', 'dhfagfsdfasdfds', '2019-01-02 08:16:00', '0'),
-(2, 'fornitore6@fornitore.it', 'Buone notizie! Il tuo ristorante Ã¨ stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!', '2019-01-03 00:01:00', '0'),
-(3, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(5, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(6, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(7, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(8, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(9, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-03 11:01:00', '0'),
-(10, 'admin@admin.it', 'Hai un ristorante da approvare controlla la tua Home', '2019-01-04 05:01:00', '0'),
-(11, 'orazifilippo@gmail.com', 'Buone notizie! Il tuo ristorante Ã¨ stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!', '2019-01-04 17:01:00', '0');
+(2, 'fornitore6@fornitore.it', 'Buone notizie! Il tuo ristorante Ã¨ stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!', '2019-01-03 00:01:00', '0');
 
 -- --------------------------------------------------------
 
@@ -226,6 +203,7 @@ INSERT INTO `persona` (`nome`, `cognome`, `email`, `id_ristorante`, `password`, 
 ('Giovanni', 'Santi', 'fornitore@fornitore.it', 5, '$2y$10$DMBzaOgVYlXFy7Kx0N27OuYeyoqI2oFyKb3/WNgWdRNbM6djsI.wm', 1, ''),
 ('prova', 'prova', 'not_logged_in', NULL, 'ciao', 0, ''),
 ('corrado', 'orazi', 'orazifilippo@gmail.com', 42, '$2y$10$hS2qvvQnhtgbfv5kurfmjOvLe6ra5wFeLwBLvDNI5C0x2oC..xM8W', 1, ''),
+('corrado', 'orazi', 'orazifilipppo@gmail.com', 43, '$2y$10$k6zembTnvac0OU25C5j2J.4zU.ikj7G0/GSO42hnaWMGDW7.rs5u2', 1, ''),
 ('utente', 'utente', 'utente@utente.it', NULL, '$2y$10$R3RXjbjdBvYryUTSbtjUFOTVfyfGMc45hK6rzNMITUlQDCF6DycKS', 0, '');
 
 -- --------------------------------------------------------
@@ -253,7 +231,14 @@ CREATE TABLE `prenotazione` (
 
 INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_cliente`, `data`, `ora_accettazione`, `stato`, `ora_consegna`, `totale`, `luogo_consegna`) VALUES
 ('', 2, NULL, 'not_logged_in', '2019-01-03', NULL, 0, NULL, 0, 'aula 2.3'),
-('', 3, 34, 'utente@utente.it', '2019-01-04', NULL, 1, NULL, 1, 'Aula 2.1');
+('', 3, 34, 'utente@utente.it', '2019-01-04', NULL, 1, NULL, 1, 'Aula 2.1'),
+('', 4, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 3.11'),
+('', 5, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 2.1'),
+('', 6, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 2.1'),
+('', 7, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Laboratorio 2.2'),
+('', 8, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 2.1'),
+('', 9, NULL, 'not_logged_in', '2019-01-05', NULL, 0, NULL, 0, 'Aula 2.1'),
+('', 10, NULL, 'not_logged_in', '2019-01-05', NULL, 0, NULL, 0, 'Aula 2.1');
 
 -- --------------------------------------------------------
 
@@ -280,7 +265,8 @@ INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome
 (5, 'fornitore@fornitore.it', 'villamarina', 'via mare 12', NULL, '', 0, 1),
 (32, 'fornitore3@fornitore.it', 'fadsadsa', 'dasdsa', NULL, '', 0, 1),
 (34, 'fornitore6@fornitore.it', 'Elizabeta Budini', 'via A. Severini nÂ°11', NULL, '', 0, 1),
-(42, 'orazifilippo@gmail.com', 'corrado orazi', 'Via san fortunato 13', NULL, '', 0, 1);
+(42, 'orazifilippo@gmail.com', 'Lo Sfizio Cesena', 'Via san fortunato 13', 'gelateria', 'pizzeria di cesena\r\n', 0, 1),
+(43, 'orazifilipppo@gmail.com', 'la peppa', 'Via san fortunato 13', 'indiano', 'la lu e scema', 0, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -308,12 +294,6 @@ ALTER TABLE `carrello`
   ADD KEY `FKcomprende` (`nome`,`id_ristorante`,`nome_menu`);
 
 --
--- Indici per le tabelle `categoria_menu`
---
-ALTER TABLE `categoria_menu`
-  ADD PRIMARY KEY (`nome_categoria`);
-
---
 -- Indici per le tabelle `categoria_ristoranti`
 --
 ALTER TABLE `categoria_ristoranti`
@@ -329,8 +309,7 @@ ALTER TABLE `luogo`
 -- Indici per le tabelle `menu`
 --
 ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id_ristorante`,`nome`),
-  ADD KEY `FKpartecipa2` (`nome_categoria`);
+  ADD PRIMARY KEY (`id_ristorante`,`nome`);
 
 --
 -- Indici per le tabelle `messaggio`
@@ -371,25 +350,25 @@ ALTER TABLE `ristorante`
 -- AUTO_INCREMENT per la tabella `alimento`
 --
 ALTER TABLE `alimento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `messaggio`
 --
 ALTER TABLE `messaggio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Limiti per le tabelle scaricate
@@ -418,8 +397,7 @@ ALTER TABLE `carrello`
 -- Limiti per la tabella `menu`
 --
 ALTER TABLE `menu`
-  ADD CONSTRAINT `FKoffre` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`),
-  ADD CONSTRAINT `FKpartecipa2` FOREIGN KEY (`nome_categoria`) REFERENCES `categoria_menu` (`nome_categoria`);
+  ADD CONSTRAINT `FKoffre` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`);
 
 --
 -- Limiti per la tabella `messaggio`

@@ -29,10 +29,10 @@ $_SESSION['admin']="false";
    if(! isset($_SESSION["email"])){
      header("Location: accedi.php");
   }?>
-  <div class="card card-sm center-msg-box transparent">
+  <div class="card card-sm center-msg-box transparent ">
 
-  <div class="row">
-    <div class="col-md-4 ">
+  <div class="row justify-content-center">
+    <div class="col-sm-4 ">
       <div class="card dark">
         <div class="card-body">
           <h5 class="card-title">Evadi Ordine</h5>
@@ -41,21 +41,12 @@ $_SESSION['admin']="false";
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-4">
       <div class="card dark">
         <div class="card-body ">
           <h5 class="card-title">Modifica Listino</h5>
           <p class="card-text-center">Aumenta la scelta! :D</p>
           <a href="modificaprodotti.php" class="btn btn-primary">Modifica!</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 ">
-      <div class="card dark">
-        <div class="card-body">
-          <h5 class="card-title">fdsfsd</h5>
-          <p class="card-text-center">fsdfsd</p>
-          <a href="#" class="btn btn-primary">fsdfsd</a>
         </div>
       </div>
     </div>
