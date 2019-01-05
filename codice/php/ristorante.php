@@ -59,11 +59,10 @@ $current="home";
     ?>
     <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success"> < Torna ai ristoranti</a>
     <a href="visualizzaCarrello.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello > </a>
-    <div class="card card-sm center-msg-box transparent">
-    <div class="container">
-    <h1>Ecco cosa offre <?php echo $_SESSION["nome_ristorante"]?> </h1>
-
-    <div id="products" class="row list-group">
+    <div class="card card-sm center-msg-box transparent mobile">
+      <div class="container mobile">
+        <h1>Ecco cosa offre <?php echo $_SESSION["nome_ristorante"]?> </h1>
+        <div id="products" class="row list-group">
         <?php
         //get rows query
         $stmt = $conn->prepare("SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ?");

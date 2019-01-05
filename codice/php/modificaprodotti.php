@@ -32,18 +32,18 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
           <div class="col-sm-4 ">
             <div class="">
               <div class="card card-sm center-msg-box ">
-                <h5 class="card-title">Dai una svolta alla tua attività</h5>
+                <h5 class="card-title">Gestisci i prodotti</h5>
                 <p class="card-text-center">Perchè perdere l'occasione di spedire ogni giorno il tuo cibo a studenti affamati?</p>
-                <a href="signinfornitore.php" class="btn btn-primary">Registrati!</a>
+                <a href="prodotti.php" class="btn btn-primary">Modifica!</a>
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="">
               <div class="card card-sm center-msg-box ">
-                <h5 class="card-title">Sei già un nostro partner?</h5>
+                <h5 class="card-title">Gestisci i Menu!</h5>
                 <p class="card-text-center">Modifica il listino aggiungendo nuovi cibi, controlla i tuoi ordini e tanto altro.</p>
-                <a href="accedi.php" class="btn btn-primary">Accedi!</a>
+                <a href="menucibi.php" class="btn btn-primary">Modifica!</a>
               </div>
             </div>
           </div>
