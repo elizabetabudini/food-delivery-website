@@ -87,8 +87,8 @@ function closeNav() {
     </div>
   </div>
   <row class="row mobile">
-  <button class="col-sm-2 filtri btn btn-success" type="button" name="button"  onclick="openNav()">Filtri</button>
-  <input class="col-sm-6"type="text" id="myInput" onkeyup="myFunction()" placeholder="Cerca ristorante..">
+  <button class="col-xsm-4  filtri btn btn-success" type="button" name="button"  onclick="openNav()">Filtri</button>
+  <input class="col-xsm-8 "type="text" id="myInput" onkeyup="myFunction()" placeholder="Cerca ristorante..">
 </row>
 
   <div class="container">
