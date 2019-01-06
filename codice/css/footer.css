@@ -5,9 +5,13 @@ footer{
   left: 0;
   bottom: 0;
   width: 100%;
+  min-width: 20%;
   height: 7%;
   text-align: center;
-
+  max-width: 100%;
+  box-sizing:border-box;
+  overflow: hidden;
+padding: 0pt;
 }
 body {
     padding-bottom: 120px;
