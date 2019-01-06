@@ -45,11 +45,7 @@ function closeNav() {
   .list-group-item{background-color: rgba(255,255,255, 65%)  }
   .a{float:right;margin-right: 2%}
   .filtri{margin-left: 7%; margin-top: 3%; }
-  .card{background: rgba(0,0,0,0.7);border-radius: 10px;
-    -webkit-border-radius: 10px;-moz-border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);}
-    .table{background-color: rgba(255,255,255,65%);}
+  .table{background-color: rgba(255,255,255,65%);}
     </style>
 
   </head>

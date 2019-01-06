@@ -33,11 +33,7 @@
     <style>
     h1,h3{text-align: center; color:white;}
     .a{float:right;}
-    .card{width: 450px;background: rgba(0,0,0,0.7);border-radius: 10px;
-    -webkit-border-radius: 10px;-moz-border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    }
+    .card{width: 450px;background: rgba(0,0,0,0.7);}
     .table{background-color: rgba(255,255,255,65%);}
     .table td, .table th{border-top: none;}
 </style>

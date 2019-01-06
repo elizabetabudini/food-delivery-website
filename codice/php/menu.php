@@ -85,6 +85,7 @@ if ($_SESSION['fornitore']== "true") {
 </nav>
 
 <?php
+/*
 if(isset($_SESSION["unread"])){
   if($_SESSION["unread"]==true){
     echo '<div class="hover_bkgr_fricc">
@@ -148,5 +149,5 @@ if(isset($_SESSION["unread"])){
     </style>';
 
   }
-}
+}*/
 ?>

@@ -48,10 +48,7 @@ $utente  = $result->fetch_object();
   h1,h3, h4{text-align: center; color:white;}
   p{text-align: center;}
   a{float:right;}
-  .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
-    -webkit-border-radius: 10px;-moz-border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+  .card{width: 900px;background: rgba(0,0,0,0.7);margin:5% auto;}
   }
   .table{background-color: rgba(255,255,255,65%);}
   .footBtn{width: 95%;float: left;}
