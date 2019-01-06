@@ -33,7 +33,7 @@ $current= "homeclienti";
       <form class="card card-sm center-msg-box" action="prenotazione.php" method="post" name ="ricerca" id="ricerca">
         <h1>CFU</h1>
         <h2>Cesena Food University</h2>
-        <h3>The best food at your university</h3>
+        <h3>Consegna presso:</h3>
         <div class="card-body row no-gutters align-items-center">
           <!--end of col-->
           <div class="col">
@@ -60,7 +60,7 @@ $current= "homeclienti";
           </div>
           <!--end of col-->
           <div class="col-auto">
-            <button class="btn btn-lg btn-success" id = "submit" type="submit" >Risultati</button>
+            <button class="btn btn-lg btn-success" id = "submit" type="submit" >Ristoranti</button>
             <?php if(isset($_POST['luogo'])) $selectOption = $_POST['luogo']; ?>
           </div>
           <!--end of col-->

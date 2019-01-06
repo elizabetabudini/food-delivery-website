@@ -35,12 +35,12 @@ function closeNav() {
   <title>CFU - Ricerca</title>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <link rel="stylesheet" href="./../css/bootstrap.min.css">
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/footer.css" rel="stylesheet">
   <link href="./../css/sidebar.css" rel="stylesheet">
+  <link href="./../css/ricerca.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   h1,h3{text-align: center; color:white;}
@@ -78,7 +78,7 @@ function closeNav() {
             ?>
           </div>
           <br/>
-          <input type="submit" class="a btn btn-success" name="action" value="Modifica"/>
+          <input type="submit" class="a btn btn-success" name="action" value="Applica filtri"/>
         </form>
       </div>
       <div class="row margin">
@@ -86,8 +86,10 @@ function closeNav() {
 
     </div>
   </div>
-
-  <button class=" filtri btn btn-success" type="button" name="button"  onclick="openNav()">Applica filtri</button>
+  <row class="row mobile">
+  <button class="col-sm-2 filtri btn btn-success" type="button" name="button"  onclick="openNav()">Filtri</button>
+  <input class="col-sm-6"type="text" id="myInput" onkeyup="myFunction()" placeholder="Cerca ristorante..">
+</row>
 
   <div class="container">
     <?php
@@ -118,13 +120,14 @@ function closeNav() {
       </div>';
     }
     echo '
-    <div class="card card-sm center-msg-box transparent">
+    <div class="card card-sm center-msg-box transparent mobile">
     <div class="container">';
     foreach($conn->query($query) as $row)
     {
       echo '
-      <li class="list-group-item">
-      <h2>'.$row["nome"].'</h2>
+      <ul id="myUL">
+      <li class="list-group-item" id="item">
+      <h2 class="nameFilter">'.$row["nome"].'</h2>
       <h5>'.$row["nome_categoria"].' </h5>
       <h5>'.$row["indirizzo"].' </h5>
 
@@ -148,6 +151,7 @@ function closeNav() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="./../js/messaggi.js"></script>
+<script src="./../js/ricerca.js"></script>
 
 </body>
 </html>
