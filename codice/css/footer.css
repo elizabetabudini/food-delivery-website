@@ -4,9 +4,9 @@ footer{
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: 100%  !important;
   min-width: 20%;
-  height: 7%;
+  height: 8%;
   text-align: center;
   max-width: 100%;
   box-sizing:border-box;
@@ -16,14 +16,16 @@ footer{
 body {
     padding-bottom: 120px;
 }
-
+.row{
+  box-sizing:border-box;
+  margin: 0pt
+}
 @media screen and (max-width:600px){
   .mobile{
-    width: auto;
-    max-width:95%;
+    max-width:100%;
   }
   .container {
-    max-width:95%;
-    width: 95%;
+    max-width:100%;
+    width: 100%;
   }
 }

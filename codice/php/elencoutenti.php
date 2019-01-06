@@ -54,6 +54,7 @@ $current="elencoutenti";
   }
   while($row = mysqli_fetch_array($result))
   {
+    if($row['email'] != "not_logged_in"){
     echo ' <tr>
     <td> '. $row['nome'] .' </td>
     <td> '. $row['cognome'] .' </td>
@@ -64,7 +65,7 @@ $current="elencoutenti";
     <input type="hidden" name = "delete" value="'.$row["email"].'">
     </td>
     </form></tr>"';
-  }
+  }}
   echo "</table>";
   ?>
 
