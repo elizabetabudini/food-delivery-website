@@ -28,19 +28,13 @@ $current="home";
   <title>CFU - Home</title>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="./../css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
   <style>
-  h1,h3, .nores{text-align: center; color:white;}
-  .a{float:right;}
-  .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
-    -webkit-border-radius: 10px;-moz-border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);}
+    h1,h3, .nores{text-align: center; color:white;}
+    .a{float:right;}
+    .card{width: 700px;background: rgba(0,0,0,0.7);}
     .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
     .caption{color:black;background-color: rgba(255,255,255, 60%); padding: 20px;margin: 10px;}
     .btn-success{

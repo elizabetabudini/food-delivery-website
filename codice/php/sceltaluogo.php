@@ -18,7 +18,6 @@ $current= " ";
   <link href="./../css/navigation.css" rel="stylesheet">
   <link href="./../css/notificapopup.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
 
 
 </head>

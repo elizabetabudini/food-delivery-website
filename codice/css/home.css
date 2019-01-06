@@ -1,18 +1,51 @@
-.card-sm{
-  margin-top: 10%;
-  background: rgba(0,0,0,0.7);
+body {
+  background: url('./../resources/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
-h1, h2, h3{
+
+.align{
+  align-content: center;
+}
+
+.center-msg-box{
+  padding:30px;
+  border-radius: 10px;
+  -webkit-border-radius:10px;
+  -moz-border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+h3, h1, h2{
   color:white;
   text-align: center;
 }
-h1{
-    margin-top:2%;
-}
 h3{
-  font-size: 95%;
   font-style: italic;
-  margin-bottom:3%;
+  font-size: 95%;
+}
+#element{
+  color:white;
+  text-align: center;
+}
+
+@media screen and (max-width:600px){
+  .mobile{
+    width: auto;
+    max-width:95%;
+  }
+  .container {
+    max-width:95%;
+    width: 95%;
+  }
+}
+.card-sm{
+  margin-top: 10%;
+  background: rgba(0,0,0,0.7);
 }
 .form-control{
   background-color: rgba(255, 255, 255, 0.8);

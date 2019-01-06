@@ -22,11 +22,7 @@ $carrello = new Cart;
   h1,h3{text-align: center; color:white;}
   .right{float:right;}
   .left{float:left;}
-  .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
-    -webkit-border-radius: 10px;-moz-border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-  }
+  .card{width: 700px;background: rgba(0,0,0,0.7);}
   .table{background-color: rgba(255,255,255,65%);}
   </style>
   <script>

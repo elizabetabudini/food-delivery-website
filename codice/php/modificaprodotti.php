@@ -22,11 +22,7 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   h1,h3, h4{text-align: center; color:white;}
-  .con{width: 900px;background: rgba(0,0,0,0.7);border-radius: 10px;
-    -webkit-border-radius: 10px;-moz-border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-  }
+  .con{width: 900px;background: rgba(0,0,0,0.7);}
   </style>
 </head>
 <body>

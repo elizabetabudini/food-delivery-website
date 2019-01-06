@@ -14,7 +14,6 @@ $current= "homeclienti";
   <title>CFU - Home Clienti</title>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="./../css/bootstrap.min.css">
-  <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/home.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/footer.css" rel="stylesheet">
