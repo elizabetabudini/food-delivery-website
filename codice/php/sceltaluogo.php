@@ -18,8 +18,6 @@ $current= " ";
   <link href="./../css/navigation.css" rel="stylesheet">
   <link href="./../css/notificapopup.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 </head>
 <body>
   <?php
@@ -29,7 +27,7 @@ $current= " ";
   <div class="row h-100 justify-content-center align-items-center ">
     <div class="col-12 col-md-10 col-lg-8 ">
       <form class="card card-sm center-msg-box" action="prenotazione2.php" method="post" name ="ricerca" id="ricerca">
-        <h2>Seleziona un luogo di spedizione</h2>
+        <h2>Conferma luogo di spedizione</h2>
         <div class="card-body row no-gutters align-items-center">
           <!--end of col-->
           <div class="col">
@@ -47,17 +45,28 @@ $current= " ";
                   die("Connection failed: " . $conn->connect_error);
                 }
                 $sql = mysqli_query($conn, "SELECT nome FROM luogo");
+
                 while ($row = $sql->fetch_assoc()){
+                  if(isset($_SESSION["luogo"])){
+                    if($_SESSION["luogo"]==$row['nome'])
+                    echo "<option selected value='". $row['nome'] ."'>" . $row['nome'] . "</option>";
+                  }
                   echo "<option value='". $row['nome'] ."'>" . $row['nome'] . "</option>";
                 }
                 ?>
               </select>
+
+              <label>Seleziona data e orario
+                <input type="dateTime-local" name="oraConsegna" id="currentDateTime"  min="<?php echo date("Y-m-d")."T".date("H:i");?>" value="<?php echo date("Y-m-d")."T".date("H:i");?>" required>
+              </label>
+
+
             </form>
           </div>
           <!--end of col-->
           <div class="col-auto">
             <button class="btn btn-lg btn-success" id = "submit" type="submit" >Continua ></button>
-            <?php if(isset($_POST['luogo'])){
+            <?php if(isset($_POST['submit'])){
               $_SESSION["luogo"] = $_POST['luogo'];
               $servername = "localhost";
               $username = "root";
@@ -67,8 +76,8 @@ $current= " ";
               if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
               }
-              $stmt3 = $conn->prepare("UPDATE prenotazione SET luogo_consegna=? WHERE id=?");
-              $stmt3->bind_param("ss", $_POST["luogo"],$_SESSION["id_prenotazione"] );
+              $stmt3 = $conn->prepare("UPDATE prenotazione SET luogo_consegna=? data_consegna=? WHERE id=?");
+              $stmt3->bind_param("ss", $_POST["luogo"], $_POST['oraConsegna'], $_SESSION["id_prenotazione"] );
               $stmt3->execute();
               $stmt3->close();
               $conn->close();

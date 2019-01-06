@@ -29,7 +29,6 @@ $current="strumenti";
 </head>
 <body>
   <?php
-  $current="strumenti";
   include 'menu.php';
   if(! isset($_SESSION["email"])){
     header("Location: accedi.php");

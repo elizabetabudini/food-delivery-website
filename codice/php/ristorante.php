@@ -53,6 +53,7 @@ $current="home";
     ?>
     <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success"> < Torna ai ristoranti</a>
     <a href="visualizzaCarrello.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello > </a>
+
     <div class="card card-sm center-msg-box transparent mobile">
       <div class="container mobile">
         <h1>Ecco cosa offre <?php echo $_SESSION["nome_ristorante"]?> </h1>

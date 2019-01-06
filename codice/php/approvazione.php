@@ -19,7 +19,7 @@ if(isset($_POST["sent"])){
     $stmt->close();
 
     $mess= "Buone notizie! Il tuo ristorante è stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!";
-    $data= date('Y-m-d-H-m');
+    $data= date('Y-m-d H-i-s');
     $letto="0";
     $stmt2 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
     $stmt2->bind_param("ssss", $mess, $_POST['email'], $data, $letto);

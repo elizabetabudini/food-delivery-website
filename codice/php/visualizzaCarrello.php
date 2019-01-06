@@ -81,15 +81,13 @@ $carrello = new Cart;
               <td class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></td>
               <tr>
               </table>
-              <?php if (isset($_SESSION["luogo"])){
-                echo '<a href="checkout.php" class="right btn btn-success ">Checkout ></a>';
-              } else {
-                echo '<a href="sceltaluogo.php" class="right btn btn-success ">Checkout ></a>';
-              }
 
-            } ?>
+                <a href="sceltaluogo.php" class="right btn btn-success ">Checkout ></a>;
 
-            <?php if(isset($_SESSION["id_ristorante"])){
+        <?php
+            }
+
+             if(isset($_SESSION["id_ristorante"])){
               echo '<a href="ristorante.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a></td>
               <td colspan="2">';
             } else {

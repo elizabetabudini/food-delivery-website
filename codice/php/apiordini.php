@@ -14,13 +14,14 @@ if ($conn->connect_error) {
 
 if(isset($_REQUEST["action"]) && !empty($_REQUEST["id"])){
   $id=$_REQUEST["id"];
-  $stmt5 = $conn->prepare("SELECT email_cliente FROM prenotazione WHERE id=?");
+  $stmt5 = $conn->prepare("SELECT * FROM prenotazione WHERE id=?");
   if($stmt5!=false){
     $stmt5->bind_param("s", $id);
     $stmt5->execute();
     $result = $stmt5->get_result();
-    $email = $result->fetch_object();
-    $email=$email->email_cliente;
+    $result = $result->fetch_object();
+    $email=$result->email_cliente;
+    $luogo=$result->luogo_consegna;
     $stmt5->close();
   } else {
     $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
@@ -34,8 +35,8 @@ if(isset($_REQUEST["action"]) && !empty($_REQUEST["id"])){
     $stmt->close();
 
     /*Invio messaggio all'utente*/
-    $mess= "L'ordine ".$id." è stato evaso!";
-    $data= date('Y-m-d-h-m');
+    $mess= "L'ordine id=".$id." è stato evaso! Ci vediamo presso ".$luogo;
+    $data= date('Y-m-d H-i-s');
     $letto="0";
     $stmt5 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
     if($stmt5!=false){
@@ -54,8 +55,8 @@ if(isset($_REQUEST["action"]) && !empty($_REQUEST["id"])){
     $stmt->execute();
     $stmt->close();
     /*Invio messaggio all'utente*/
-    $mess= "L'ordine ".$id." non è stato accettato, riprova più tardi!";
-    $data= date('Y-m-d-h-m');
+    $mess= "L'ordine id=".$id." non è stato accettato, ci scusiamo per il disagio. Ti abbiamo rimborsato la spesa.";
+    $data= date('Y-m-d H-i-s');
     $letto="0";
     $stmt5 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
     if($stmt5!=false){
