@@ -17,8 +17,11 @@ $result = mysqli_query($conn,"SELECT * FROM messaggio WHERE email = '".$_SESSION
 if($result->num_rows>0){
   $notifica = $result->num_rows;
   echo '<div>'.$notifica.'</div>';
+  $_SESSION["unread"]=true;
+
 } else {
+  $_SESSION["unread"]=false;
   $notifica=0;
-  echo '<div>'.$notifica.'</div>';
+  echo ' ';
 }
 ?>

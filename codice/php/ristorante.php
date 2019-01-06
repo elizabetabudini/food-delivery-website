@@ -23,28 +23,28 @@ $current="home";
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>CFU - Home</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="./../css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>CFU - Home</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="./../css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link href="./../css/full.css" rel="stylesheet">
-    <link href="./../css/menubar.css" rel="stylesheet">
-    <link href="./../css/navigation.css" rel="stylesheet">
-    <style>
-      h1,h3, .nores{text-align: center; color:white;}
-      .a{float:right;}
-      .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
-      -webkit-border-radius: 10px;-moz-border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
-      -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);}
+  <link href="./../css/full.css" rel="stylesheet">
+  <link href="./../css/menubar.css" rel="stylesheet">
+  <link href="./../css/navigation.css" rel="stylesheet">
+  <style>
+  h1,h3, .nores{text-align: center; color:white;}
+  .a{float:right;}
+  .card{width: 700px;background: rgba(0,0,0,0.7);border-radius: 10px;
+    -webkit-border-radius: 10px;-moz-border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);}
     .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
     .caption{color:black;background-color: rgba(255,255,255, 60%); padding: 20px;margin: 10px;}
     .btn-success{
-          float: right;
+      float: right;
     }
     #torna {float: left; margin-left: 6%; margin-top: 1%;}
     #carrello {float: right; margin-right: 6%; margin-top: 1%;}
@@ -53,7 +53,7 @@ $current="home";
 
   </head>
   <body>
-  <?php include 'menu.php'; ?>
+    <?php include 'menu.php'; ?>
 
     <?php
     ?>
@@ -63,45 +63,42 @@ $current="home";
       <div class="container mobile">
         <h1>Ecco cosa offre <?php echo $_SESSION["nome_ristorante"]?> </h1>
         <div id="products" class="row list-group">
-        <?php
-        //get rows query
-        $stmt = $conn->prepare("SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ?");
-        $stmt->bind_param('s', $_SESSION["id_ristorante"]);
-        $stmt->execute();
+          <?php
+          //get rows query
+          $stmt = $conn->prepare("SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ?");
+          $stmt->bind_param('s', $_SESSION["id_ristorante"]);
+          $stmt->execute();
 
-        $query = $stmt->get_result();
+          $query = $stmt->get_result();
 
-        if($query->num_rows > 0){
+          if($query->num_rows > 0){
             while($row = $query->fetch_assoc()){
-        ?>
-        <div>
-            <div class="thumbnail">
+              ?>
+              <div class="thumbnail">
                 <div class="caption">
-                    <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
-                    <p class="list-group-item-text"><?php echo 'menu: '.$row["nome_menu"]; ?></p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
-                        </div>
-                        <div class="col-md-6">
-                            <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
-                        </div>
+                  <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
+                  <p class="list-group-item-text"><?php echo 'menu: '.$row["nome_menu"]; ?></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
                     </div>
+                    <div class="col-md-6">
+                      <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
+            <?php } }else{ ?>
+              <p class="nores">Nessun prodotto trovato</p>
+            <?php } ?>
+          </div>
         </div>
-        <?php } }else{ ?>
-        <p class="nores">Nessun prodotto trovato</p>
-        <?php } ?>
-    </div>
-</div>
-</div>
+      </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity=
-	"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-  </body>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script src="./../js/messaggi.js"></script>
+    </body>

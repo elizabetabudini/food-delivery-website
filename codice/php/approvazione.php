@@ -38,22 +38,22 @@ if(isset($_POST["sent"])){
 
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>CFU - Accedi</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="./../css/bootstrap.min.css">
+<head>
+  <meta charset="utf-8">
+  <title>CFU - Accedi</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="./../css/bootstrap.min.css">
 
-    <link href="./../css/form.css" rel="stylesheet">
-    <link href="./../css/full.css" rel="stylesheet">
-    <link href="./../css/menubar.css" rel="stylesheet">
-    <link href="./../css/approvazione.css" rel="stylesheet">
-    <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../css/form.css" rel="stylesheet">
+  <link href="./../css/full.css" rel="stylesheet">
+  <link href="./../css/menubar.css" rel="stylesheet">
+  <link href="./../css/approvazione.css" rel="stylesheet">
+  <link href="./../css/navigation.css" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  </head>
-  <body>
+</head>
+<body>
   <?php include 'menu.php'; ?>
 
   <div class="card card-sm center-msg-box transparent ">
@@ -72,24 +72,26 @@ if(isset($_POST["sent"])){
     echo '<h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l approvazione</h3>';
     foreach($conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0') as $row) {
       echo '
-        <div class="row card-sm">
-          <div class="card card-sm center-msg-box transparent col-sm-8">
-            <p>'. $row['nome'] .'</p>
-            <p>'. $row['email_proprietario'] .'</p>
-          </div>
-          <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
-            <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
-            <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
-            <br/>
-            <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
-            <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
-            <input type="hidden" name="sent" value="true" />
-          </form>
-        </div>';
-      }
+      <div class="row card-sm">
+      <div class="card card-sm center-msg-box transparent col-sm-8">
+      <p>'. $row['nome'] .'</p>
+      <p>'. $row['email_proprietario'] .'</p>
+      </div>
+      <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
+      <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
+      <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
+      <br/>
+      <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
+      <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
+      <input type="hidden" name="sent" value="true" />
+      </form>
+      </div>';
+    }
     ?>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="./../js/bootstrap.min.js"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="./../js/messaggi.js"></script>
+</body>
 </html>
