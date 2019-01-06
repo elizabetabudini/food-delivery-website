@@ -96,8 +96,8 @@ if(isset($_POST["sent"])){
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 96 signinfornitore.php </br>";
     }
 
-    $mess= "Hai un ristorante da approvare controlla la tua Home";
-    $data= date('Y-m-d-h-m');
+    $mess= "Il ristorante ".$nomerist." attende la tua approvazione, controlla i tuoi Strumenti";
+    $data= date('Y-m-d H-i-s');
     $letto="0";
     $email="admin@admin.it";
     $stmt5 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");

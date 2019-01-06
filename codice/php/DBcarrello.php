@@ -51,42 +51,64 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
   }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION["email"])){
     // insert order details into database
     $stmt4 = $db->prepare("UPDATE prenotazione SET email_cliente=?, id_ristorante=?, totale=?, stato=?,
-      data=?, luogo_consegna=? WHERE id=?");
+       luogo_consegna=? WHERE id=?");
       if($stmt4!=false){
-        $data= date('Y-m-d-H-m');
         $email=$_SESSION["email"];
         $totale= $cart->total();
         $stato="0";
-        $stmt4->bind_param("sssssss", $email, $_SESSION["id_ristorante"], $totale, $stato,
-        $data, $_SESSION["luogo"],  $_SESSION["id_prenotazione"]);
+        $stmt4->bind_param("ssssss", $email, $_SESSION["id_ristorante"], $totale, $stato,
+         $_SESSION["luogo"],  $_SESSION["id_prenotazione"]);
         $insertOrder=$stmt4->execute();
         $stmt4->close();
       } else {
         echo 'Bad Programmatore Exception: la query non è andata a buon fine </br>';
       }
-      $stmt5 = $db->prepare("SELECT email_proprietario FROM ristorante WHERE id=?");
-      if($stmt5!=false){
-        $stmt5->bind_param("s", $_SESSION["id_ristorante"]);
-        $stmt5->execute();
-        $result = $stmt5->get_result();
-        $email = $result->fetch_object();
-        $email=$email->email_proprietario;
-        $stmt5->close();
-
-      }
-      $mess= "L'ordine ".$_SESSION['id_prenotazione']." attende di essere evaso. Vai nei tuoi Strumenti";
-      $data= date('Y-m-d-h-m');
-      $letto="0";
-      $stmt5 = $db->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
-      if($stmt5!=false){
-        $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
-        $stmt5->execute();
-        $stmt5->close();
-      } else {
-        $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 109 signinfornitore.php </br>";
-      }
 
       if($insertOrder){
+        $stmt5 = $db->prepare("SELECT email_proprietario FROM ristorante WHERE id=?");
+        if($stmt5!=false){
+          $stmt5->bind_param("s", $_SESSION["id_ristorante"]);
+          $stmt5->execute();
+          $result = $stmt5->get_result();
+          $email = $result->fetch_object();
+          $email=$email->email_proprietario;
+          $stmt5->close();
+
+        }
+        $mess= "L'ordine ".$_SESSION['id_prenotazione']." attende di essere evaso. Vai nei tuoi Strumenti";
+        $data= date('Y-m-d-H-m');
+        $letto="0";
+        $stmt5 = $db->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
+        if($stmt5!=false){
+          $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
+          $stmt5->execute();
+          $stmt5->close();
+        } else {
+          $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
+        }
+        $stmt5 = $db->prepare("SELECT * FROM prenotazione WHERE id=?");
+        if($stmt5!=false){
+          $stmt5->bind_param("s", $_SESSION["id_prenotazione"]);
+          $stmt5->execute();
+          $result = $stmt5->get_result();
+          $prenotazione = $result->fetch_object();
+          $email=$prenotazione->email_cliente;
+          $oraConsegna=$prenotazione->data_consegna;
+          $luogo=$prenotazione->luogo_consegna;
+          $stmt5->close();
+
+        }
+        $mess= "L'ordine id=".$_SESSION['id_prenotazione']." verrà spedito presso ".$luogo." alle ".$oraConsegna."";
+        $data= date('Y-m-d H-i-s');
+        $letto="0";
+        $stmt5 = $db->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
+        if($stmt5!=false){
+          $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
+          $stmt5->execute();
+          $stmt5->close();
+        } else {
+          $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
+        }
         $cart->destroy();
         header("Location: orderSuccess.php");
       }else{

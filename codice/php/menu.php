@@ -15,7 +15,6 @@ if(isset($_SESSION["email"])){
   $username = "root";
   $password = "";
   $dbname = "cfu";
-  $current= "profilofornitore";
 
   $conn = new mysqli($servername, $username, $password, $dbname);
 
