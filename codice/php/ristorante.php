@@ -53,7 +53,7 @@ $current="home";
 
     <?php
     ?>
-    <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success"> < Torna ai ristoranti</a>
+    <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success">< Torna ai ristoranti</a>
     <a href="visualizzaCarrello.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello > </a>
 
     <div class="card card-sm center-msg-box transparent mobile">
@@ -61,33 +61,40 @@ $current="home";
         <h1>Ecco cosa offre <?php echo $_SESSION["nome_ristorante"]?> </h1>
         <div id="products" class="row list-group">
           <?php
-          //get rows query
-          $stmt = $conn->prepare("SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ?");
-          $stmt->bind_param('s', $_SESSION["id_ristorante"]);
-          $stmt->execute();
+          foreach($conn->query('SELECT * FROM menu WHERE id_ristorante = "'.$_SESSION["id_ristorante"].'"') as $ext) {
+            echo ' <div class="thumbnail">
+                    <div class="caption">
 
-          $query = $stmt->get_result();
+                    <h2 class="">';
+            echo $ext["nome"];
+            echo '</h3>';
+            //get rows query
+            $stmt = $conn->prepare('SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ? AND nome_menu = "'.$ext['nome'].'"');
+            $stmt->bind_param('s', $_SESSION["id_ristorante"]);
+            $stmt->execute();
 
-          if($query->num_rows > 0){
-            while($row = $query->fetch_assoc()){
-              ?>
-              <div class="thumbnail">
-                <div class="caption">
-                  <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
-                  <p class="list-group-item-text"><?php echo 'menu: '.$row["nome_menu"]; ?></p>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
-                    </div>
-                    <div class="col-md-6">
-                      <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
+            $query = $stmt->get_result();
+
+            if($query->num_rows > 0){
+              while($row = $query->fetch_assoc()){
+                ?>
+                <div class="thumbnail">
+                  <div class="caption">
+                    <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
+                    <p class="list-group-item-text"><?php echo 'menu: '.$row["nome_menu"]; ?></p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
+                      </div>
+                      <div class="col-md-6">
+                        <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            <?php } }else{ ?>
-              <p class="nores">Nessun prodotto trovato</p>
-            <?php } ?>
+              <?php } }else{ ?>
+                <p class="nores">Nessun prodotto trovato</p>
+              <?php }echo '</div>'; }?>
           </div>
         </div>
       </div>
