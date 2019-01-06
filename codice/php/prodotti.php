@@ -100,10 +100,11 @@
             <label for="Categoria">Menu</label>
             <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
               <?php
-                $sql = mysqli_query($conn, 'SELECT nome FROM menu WHERE id_ristorante = "'.$_SESSION["id_ristorante"].'"');
+                $sql = mysqli_query($conn, 'SELECT nome FROM menu WHERE id_ristorante = "'.$id_rist.'"');
                 if(mysqli_num_rows($sql) != 0){
+                    echo "<option selected value='notf'>None selected</option>";
                   while ($row = $sql->fetch_assoc()){
-                      echo "<option value='". $row['nome'] ."'>" . $row['nome_categoria'] . "</option>";
+                      echo "<option value='".$row['nome']."'>".$row['nome']."</option>";
                   }
                 }else{
                   echo "<option value='notf'>Nessun Menu </option>";
@@ -138,7 +139,7 @@
           if($query->num_rows > 0){
             while($row = $query->fetch_assoc()){
               ?>
-              <form id ="modify" class ="card card-sm mobile"  method="post" action = "#">
+              <form id ="modify" class ="card card-sm mobile "  method="post" action = "#">
                 <div class="row">
                   <div class="form-group col-sm-3">
         				    <label for="nomeprod">Nome Prodotto</label>
@@ -148,13 +149,16 @@
                     <label for="inputMenu">Menu</label>
                     <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
                       <?php
-                        $sql = mysqli_query($conn, 'SELECT nome FROM menu WHERE id_ristorante = "'.$_SESSION["id_ristorante"].'"');
+                        $sql = mysqli_query($conn, 'SELECT nome FROM menu WHERE id_ristorante = "'.$id_rist.'"');
                         if(mysqli_num_rows($sql) != 0){
+                          if($row["nome_menu"] === NULL){
+                            echo "<option selected value='notf'>None selected</option>";
+                          }
                           while ($row2 = $sql->fetch_assoc()){
-                            if($row2['nome_menu'] == $row["nome_menu"]){
-                              echo "<option selected value='".$row2['nome_menu']."'>" . $row2['nome_menu'] . "</option>";
+                            if($row2['nome'] == $row["nome_menu"]){
+                              echo "<option selected value='".$row2['nome']."'>" . $row2['nome'] . "</option>";
                             }else{
-                              echo "<option value='".$row2['nome_menu']."'>" . $row2['nome_menu'] . "</option>";
+                              echo "<option value='".$row2['nome']."'>" . $row2['nome'] . "</option>";
                             }
                           }
                         }else{

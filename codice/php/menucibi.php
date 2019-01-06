@@ -27,12 +27,13 @@ if(isset($_POST['add'])){
     $stmt5->execute();
     $stmt5->close();
   }
-  //  header("Location: menucibi.php");
-  echo isset($_POST['modify']);
+  header("Location: menucibi.php");
+
 }
+
 if(isset($_POST['modify'])){
   if($_POST["btn"]== "true"){
-    $stmt5 = $conn->prepare("UPDATE menu SET nome = ? WHERE nome = ? AND id_ristorante = ");
+     $stmt5 = $conn->prepare("UPDATE menu SET nome = ? WHERE nome = ? AND id_ristorante = ?");
     if($stmt5!=false){
       $stmt5->bind_param("sss", $_POST["nome"], $_POST["exn"] ,$id_rist );
       $stmt5->execute();
@@ -46,7 +47,7 @@ if(isset($_POST['modify'])){
       $stmt5->close();
     }
   }
-  //  header("Location: menucibi.php");
+  header("Location: menucibi.php");
 }
 ?>
 <!DOCTYPE html>
@@ -100,18 +101,17 @@ if(isset($_POST['modify'])){
                 <input type="text" name="nome"  class="form-control" id="nome" placeholder="" value="<?php echo $row['nome'] ?>">
               </div>
               <div class="col-md-2">
-              </br>
+                <br/>
+                <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
+              </div>
+              <div class="col-md-2">
+                <br/>
+                <button type="submit" class="btn btn-success" name="btn" value = "false">Elimina</button>
+              </div>
             </div>
-            <div class="col-md-2">
-              <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
-            </div>
-            <div class="col-md-2">
-              <button type="submit" class="btn btn-success" name="btn" value = "false">Elimina</button>
-            </div>
-          </div>
           <input type="hidden" name= "exn" value="<?php echo $row['nome']; ?>">
           <input type="hidden" name= "modify" value="true">
-        </form>
+          </form>
         <?php
       }
     }
