@@ -35,7 +35,7 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
     <div class="col-sm-4 ">
       <div class="card lis">
         <div class="card-body">
-          <h5 class="card-title">Gestisci Listino</h5>
+          <h5 class="card-title">Gestisci i prodotti</h5>
           <p class="card-text-center">Inserisci nuovi prodotti e modifica quelli esistenti</p>
           <a href="prodotti.php" class="btn btn-primary">Modifica prodotti</a>
         </div>
@@ -44,8 +44,8 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
     <div class="col-sm-4">
       <div class="card lis">
         <div class="card-body ">
-          <h5 class="card-title">Gestisci categorie di menu</h5>
-          <p class="card-text-center">Modifica i tipi di menù che offre il tuo ristorante</p>
+          <h5 class="card-title">Gestisci i menu</h5>
+          <p class="card-text-center">Inserisci nuovi menu e gestisci quelli esistenti</p>
           <a href="menucibi.php" class="btn btn-primary">Modifica listino</a>
         </div>
       </div>

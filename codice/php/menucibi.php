@@ -20,6 +20,7 @@ $result = $stmt->get_result();
 $id_rist = $result->fetch_object();
 $id_rist = $id_rist->id;
 $stmt->close();
+
 if(isset($_POST['add'])){
   $stmt5 = $conn->prepare("INSERT INTO menu (nome, id_ristorante) VALUES (?, ?)");
   if($stmt5!=false){
@@ -33,21 +34,18 @@ if(isset($_POST['add'])){
 
 if(isset($_POST['modify'])){
   if($_POST["btn"]== "true"){
-     $stmt5 = $conn->prepare("UPDATE menu SET nome = ? WHERE nome = ? AND id_ristorante = ?");
-    if($stmt5!=false){
-      $stmt5->bind_param("sss", $_POST["nome"], $_POST["exn"] ,$id_rist );
-      $stmt5->execute();
-      $stmt5->close();
-    }
+    $_SESSION["menumod"] = $_POST["exn"];
+    header("Location: modificamenu.php");
   }else{
     $stmt5 = $conn->prepare("DELETE FROM menu WHERE nome = ?");
     if($stmt5!=false){
-      $stmt5->bind_param("s", $_POST["nome"] );
+      $stmt5->bind_param("s", $_POST["exn"] );
       $stmt5->execute();
       $stmt5->close();
     }
+    header("Location: menucibi.php");
+
   }
-  header("Location: menucibi.php");
 }
 ?>
 <!DOCTYPE html>
@@ -94,11 +92,11 @@ if(isset($_POST['modify'])){
         while($row = $query->fetch_assoc()){
           echo $row["nome"];
           ?>
-          <form id ="modify" class ="  card card-sm mobile "  method="post" action = "#">
+          <form id ="modify" class ="card card-sm mobile "  method="post" action = "#">
             <div class="row justify-content-center">
               <div class="form-group col-sm-4">
                 <label for="nome">Nome menu</label>
-                <input type="text" name="nome"  class="form-control" id="nome" placeholder="" value="<?php echo $row['nome'] ?>">
+                <label name="nome"  class="form-control" id="nome"><?php echo $row['nome'] ?></label>
               </div>
               <div class="col-md-2">
                 <br/>

@@ -45,21 +45,8 @@
 
     if(isset($_POST['modify'])){
       if($_POST["btn"]== "true"){
-        if($_POST["Categoria"] != "notf"){
-          $stmt5 = $conn->prepare("UPDATE alimento SET nome = ?, info = ?, prezzo = ?, nome_menu = ? WHERE id = ?");
-          if($stmt5!=false){
-            $stmt5->bind_param("sssss", $_POST["nomeprod"],  $_POST["info"],  $_POST["prezzo"], $_POST["Categoria"], $_POST["prod"] );
-            $stmt5->execute();
-            $stmt5->close();
-          }
-        }else{
-          $stmt5 = $conn->prepare("UPDATE alimento SET nome = ?, info = ?, prezzo = ? WHERE id = ?");
-          if($stmt5!=false){
-            $stmt5->bind_param("ssss", $_POST["nomeprod"],  $_POST["info"],  $_POST["prezzo"], $_POST["prod"] );
-            $stmt5->execute();
-            $stmt5->close();
-          }
-        }
+        $_SESSION["alimmod"] = $_POST["prod"];
+        header("Location: modificaalimenti.php");
       }else{
         $stmt5 = $conn->prepare("DELETE FROM alimento WHERE id = ?");
         if($stmt5!=false){
@@ -67,8 +54,9 @@
           $stmt5->execute();
           $stmt5->close();
         }
+        header("Location: prodotti.php");
+
       }
-    //header("Location: prodotti.php");
     }
 ?>
 <!DOCTYPE html>
@@ -94,8 +82,8 @@
         <div class="row">
           <div class="form-group col-sm-3">
 				    <label for="nomeprod">Nome Prodotto</label>
-				    <input type="text" name="nomeprod"  class="form-control" id="nomeprod" placeholder="" pattern=".{2,}" title="Inserisci almeno 2 caratteri">
-				  </div>
+				    <input type="text" name="nomeprod"  class="form-control" id="nomeprod" placeholder="" required pattern=".{[0-9]2,}" title="Inserisci almeno 2 caratteri">
+          </div>
           <div class="form-group col-sm-3">
             <label for="Categoria">Menu</label>
             <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
@@ -114,16 +102,21 @@
           </div>
           <div class="col-md-2">
             <label for="prezzo">prezzo</label>
-				    <input type="text" name="prezzo"  class="form-control" id="inputRist">
+				    <input type="number" name="prezzo"  class="form-control" placeholder="0.00" id="prezzo" required min="0.01" value="0" step=".01" pattern="^\d*(\.\d{0,2})?$"  title="Inserisci prezzo">
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-4">
 				    <label for="info">Info</label>
 				    <textarea type="text" name="info" class="form-control" id="info"></textarea>
           </div>
-          <div class="col-md-2">
-            </br>
-            <input type="hidden" name= "add" value="true">
-            <button type="submit" class="btn btn-success">Aggiungi</a>
+          <div class="col-md-12 ">
+            <div class="row justify-content-center">
+              </br>
+              <div class="col-sm-2S">
+                <input type="hidden" name= "add" value="true">
+                <button type="submit" class="btn btn-success">Aggiungi</a>
+              </div>
+            </div>
+
           </div>
         </div>
       </form>
@@ -143,53 +136,39 @@
                 <div class="row">
                   <div class="form-group col-sm-3">
         				    <label for="nomeprod">Nome Prodotto</label>
-        				    <input type="text" name="nomeprod"  class="form-control" id="nomeprod" value="<?php echo $row["nome"]; ?>" placeholder="">
+        				    <label name="nomeprod"  class="form-control" id="nomeprod" ><?php echo $row["nome"]; ?></label>
         				  </div>
                   <div class="form-group col-sm-3">
                     <label for="inputMenu">Menu</label>
-                    <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
-                      <?php
-                        $sql = mysqli_query($conn, 'SELECT nome FROM menu WHERE id_ristorante = "'.$id_rist.'"');
-                        if(mysqli_num_rows($sql) != 0){
-                          if($row["nome_menu"] === NULL){
-                            echo "<option selected value='notf'>None selected</option>";
-                          }
-                          while ($row2 = $sql->fetch_assoc()){
-                            if($row2['nome'] == $row["nome_menu"]){
-                              echo "<option selected value='".$row2['nome']."'>" . $row2['nome'] . "</option>";
-                            }else{
-                              echo "<option value='".$row2['nome']."'>" . $row2['nome'] . "</option>";
-                            }
-                          }
-                        }else{
-                          echo "<option value='notf'>Nessun Menu </option>";
-                        }
-                      ?>
-                    </select>
+                    <label name="inputMenu" class="form-control"><?php echo $row["nome_menu"] !== NULL ? $row["nome_menu"] : "none selected"; ?></label>
                   </div>
                   <div class="form-group col-md-2">
                     <label for="prezzo">prezzo</label>
-        				    <input type="text" name="prezzo"  class="form-control" value = "<?php echo $row["prezzo"]; ?>" id="inputRist">
+        				    <label name="prezzo"  class="form-control" id="inputRist"><?php echo $row["prezzo"]; ?></label>
                   </div>
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-4">
         				    <label for="info">Info</label>
-        				    <textarea type="text" name="info" class="form-control" id="info"><?php echo $row["info"]; ?></textarea>
+        				    <label name="info" class="form-control"><?php echo $row["info"] !== "" ? $row["info"] : "no info"; ?></label>
                   </div>
-                  <div class="col-md-2">
-
-                    <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
+                  <div class="col-md-12">
                     <br/>
-                    <button type="submit" class="btn btn-success" name="btn" value = "false">Elimina</button>
+                    <div class="row justify-content-center">
+                      <div class="col-md-2">
+                        <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
+                      </div>
+                      <div class="col-md-2">
+                        <button type="submit" class="btn btn-success" name="btn" value = "false" onSubmit="return confirm('Are you sure you wish to delete?');">Elimina</button>
+                      </div>
                   </div>
                 </div>
                 <input type="hidden" name= "prod" value="<?php echo $row["id"]; ?>">
                 <input type="hidden" name= "modify" value="true">
               </form>
+            </div>
               <?php
             }
           }
           ?>
-      </div>
     </div>
   </div>
 
