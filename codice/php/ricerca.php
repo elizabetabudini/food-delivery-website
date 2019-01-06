@@ -98,8 +98,7 @@ function closeNav() {
       die("Connection failed: " . $conn->connect_error);
     }
     $filter = array();
-    /*  foreach($conn->query('SELECT * FROM categoria_ristoranti ORDER BY nome_categoria') as $row) {
-    echo $row["nome_categoria"];*/
+    
     if(isset($_POST['check'])){
       $aCat = $_POST['check'];
       $N = count($aCat);

@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE){
 if ( isset( $_SESSION['email'] ) ) {
   ?>
   <li class="nav-item">
-    <a class="nav-link" href="areafornitori.php"<?php if($current == 'areafornitori') {echo 'id="current"';} ?>>Home <span class="sr-only">(current)</span></a>
+    <a class="nav-link" href="strumenti.php"<?php if($current == 'strumenti') {echo 'id="current"';} ?>>Strumenti</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="profilofornitore.php"<?php if($current == 'profilofornitore') {echo 'id="current"';} ?>>Profilo <?php echo $_SESSION["nome"]; ?></a>
@@ -14,9 +14,6 @@ if ( isset( $_SESSION['email'] ) ) {
   <li class="nav-item">
     <a class="nav-link" href="messaggi.php"<?php if($current == 'messaggi') {echo 'id="current"';} ?>>Messaggi <span class="msg badge badge-primary"><?php if($_SESSION["unread"]>0) echo $_SESSION["unread"];?></span>
       <span class="sr-only">unread messages</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="strumenti.php"<?php if($current == 'strumenti') {echo 'id="current"';} ?>>Strumenti</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti</a>

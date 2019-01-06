@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE){
 $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
-$current= "homeclienti";
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
