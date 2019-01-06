@@ -42,6 +42,8 @@ $cognome= $row["cognome"];
   <title>CFU - Registrati</title>
 
   <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="./../css/bootstrap.min.css">
   <link href="./../css/form.css" rel="stylesheet">
   <link href="./../css/full.css" rel="stylesheet">

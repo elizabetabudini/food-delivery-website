@@ -14,6 +14,8 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
   <meta charset="utf-8">
   <title>CFU - Home Fornitori</title>
   <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="./../css/bootstrap.min.css">
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
