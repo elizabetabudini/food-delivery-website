@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 05, 2019 alle 19:06
+-- Creato il: Gen 06, 2019 alle 16:21
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -21,18 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cfu`
 --
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `alimenti_prenotati`
---
-
-CREATE TABLE `alimenti_prenotati` (
-  `id_prenotazione` int(11) NOT NULL,
-  `id_alimento` int(11) NOT NULL,
-  `quantità` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -56,10 +44,8 @@ CREATE TABLE `alimento` (
 
 INSERT INTO `alimento` (`disponibilita`, `nome`, `info`, `prezzo`, `id_ristorante`, `nome_menu`, `id`) VALUES
 ('1', 'laboratorio 2.888', 'ciao', '1.00', 34, 'laboratorio 2.2', 1),
-('1', 'aega', '', '3.00', 42, NULL, 23),
-('1', '', '', '0.00', 42, NULL, 24),
-('1', '', '', '0.00', 42, NULL, 25),
-('1', '', '', '0.00', 42, NULL, 26);
+('1', 'af', '', '34.00', 42, 'gelato', 29),
+('1', 'asfa', '', '3.00', 5, NULL, 30);
 
 -- --------------------------------------------------------
 
@@ -152,7 +138,12 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id_ristorante`, `nome`) VALUES
+(5, ''),
+(5, 'gelatp'),
+(5, 'luca'),
 (34, 'laboratorio 2.2'),
+(42, 'gelato'),
+(42, 'panini'),
 (42, 'pizza');
 
 -- --------------------------------------------------------
@@ -217,10 +208,8 @@ CREATE TABLE `prenotazione` (
   `id` int(11) NOT NULL,
   `id_ristorante` int(11) DEFAULT NULL,
   `email_cliente` varchar(40) NOT NULL,
-  `data` date NOT NULL,
-  `ora_accettazione` date DEFAULT NULL,
+  `data_consegna` datetime NOT NULL,
   `stato` int(11) NOT NULL,
-  `ora_consegna` date DEFAULT NULL,
   `totale` int(11) NOT NULL,
   `luogo_consegna` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -229,16 +218,17 @@ CREATE TABLE `prenotazione` (
 -- Dump dei dati per la tabella `prenotazione`
 --
 
-INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_cliente`, `data`, `ora_accettazione`, `stato`, `ora_consegna`, `totale`, `luogo_consegna`) VALUES
-('', 2, NULL, 'not_logged_in', '2019-01-03', NULL, 0, NULL, 0, 'aula 2.3'),
-('', 3, 34, 'utente@utente.it', '2019-01-04', NULL, 1, NULL, 1, 'Aula 2.1'),
-('', 4, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 3.11'),
-('', 5, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 2.1'),
-('', 6, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 2.1'),
-('', 7, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Laboratorio 2.2'),
-('', 8, NULL, 'not_logged_in', '2019-01-04', NULL, 0, NULL, 0, 'Aula 2.1'),
-('', 9, NULL, 'not_logged_in', '2019-01-05', NULL, 0, NULL, 0, 'Aula 2.1'),
-('', 10, NULL, 'not_logged_in', '2019-01-05', NULL, 0, NULL, 0, 'Aula 2.1');
+INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_cliente`, `data_consegna`, `stato`, `totale`, `luogo_consegna`) VALUES
+('', 2, NULL, 'not_logged_in', '2019-01-03 00:00:00', 0, 0, 'aula 2.3'),
+('', 3, 34, 'utente@utente.it', '2019-01-04 00:00:00', 1, 1, 'Aula 2.1'),
+('', 4, NULL, 'not_logged_in', '2019-01-04 00:00:00', 0, 0, 'Aula 3.11'),
+('', 5, NULL, 'not_logged_in', '2019-01-04 00:00:00', 0, 0, 'Aula 2.1'),
+('', 6, NULL, 'not_logged_in', '2019-01-04 00:00:00', 0, 0, 'Aula 2.1'),
+('', 7, NULL, 'not_logged_in', '2019-01-04 00:00:00', 0, 0, 'Laboratorio 2.2'),
+('', 8, NULL, 'not_logged_in', '2019-01-04 00:00:00', 0, 0, 'Aula 2.1'),
+('', 9, NULL, 'not_logged_in', '2019-01-05 00:00:00', 0, 0, 'Aula 2.1'),
+('', 10, NULL, 'not_logged_in', '2019-01-05 00:00:00', 0, 0, 'Aula 2.1'),
+('', 11, NULL, 'not_logged_in', '2019-01-06 00:00:00', 0, 0, 'Aula 2.8');
 
 -- --------------------------------------------------------
 
@@ -271,13 +261,6 @@ INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome
 --
 -- Indici per le tabelle scaricate
 --
-
---
--- Indici per le tabelle `alimenti_prenotati`
---
-ALTER TABLE `alimenti_prenotati`
-  ADD KEY `FKcollegato` (`id_alimento`),
-  ADD KEY `FKcollegato2` (`id_prenotazione`);
 
 --
 -- Indici per le tabelle `alimento`
@@ -350,19 +333,19 @@ ALTER TABLE `ristorante`
 -- AUTO_INCREMENT per la tabella `alimento`
 --
 ALTER TABLE `alimento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT per la tabella `messaggio`
 --
 ALTER TABLE `messaggio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
@@ -373,13 +356,6 @@ ALTER TABLE `ristorante`
 --
 -- Limiti per le tabelle scaricate
 --
-
---
--- Limiti per la tabella `alimenti_prenotati`
---
-ALTER TABLE `alimenti_prenotati`
-  ADD CONSTRAINT `FKcollegato` FOREIGN KEY (`id_alimento`) REFERENCES `alimento` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FKcollegato2` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Limiti per la tabella `alimento`
@@ -424,7 +400,7 @@ ALTER TABLE `prenotazione`
 --
 ALTER TABLE `ristorante`
   ADD CONSTRAINT `FKappartiene_FK` FOREIGN KEY (`email_proprietario`) REFERENCES `persona` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FKinclude_FK` FOREIGN KEY (`nome_categoria`) REFERENCES `categoria_ristoranti` (`nome_categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FKinclude_FK` FOREIGN KEY (`nome_categoria`) REFERENCES `categoria_ristoranti` (`nome_categoria`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
