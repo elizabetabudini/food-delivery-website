@@ -38,7 +38,7 @@ if ($_SESSION['fornitore']== "true") {
   <span class="sr-only">unread messages</span>';
   echo '
   </button>
-  <a class="navbar-brand" href="homefornitori.php">CFU - Cesena Food University</a>
+  <a class="navbar-brand" href="areafornitori.php">CFU - Cesena Food University</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto">';
 
