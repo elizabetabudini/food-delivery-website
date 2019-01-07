@@ -85,7 +85,6 @@ $current="home";
                 <div class="thumbnail">
                   <div class="caption">
                     <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
-                    <p class="list-group-item-text"><?php echo 'menu: '.$row["nome_menu"]; ?></p>
                     <div class="row">
                       <div class="col-md-6">
                         <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
