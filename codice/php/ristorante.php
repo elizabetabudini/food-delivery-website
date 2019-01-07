@@ -33,6 +33,8 @@ $current="home";
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../css/footer.css" rel="stylesheet">
+
   <style>
     h1,h3, .nores{text-align: center; color:white;}
     .a{float:right;}
@@ -100,6 +102,8 @@ $current="home";
           </div>
         </div>
       </div>
+    </div></div>
+      <?php include 'footer.php'; ?>
 
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->

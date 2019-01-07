@@ -16,13 +16,20 @@ if (session_status() === PHP_SESSION_NONE){
 	<link href="./../css/menubar.css" rel="stylesheet">
 	<link href="./../css/navigation.css" rel="stylesheet">
 	<link href="./../css/messaggi.css" rel="stylesheet">
+	<link href="./../css/footer.css" rel="stylesheet">
+
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<body>
+		<?php  include 'menu.php';?>
+		<br/>
+<div class="container transparent">
+
+		<a href="strumenti.php" class="btn btn-success" >Indietro</a>
+
 		<?php
 		$current="strumenti";
-		include 'menu.php';
 
 		$servername = "localhost";
 		$username = "root";
@@ -43,10 +50,10 @@ if (session_status() === PHP_SESSION_NONE){
 		}
 		$result = mysqli_query($con,"SELECT * FROM prenotazione WHERE id_ristorante = '".$id."' AND stato='0'");
 		if($result->num_rows==0){
-			echo "<form><p class='card-text' id='no_mess'>Non hai ordini da evadere</p></form>";
+			echo "<form class='card-text mobile'><p class='card-text' id='no_mess'>Non hai ordini da evadere</p></form>";
 		} else {
 			while($row = mysqli_fetch_array($result)) {
-				echo '<form action="#" method="post" id="form1" >';
+				echo '<form action="#" method="post" class="card-text mobile" id="form1" >';
 				echo "<p class='card-text'id='data'>Ordine: ".$row['id']."</p>";
 				echo "<p class='card-text' id='mess'>Cliente: ".$row['email_cliente']."</p>";
 
@@ -58,6 +65,10 @@ if (session_status() === PHP_SESSION_NONE){
 			}
 		}
 		?>
+	</div>
+
+		</div>
+		<?php include 'footer.php'; ?>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

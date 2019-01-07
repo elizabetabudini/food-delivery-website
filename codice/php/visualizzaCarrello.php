@@ -18,6 +18,10 @@ $carrello = new Cart;
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../css/table.css" rel="stylesheet">
+  <link href="./../css/footer.css" rel="stylesheet">
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   input[type="number"]{width: 70px;}
@@ -45,9 +49,28 @@ $carrello = new Cart;
 <body>
   <?php include 'menu.php'; ?>
   <div class="card card-sm center-msg-box transparent mobile">
+    <h1>Carrello</h1>
+
     <div class="container mobile">
-      <h1>Carrello</h1>
+      <?php
+      if($carrello->total_items() > 0){
+
+      if(!isset($_SESSION["luogo"]) || !isset($_SESSION["data"])){
+        echo '<a href="sceltaluogo.php" class="right btn btn-success ">Checkout ></a>';
+      } else{
+        echo '<a href="checkout.php" class="right btn btn-success ">Checkout ></a>';
+      }
+    }
+
+     if(isset($_SESSION["id_ristorante"])){
+      echo '<a href="ristorante.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
+    } else {
+      echo '<a href="ricerca.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
+    }?>
+
+
       <div class="table-responsive">
+<br>
       <table class="table">
         <thead>
           <tr>
@@ -79,30 +102,20 @@ $carrello = new Cart;
               <?php } ?>
             </tr>
           </tbody>
+        </table>
+
           <?php
           if($carrello->total_items() > 0){ ?>
-              <tr>
-                <td class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></td>
-                <tr>
-                </table>
+            <div class="container  mobile table"style="padding: .75rem;">
+                <div class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></div>
+            </div>
+
               </div>
-              <?php
-              if(!isset($_SESSION["luogo"]) || !isset($_SESSION["data"])){
-                echo '<a href="sceltaluogo.php" class="right btn btn-success ">Checkout ></a>';
-              } else{
-                echo '<a href="checkout.php" class="right btn btn-success ">Checkout ></a>';
-              }
-            }
-
-             if(isset($_SESSION["id_ristorante"])){
-              echo '<a href="ristorante.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
-            } else {
-              echo '<a href="ricerca.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
-            }?>
-
-
+            <?php } ?>
           </div>
         </div>
+        <?php include 'footer.php'; ?>
+
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

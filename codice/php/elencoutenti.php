@@ -15,12 +15,16 @@ $current="elencoutenti";
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/approvazione.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../css/footer.css" rel="stylesheet">
+  <link href="./../css/tableutenti.css" rel="stylesheet">
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
   <?php include 'menu.php'; ?>
-
+  
   <!--<div class="card card-sm center-msg-box transparent ">
   <h3 class="title text-center">Elenco utenti</h3> -->
   <?php
@@ -64,10 +68,11 @@ $current="elencoutenti";
     <input type="submit" class= "btn btn-primary name="delete" value="Elimina" />
     <input type="hidden" name = "delete" value="'.$row["email"].'">
     </td>
-    </form></tr>"';
+    </form></tr>';
   }}
   echo "</table>";
   ?>
+  <?php include 'footer.php'; ?>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

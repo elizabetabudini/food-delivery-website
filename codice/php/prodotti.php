@@ -83,8 +83,10 @@ if(isset($_POST['modify'])){
 </head>
 <body>
   <?php include 'menu.php'; ?>
-  <a href="strumenti.php" id="torna" class="col-sm-2 btn btn-success"> < Indietro</a>
-  <div class="card card-sm center-msg-box transparent mobile col-sm-10">
+  <div class="container transparent">
+    <br/>
+  <a href="strumenti.php" class=" btn btn-success"> < Indietro</a>
+  <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <h1>Listino di <?php echo $_SESSION["nome"]?></h1>
 
@@ -175,7 +177,7 @@ if(isset($_POST['modify'])){
   ?>
 </div>
 </div>
-
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
