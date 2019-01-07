@@ -53,7 +53,17 @@
     <link href="./../css/full.css" rel="stylesheet">
     <link href="./../css/menubar.css" rel="stylesheet">
     <link href="./../css/navigation.css" rel="stylesheet">
+    <link href="./../css/footer.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style >
+    .a{float:right;}
+    .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
+    .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
+    #torna {float: left; margin-left: 6%; margin-top: 1%;}
+    .addprod{padding: 10px;}
+    h1,h2,h3, #nop {color:white;}
+    </style>
   </head>
   <body>
   <?php include 'menu.php'; ?>
@@ -67,13 +77,16 @@
         $query = $stmt->get_result();
         $row = $query->fetch_assoc();
             ?>
-            <form id ="modify" class ="card card-sm mobile "  method="post" action = "#">
-              <div class="row">
-                <div class="form-group col-sm-3">
+            <form id ="modify" class ="card card-sm mobile addprod"  method="post" action = "#">
+              <div class=" thumbnail ">
+                <div class="caption">
+                  <div class="row">
+                  <div class="row col-sm-6" style="margin: 0pt; padding: 0pt;">
+                <div class="form-group col-sm-6" >
                   <label for="nomeprod">Nome Prodotto</label>
                   <input type="text" name="nomeprod"  class="form-control" id="nomeprod" value="<?php echo $row["nome"]; ?>" placeholder="">
                 </div>
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-6 ">
                   <label for="inputMenu">Menu</label>
                   <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
                     <?php
@@ -95,6 +108,7 @@
                     ?>
                   </select>
                 </div>
+              </div>
                 <div class="form-group col-md-2">
                   <label for="prezzo">prezzo</label>
                   <input type="text" name="prezzo"  class="form-control" value = "<?php echo $row["prezzo"]; ?>" id="inputRist">
@@ -105,13 +119,14 @@
                 </div>
                 <div class="col-md-12">
                   <br/>
-                  <div class="row justify-content-center">
-                    <div class="col-md-2">
+                  <div class="container row justify-content-center">
+                    <div class="col-xs-2" style="float: left; margin: 2%;">
+                      <a href="prodotti.php" class="btn btn-danger">Annulla <i class="fa fa-close"></i></a>
+                    </div>
+                    <div class="col-xs-2 " style="float: right; margin: 2%;">
                       <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
                     </div>
-                    <div class="col-md-2">
-                      <a href="menucibi.php" class="btn btn-danger">Annulla <i class="fa fa-close"></i></a>
-                    </div>
+
                   </div></div>
               </div>
               <input type="hidden" name= "prod" value="<?php echo $row["id"]; ?>">
@@ -124,3 +139,13 @@
     </div>
   </div>
 </div>
+<?php include 'footer.php'; ?>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="./../js/messaggi.js"></script>
+</body>
+</html>

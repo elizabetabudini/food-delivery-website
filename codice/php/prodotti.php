@@ -79,7 +79,7 @@ if(isset($_POST['modify'])){
   .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
   #torna {float: left; margin-left: 6%; margin-top: 1%;}
   .addprod{padding: 10px;}
-  h1,h2,h3,h4,h5{color:white;}
+  h1,h2,h3, #nop {color:white;}
   </style>
 </head>
 <body>
@@ -149,7 +149,7 @@ if(isset($_POST['modify'])){
           <form id ="modify" class =" "  method="post" action = "#">
             <div class="thumbnail">
               <div class="caption">
-                <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
+                <h4 class="list-group-item-heading" style="color: #444;"><?php echo $row["nome"]; ?></h4>
                 <p class="lead"><?php echo $row["nome_menu"] !== NULL ? $row["nome_menu"] : "no menu"; ?></p>
                 <div class="row">
                   <div class="col-md-6">
@@ -175,7 +175,7 @@ if(isset($_POST['modify'])){
       <?php
     }
   }else{
-    echo "<br/><h5> Ancora non hai prodotti nel Listino </h5>";
+    echo "<br/><h5 id = 'nop'> Ancora non hai prodotti nel Listino </h5>";
   }
   ?>
 </div>

@@ -40,11 +40,13 @@ if (session_status() === PHP_SESSION_NONE){
 </head>
 <body>
   <?php include 'menu.php'; ?>
+  <div class="container transparent">
 
   <div class="card card-sm center-msg-box transparent mobile ">
     <h3 class="title text-center">I tuoi messaggi</h3>
     <p id="element"></p>
   </div>
+</div>
   <?php include 'footer.php'; ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

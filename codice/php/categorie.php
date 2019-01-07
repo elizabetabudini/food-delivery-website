@@ -25,12 +25,10 @@
   }
   if(isset($_POST['modify'])){
     if($_POST["btn"]== "true"){
-       $stmt5 = $conn->prepare("UPDATE  categoria_ristoranti  SET nome_categoria = ? WHERE nome_categoria = ?");
-      if($stmt5!=false){
-        $stmt5->bind_param("ss", $_POST["nome"], $_POST["exn"]);
-        $stmt5->execute();
-        $stmt5->close();
-      }
+
+      $_SESSION["catmod"] = $_POST["exn"];
+      header("Location: modificacategorie.php");
+
     }else{
       $stmt5 = $conn->prepare("DELETE FROM categoria_ristoranti WHERE nome_categoria = ?");
       if($stmt5!=false){
@@ -38,8 +36,9 @@
         $stmt5->execute();
         $stmt5->close();
       }
+      header("Location: categorie.php");
+
     }
-    header("Location: categorie.php");
   }
 ?>
 
@@ -57,13 +56,25 @@
     <link href="./../css/footer.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    .a{float:right;}
+    .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
+    .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
+    #torna {float: left; margin-left: 6%; margin-top: 1%;}
+    .addprod{padding: 10px;}
+    h1,h2,h3, #nop {color:white;}
+    </style>
   </head>
   <body>
     <?php include 'menu.php'; ?>
+    <div class="container transparent">
+      <br/>
+      <a href="homeadmin.php" class="btn btn-success">< indietro</a>
+
       <div class="card card-sm center-msg-box transparent mobile">
         <div class="container mobile">
-        <h1><?php echo $_SESSION["nome"]?> Gestisci categorie</h1>
-          <form id ="add" class ="card card-sm mobile "  method="post" action = "#">
+        <h1 style="color: white;">Gestisci categorie</h1>
+          <form id ="add" class =" addprod card card-sm mobile "  method="post" action = "#">
             <h4 class="list-group-item-heading">Aggiungi una Categoria</h4>
             <div class="row justify-content-center">
               <div class="form-group col-sm-4">
@@ -86,7 +97,7 @@
               if($query->num_rows > 0){
                 while($row = $query->fetch_assoc()){
                   ?>
-                  <form id ="modify" class ="  card card-sm mobile "  method="post" action = "#">
+                  <form id ="modify" class ="addprod  card card-sm mobile "  method="post" action = "#">
                     <div class="row justify-content-center">
                       <div class="form-group col-sm-4">
                         <label for="nome">Nome categoria</label>
@@ -97,8 +108,10 @@
                         <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
                       </div>
                       <div class="col-md-2">
+                    </div>
+                      <div class="col-md-2">
                         <br/>
-                        <button type="submit" class="btn btn-success" name="btn" value = "false">Elimina</button>
+                        <button type="submit" class="btn btn-danger" name="btn" value = "false">Elimina</button>
                     </div>
                   </div>
                   <input type="hidden" name= "exn" value="<?php echo $row['nome_categoria']; ?>">
@@ -111,6 +124,7 @@
         ?>
       </div>
     </div>
+  </div>
     <?php include 'footer.php'; ?>
 
     <!-- Optional JavaScript -->

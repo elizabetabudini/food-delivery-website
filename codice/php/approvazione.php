@@ -57,6 +57,10 @@ if(isset($_POST["sent"])){
 </head>
 <body>
   <?php include 'menu.php'; ?>
+  <br/>
+  <div class="container transparent">
+    <a href="homeadmin.php" class="btn btn-success">< indietro</a>
+
 
   <div class="card card-sm center-msg-box transparent ">
     <?php
@@ -96,6 +100,7 @@ if(isset($_POST["sent"])){
     }
 
     ?>
+  </div>
   </div>
   <?php include 'footer.php'; ?>
 
