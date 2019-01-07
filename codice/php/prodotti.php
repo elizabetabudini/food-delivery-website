@@ -164,16 +164,8 @@ if(isset($_POST['modify'])){
                   <div class="col-md-6 ">
                     <p class="lead"><?php echo $row["info"] !== "" ? $row["info"] : "no info"; ?></p>
                   </div>
-<<<<<<< HEAD
                   <div class="col-md-6 cont">
                     <button type="submit" class="btn btn-danger" name="btn" value = "false" onSubmit="return confirm('Are you sure you wish to delete?');">Elimina <i class="fa fa-trash"></i></button>
-=======
-                  <div class="col-md-6">
-                    <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
-                  </div>
-                  <div class="col-md-6">
-                    <button type="submit" class="btn btn-danger" name="btn" value = "false" onSubmit="return confirm('Are you sure you wish to delete?');">Elimina <i class="fa fa-close"></i></button>
->>>>>>> 3d2239a5b9636920f7fe778ff5cd8a439bb034e5
                   </div>
                   <input type="hidden" name= "prod" value="<?php echo $row["id"]; ?>">
                   <div class="col-md-6 cont">
