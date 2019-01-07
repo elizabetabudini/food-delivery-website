@@ -5,8 +5,8 @@ p{
   color: black;
 }
 form{
-  background-color: rgba(255,255,255,60%);
+  background-color: rgba(255,255,255,80%);
 }
 form:hover{
-  background-color: rgba(255,255,255,70%);
+  background-color: rgba(255,255,255,90%);
 }
