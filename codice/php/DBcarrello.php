@@ -32,6 +32,18 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
       'quantità' => 1
     );
 
+    $stmt4 = $db->prepare("INSERT INTO carrello (id_prenotazione, id_alimento, quantita) VALUES (?,?,?)");
+      if($stmt4!=false){
+        $quantità="1";
+        $stmt4->bind_param("sss", $_SESSION["id_ristorante"], $row['id'], $quantità);
+        $insertOrder=$stmt4->execute();
+        $stmt4->close();
+      } else {
+        echo 'Bad Programmatore Exception: la query non è andata a buon fine </br>';
+      }
+
+
+
     $insertItem = $cart->insert($itemData);
     $redirectLoc = $insertItem?'visualizzaCarrello.php':'ristorante.php';
     header("Location: ".$redirectLoc);
@@ -40,6 +52,15 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
       'rowid' => $_REQUEST['id'],
       'quantità' => $_REQUEST['quantità']
     );
+    $stmt4 = $db->prepare("UPDATE carrello SET quantita=? WHERE id_prenotazione=? AND id_alimento=?");
+      if($stmt4!=false){
+        $stmt4->bind_param("sss", $_REQUEST['quantità'], $_SESSION['id_prenotazione'], $_REQUEST['id']);
+        $stmt4->execute();
+        $stmt4->close();
+      } else {
+        echo 'Bad Programmatore Exception: la query non è andata a buon fine </br>';
+      }
+
     $updateItem = $cart->update($itemData);
     echo $updateItem?'ok':'err';die;
   }elseif($_REQUEST['action'] == 'resetCart'){
@@ -49,6 +70,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     $deleteItem = $cart->remove($_REQUEST['id']);
     header("Location: visualizzaCarrello.php");
   }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION["email"])){
+
     // insert order details into database
     $stmt4 = $db->prepare("UPDATE prenotazione SET email_cliente=?, id_ristorante=?, totale=?, stato=?,
        luogo_consegna=? WHERE id=?");
