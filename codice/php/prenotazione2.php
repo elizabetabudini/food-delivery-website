@@ -25,8 +25,9 @@
   }else {
     $email = "not_logged_in";
   }
+  $_POST["oraConsegna"]= "".$_POST['data']." ".$_POST['orario'].":00";
   $_SESSION["luogo"]=$_POST["luogo"];
-  $_SESSION["oraConsegna"]=$_POST["oraConsegna"];
+  $_SESSION["data"]=$_POST["oraConsegna"];
   if(!isset($_SESSION["id_prenotazione"])){
     $stmt = $conn->prepare("INSERT INTO prenotazione (info_prenotazione,	email_cliente,	data_consegna,
                                         stato,	totale,	luogo_consegna) VALUES (?, ?, ?, ?, ?, ?)");
