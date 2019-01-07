@@ -63,6 +63,14 @@ if(isset($_POST['modify'])){
   <link href="./../css/footer.css" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  .a{float:right;}
+  .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
+  .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
+  #torna {float: left; margin-left: 6%; margin-top: 1%;}
+  .addprod{padding: 10px;}
+  h1,h2,h3, #nop {color:white;}
+  </style>
 </head>
 <body>
   <?php include 'menu.php'; ?>
@@ -73,15 +81,15 @@ if(isset($_POST['modify'])){
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <h1><?php echo $_SESSION["nome"]?> ecco i tuoi menu</h1>
+      <h4 class="list-group-item-heading">Aggiungi un Menu!</h4>
 
-      <form id ="add" class ="card card-sm mobile "  method="post" action = "#">
-        <h4 class="list-group-item-heading">Aggiungi un Menu!</h4>
-        <div class="row justify-content-center">
+      <form id ="add" class =" addprod card card-sm mobile "  method="post" action = "#">
+        <div class="row addprod">
           <div class="form-group col-sm-4">
             <label for="nome">Nome menu</label>
             <input type="text" name="nome"  class="form-control" id="nome" placeholder="" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 justify-content-center">
           </br>
           <input type="hidden" name= "add" value="true">
           <button type="submit" class="btn btn-success">Aggiungi <i class="fa fa-plus"></i></a>

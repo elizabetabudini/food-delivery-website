@@ -14,23 +14,15 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$stmt = $conn->prepare("SELECT id FROM ristorante WHERE email_proprietario = ?");
-$stmt->bind_param("s", $_SESSION["email"]);
-$stmt->execute();
-$result = $stmt->get_result();
-$id_rist = $result->fetch_object();
-$id_rist = $id_rist->id;
-
-
 if(isset($_POST['modify'])){
-  $stmt5 = $conn->prepare("UPDATE menu SET nome = ? WHERE nome = ? AND id_ristorante = ?");
- if($stmt5!=false){
-   $stmt5->bind_param("sss", $_POST["nome"], $_POST["exn"] ,$id_rist );
-   $stmt5->execute();
-   $stmt5->close();
- }
+  $stmt5 = $conn->prepare("UPDATE  categoria_ristoranti  SET nome_categoria = ? WHERE nome_categoria = ?");
+  if($stmt5!=false){
+    $stmt5->bind_param("ss", $_POST["nome"], $_POST["exn"]);
+    $stmt5->execute();
+    $stmt5->close();
+  }
  unset($_SESSION["menumod"]);
- header("Location: menucibi.php");
+ header("Location: categorie.php");
 }
 
 ?>
@@ -65,8 +57,8 @@ if(isset($_POST['modify'])){
     <form id ="modify" class ="card card-sm mobile addprod"  method="post" action = "#">
       <div class="row justify-content-center">
         <div class="form-group col-sm-4">
-          <label for="nome">Nome menu</label>
-          <input type="text" name="nome"  class="form-control" id="nome" placeholder="" value="<?php echo $_SESSION['menumod'] ?>">
+          <label for="nome">Nome categoria</label>
+          <input type="text" name="nome"  class="form-control" id="nome" placeholder="" value="<?php echo $_SESSION['catmod'] ?>">
         </div>
         <div class="col-md-1">
         </div>
@@ -79,7 +71,7 @@ if(isset($_POST['modify'])){
           <a href="menucibi.php" class="btn btn-danger">Annulla</a>
         </div>
       </div>
-      <input type="hidden" name= "exn" value="<?php echo $_SESSION['menumod']; ?>">
+      <input type="hidden" name= "exn" value="<?php echo $_SESSION['catmod']; ?>">
       <input type="hidden" name= "modify" value="true">
     </form>
   </div>

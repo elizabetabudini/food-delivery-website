@@ -20,13 +20,18 @@ $current="elencoutenti";
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
 
+  </style>
 </head>
 <body>
   <?php include 'menu.php'; ?>
-  
+<div class="container transparent">
+  <br/>
+  <a href="homeadmin.php" class="btn btn-success">< indietro</a>
   <!--<div class="card card-sm center-msg-box transparent ">
   <h3 class="title text-center">Elenco utenti</h3> -->
+  <div class="card card-sm center-msg-box mobile" style="background-color: rgba(0,0,0,0); box-shadow: rgba(0,0,0,0); border: 0px;">
   <?php
   $servername = "localhost";
   $username = "root";
@@ -72,6 +77,9 @@ $current="elencoutenti";
   }}
   echo "</table>";
   ?>
+
+</div>
+</div>
   <?php include 'footer.php'; ?>
 
   <!-- Optional JavaScript -->

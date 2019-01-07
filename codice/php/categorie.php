@@ -25,12 +25,10 @@
   }
   if(isset($_POST['modify'])){
     if($_POST["btn"]== "true"){
-       $stmt5 = $conn->prepare("UPDATE  categoria_ristoranti  SET nome_categoria = ? WHERE nome_categoria = ?");
-      if($stmt5!=false){
-        $stmt5->bind_param("ss", $_POST["nome"], $_POST["exn"]);
-        $stmt5->execute();
-        $stmt5->close();
-      }
+
+      $_SESSION["catmod"] = $_POST["exn"];
+      header("Location: modificacategorie.php");
+
     }else{
       $stmt5 = $conn->prepare("DELETE FROM categoria_ristoranti WHERE nome_categoria = ?");
       if($stmt5!=false){
@@ -38,8 +36,9 @@
         $stmt5->execute();
         $stmt5->close();
       }
+      header("Location: categorie.php");
+
     }
-    header("Location: categorie.php");
   }
 ?>
 
@@ -60,9 +59,12 @@
   </head>
   <body>
     <?php include 'menu.php'; ?>
+    <div class="container transparent">
+      <a href="homeadmin.php" class="btn btn-success">< indietro</a>
+
       <div class="card card-sm center-msg-box transparent mobile">
         <div class="container mobile">
-        <h1><?php echo $_SESSION["nome"]?> Gestisci categorie</h1>
+        <h1 style="color: white;">Gestisci categorie</h1>
           <form id ="add" class ="card card-sm mobile "  method="post" action = "#">
             <h4 class="list-group-item-heading">Aggiungi una Categoria</h4>
             <div class="row justify-content-center">
@@ -98,7 +100,7 @@
                       </div>
                       <div class="col-md-2">
                         <br/>
-                        <button type="submit" class="btn btn-success" name="btn" value = "false">Elimina</button>
+                        <button type="submit" class="btn btn-danger" name="btn" value = "false">Elimina</button>
                     </div>
                   </div>
                   <input type="hidden" name= "exn" value="<?php echo $row['nome_categoria']; ?>">
@@ -111,6 +113,7 @@
         ?>
       </div>
     </div>
+  </div>
     <?php include 'footer.php'; ?>
 
     <!-- Optional JavaScript -->
