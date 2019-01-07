@@ -93,8 +93,9 @@ if(isset($_POST["sent"])){
           {
             ?>
             <div class="alert alert-success alert-php" role="alert">
-              Inserimento avvenuto correttamente!
+              <i class="fa fa-check"></i> Inserimento avvenuto correttamente!
             </div>
+
             <?php
           }
           else{
@@ -102,7 +103,7 @@ if(isset($_POST["sent"])){
             <div class="alert alert-danger alert-php" role="alert">
               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
               <span class="sr-only">Errore:</span>
-              Errore durante l'inserimento! La mail inserita è già registrata.
+              <i class="fa fa-close"></i> Errore durante l'inserimento! La mail inserita è già registrata.
             </div>
           </div>
           <?php

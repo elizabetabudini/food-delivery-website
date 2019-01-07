@@ -47,7 +47,10 @@ $carrello = new Cart;
 </head>
 </head>
 <body>
-  <?php include 'menu.php'; ?>
+  <?php include 'menu.php';
+  var_dump($_SESSION['quantità']);
+  var_dump($_SESSION['id']);
+  $_SESSION['id'];?>
   <div class="card card-sm center-msg-box transparent mobile">
     <h1>Carrello</h1>
 
@@ -56,16 +59,16 @@ $carrello = new Cart;
       if($carrello->total_items() > 0){
 
       if(!isset($_SESSION["luogo"]) || !isset($_SESSION["data"])){
-        echo '<a href="sceltaluogo.php" class="right btn btn-success ">Checkout ></a>';
+        echo '<a href="sceltaluogo.php" class="right btn btn-success ">Checkout <i class="fa fa-check"></i> </a>';
       } else{
-        echo '<a href="checkout.php" class="right btn btn-success ">Checkout ></a>';
+        echo '<a href="checkout.php" class="right btn btn-success ">Checkout <i class="fa fa-check"></i> </a>';
       }
     }
 
      if(isset($_SESSION["id_ristorante"])){
-      echo '<a href="ristorante.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
+      echo '<a href="ristorante.php" class="left btn btn-warning"> <i class="fa fa-arrow-left"></i> Aggiungi prodotti</a>';
     } else {
-      echo '<a href="ricerca.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
+      echo '<a href="ricerca.php" class="left btn btn-warning"><i class="fa fa-arrow-left"></i> Aggiungi prodotti</a>';
     }?>
 
 
@@ -93,7 +96,7 @@ $carrello = new Cart;
                 <td><input type="number" class="form-control text-center" value="<?php echo $alimento["quantità"]; ?>" onchange="updateCartItem(this, '<?php echo $alimento["rowid"]; ?>')"></td>
                 <td><?php echo $alimento["subtotale"].' €'; ?></td>
                 <td>
-                  <a href="DBcarrello.php?action=removeCartItem&id=<?php echo $alimento["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Sei sicuro?')">X</a>
+                  <a href="DBcarrello.php?action=removeCartItem&id=<?php echo $alimento["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Sei sicuro?')"><i class="fa fa-trash"></i> </a>
                 </td>
               </tr>
             <?php } }else{ ?>

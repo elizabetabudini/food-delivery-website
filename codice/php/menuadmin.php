@@ -17,16 +17,16 @@ if ( isset( $_SESSION['email'] ) ) {
     ?>
     <li class="nav-item">
       <a class="nav-link" href="homeclienti.php"<?php if($current == 'homeclienti') {echo 'id="current"';} ?>>Home <i class="fa fa-home"></i>
-        <i class="fa fa-home"></i><span class="sr-only">(current)</span></a>
+      <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="accedi.php"<?php if($current == 'accedi') {echo 'id="current"';} ?>>Accedi <i class="fa fa-user"></a>
+      <a class="nav-link" href="accedi.php"<?php if($current == 'accedi') {echo 'id="current"';} ?>>Accedi <i class="fa fa-user"></i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="signinutente.php"<?php if($current == 'signinutente') {echo 'id="current"';} ?>>Registrati <i class="fa fa-pencil"></a>
+      <a class="nav-link" href="signinutente.php"<?php if($current == 'signinutente') {echo 'id="current"';} ?>>Registrati <i class="fa fa-pencil"></i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="areafornitori.php"<?php if($current == 'areafornitori') {echo 'id="current"';} ?>>Area Fornitori <i class="fa fa-handshake-o"></a>
+      <a class="nav-link" href="areafornitori.php"<?php if($current == 'areafornitori') {echo 'id="current"';} ?>>Area Fornitori <i class="fa fa-handshake-o"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="contatti.php"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>

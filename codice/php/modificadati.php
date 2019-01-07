@@ -92,7 +92,7 @@ $categoria= $row["nome_categoria"];
 
       <input type="hidden" name="sent" value="true" />
       <a href = "profilofornitore.php"><button type="button"  class="btn btn-danger">Annulla <i class="fa fa-close"></i></button></a>
-      <button type="submit" class="btn btn-success" style="float: right">Modifica <i class="fa fa-pencil"></i></button>
+      <button type="submit" class="btn btn-success" style="float: right">Applica modifiche <i class="fa fa-check"></i></button>
     </form>
   </div>
 </div>

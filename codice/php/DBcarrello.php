@@ -21,6 +21,34 @@ if ($db->connect_error) {
 if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
   if($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])){
     $productID = $_REQUEST['id'];
+    if(!isset($_SESSION["id_prenotazione"])){
+      $data= date('Y-m-d H-i-s');
+      $stato= 0;
+      $info = "";
+      $totale = 0;
+      if(isset($_SESSION['email'])){
+        $email = $_SESSION['email'];
+
+      }else {
+        $email = "not_logged_in";
+      }
+      $luogo= "aula 2.1";
+      $stmt = $db->prepare("INSERT INTO prenotazione (info_prenotazione,	email_cliente,	data_consegna,
+                                          stato,	totale,	luogo_consegna) VALUES (?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("ssssss", $info, $email, $data, $stato, $totale, $luogo);
+      $stmt->execute();
+      $stmt->close();
+
+      $stmt2 = $db->prepare("SELECT id FROM prenotazione WHERE email_cliente = ?  AND data_consegna = ? AND luogo_consegna = ? LIMIT 1");
+      $stmt2->bind_param("sss", $email, $data, $_POST["luogo"]);
+      $stmt2->execute();
+      /* bind result variables */
+      $stmt2->bind_result($id);
+       /* fetch value */
+      $stmt2->fetch();
+      $_SESSION["id_prenotazione"] = $id;
+      $stmt2->close();
+    }
 
     // get product details
     $query = $db->query("SELECT * FROM alimento WHERE id = ".$productID);
@@ -32,6 +60,16 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
       'quantità' => 1
     );
 
+    $stmt4 = $db->prepare("INSERT INTO carrello (id_prenotazione, id_alimento, quantita) VALUES (?,?,?)");
+      if($stmt4!=false){
+        $quantità="1";
+        $stmt4->bind_param("sss", $_SESSION["id_prenotazione"], $row['id'], $quantità);
+        $insertOrder=$stmt4->execute();
+        $stmt4->close();
+      } else {
+        echo 'Bad Programmatore Exception: la query non è andata a buon fine </br>';
+      }
+
     $insertItem = $cart->insert($itemData);
     $redirectLoc = $insertItem?'visualizzaCarrello.php':'ristorante.php';
     header("Location: ".$redirectLoc);
@@ -40,6 +78,20 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
       'rowid' => $_REQUEST['id'],
       'quantità' => $_REQUEST['quantità']
     );
+
+    $item=$cart->get_item($_REQUEST['id']);
+
+    $stmt4 = $db->prepare("UPDATE carrello SET quantita=? WHERE id_prenotazione=? AND id_alimento=?");
+    $_SESSION['quantità']=$_REQUEST['quantità'];
+    $_SESSION['id']=$item['id'];
+      if($stmt4!=false){
+        $stmt4->bind_param("sss", $_REQUEST['quantità'], $_SESSION['id_prenotazione'], $item['id']);
+        $stmt4->execute();
+        $stmt4->close();
+      } else {
+        echo 'Bad Programmatore Exception: la query non è andata a buon fine </br>';
+      }
+
     $updateItem = $cart->update($itemData);
     echo $updateItem?'ok':'err';die;
   }elseif($_REQUEST['action'] == 'resetCart'){
@@ -49,6 +101,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
     $deleteItem = $cart->remove($_REQUEST['id']);
     header("Location: visualizzaCarrello.php");
   }elseif($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION["email"])){
+
     // insert order details into database
     $stmt4 = $db->prepare("UPDATE prenotazione SET email_cliente=?, id_ristorante=?, totale=?, stato=?,
        luogo_consegna=? WHERE id=?");
@@ -97,7 +150,6 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
           $oraConsegna=$prenotazione->data_consegna;
           $luogo=$prenotazione->luogo_consegna;
           $stmt5->close();
-
         }
         $mess= "L'ordine id=".$_SESSION['id_prenotazione']." verrà spedito presso ".$luogo." alle ".$oraConsegna."";
         $data= date('Y-m-d H-i-s');

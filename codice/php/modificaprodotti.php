@@ -33,7 +33,7 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
   ?>
 <div class="container transparent">
   <br/>
-  <a href="strumenti.php" class="btn btn-success"> < Indietro</a>
+  <a href="strumenti.php" class="btn btn-success"><i class="fa fa-arrow-left"></i> Indietro</a>
 
 <div class="card card-sm center-msg-box transparent mobile ">
   <div class="row justify-content-center">
@@ -41,8 +41,8 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
       <div class="card lis">
         <div class="card-body">
           <h5 class="card-title">Gestisci i prodotti</h5>
-          <p class="card-text-center">Visualizza e modifica i prodotti nel listino</p>
-          <a href="prodotti.php" class="btn btn-success">Alimenti</a>
+          <p class="card-text-center">Aggiungi, visualizza i prodotti nel listino, modifica prezzi e informazioni</p>
+          <a href="prodotti.php" class="btn btn-success">Alimenti <i class="fa fa-spoon"></i></a>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
         <div class="card-body ">
           <h5 class="card-title">Gestisci i menu</h5>
           <p class="card-text-center">Inserisci nuovi menu e gestisci quelli esistenti</p>
-          <a href="menucibi.php" class="btn btn-success">Menu</a>
+          <a href="menucibi.php" class="btn btn-success">Menu <i class="fa fa-list"></i></a>
         </div>
       </div>
     </div>

@@ -125,18 +125,18 @@ if(isset($_POST["sent"])){
         }
         ?>
         <div class="alert alert-danger alert-js" role="alert" style="display: None">
-          Dati inseriti non corretti
+          <i class="fa fa-close"></i> Dati inseriti non corretti
           <p></p>
         </div>
 
         <form method="post" action="#" id="signupform" class = "mobile" >
           <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" <?php if(isset($_POST["email"])) { echo 'autofocus value="'.htmlspecialchars($_POST['email']).'"';} ?> aria-describedby="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus required>
+            <label for="email"><i class="fa fa-at"></i> Indirizzo email</label>
+            <input type="email" class="form-control" id="email" name="email" <?php if(isset($_POST["email"])) { echo 'autofocus value="'.htmlspecialchars($_POST['email']).'"';} ?> aria-describedby="email" placeholder="Inserisci email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus required>
 
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password"><i class="fa fa-key"></i> Password</label>
             <input type="password" class="form-control" name= "password" id="password" placeholder="Password" required>
           </div>
           <input type="hidden" name="sent" value="true" />

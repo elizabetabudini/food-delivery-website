@@ -65,11 +65,11 @@ if(isset($_POST['modify'])){
         </div>
         <div class="col-md-2">
           <br/>
-          <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
+          <button type="submit" class="btn btn-success" name="btn" value = "true">Applica modifiche<i class="fa fa-pencil"></i></button>
         </div>
         <div class="col-md-2">
           <br/>
-          <a href="luoghi.php" class="btn btn-danger">Annulla</a>
+          <a href="luoghi.php" class="btn btn-danger">Annulla <i class="fa fa-close"></i></a>
         </div>
       </div>
       <input type="hidden" name= "exn" value="<?php echo $_SESSION['luomod']; ?>">

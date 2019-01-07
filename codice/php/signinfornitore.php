@@ -183,14 +183,14 @@ $current= "signinfornitore";
           else{
             ?>
             <div class="alert alert-danger alert-php" role="alert">
-              Errore durante l'inserimento! La mail inserita è già registrata.
+              <i class="fa fa-close"></i> Errore durante l'inserimento! La mail inserita è già registrata.
             </div>
             <?php
           }
         }
         ?>
         <div class="alert alert-danger alert-js" role="alert" style="display: None">
-          Dati inseriti non corretti
+        <i class="fa fa-close"></i>  Dati inseriti non corretti
           <p></p>
         </div>
 
