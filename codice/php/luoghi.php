@@ -76,7 +76,7 @@ if(isset($_POST['modify'])){
       <h3 class="list-group-item-heading">Aggiungi un Luogo!</h3>
 
       <form id ="add" class =" addprod card card-sm mobile "  method="post" action = "#">
-        <div class="row addprod">
+        <div class="row addprod  justify-content-center">
           <div class="form-group col-sm-4">
             <label for="nome">Nome</label>
             <input type="text" name="nome"  class="form-control" id="nome" placeholder="" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
