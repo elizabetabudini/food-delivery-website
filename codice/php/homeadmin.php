@@ -37,8 +37,8 @@ $current= "homeadmin";
         <div class="card dark">
           <div class="card-body">
             <h5 class="card-title">Elimina utente</h5>
-            <p class="card-text-center">Sicuro? nessuno vuole essere eliminato D:</p>
-            <a href="elencoutenti.php" class="btn btn-primary">Vai all'elenco utenti!</a>
+            <p class="card-text-center">Sicuro? nessuno vuole essere eliminato </p>
+            <a href="elencoutenti.php" class="btn btn-success">Vai all'elenco utenti!</a>
           </div>
         </div>
       </div>
@@ -46,8 +46,8 @@ $current= "homeadmin";
         <div class="card dark">
           <div class="card-body ">
             <h5 class="card-title">Convalida ristoranti</h5>
-            <p class="card-text-center">Aumenta la scelta! :D</p>
-            <a href="approvazione.php" class="btn btn-primary">Approva!</a>
+            <p class="card-text-center">Aumenta l'offerta! :D</p>
+            <a href="approvazione.php" class="btn btn-success">Approva!</a>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@ $current= "homeadmin";
           <div class="card-body ">
             <h5 class="card-title">Gestisci le categorie</h5>
             <p class="card-text-center">Mi raccomando non eliminare le pizze.</p>
-            <a href="categorie.php" class="btn btn-primary">Alle categorie!</a>
+            <a href="categorie.php" class="btn btn-success">Alle categorie!</a>
           </div>
         </div>
       </div>
