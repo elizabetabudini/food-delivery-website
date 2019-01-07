@@ -46,7 +46,7 @@ $current= "homeadmin";
         <div class="card dark">
           <div class="card-body ">
             <h5 class="card-title">Convalida ristoranti</h5>
-            <p class="card-text-center">Aumenta la scelta! :D</p>
+            <p class="card-text-center">Aumenta l'offerta! :D</p>
             <a href="approvazione.php" class="btn btn-primary">Approva!</a>
           </div>
         </div>

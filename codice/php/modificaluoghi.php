@@ -22,7 +22,7 @@ if(isset($_POST['modify'])){
    $stmt5->execute();
    $stmt5->close();
  }
- unset($_SESSION["menumod"]);
+ unset($_SESSION["luomod"]);
  header("Location: luoghi.php");
 }
 
@@ -59,7 +59,7 @@ if(isset($_POST['modify'])){
       <div class="row justify-content-center">
         <div class="form-group col-sm-4">
           <label for="nome">Nome menu</label>
-          <input type="text" name="nome"  class="form-control" id="nome" placeholder="" value="<?php echo $_SESSION['menumod'] ?>">
+          <input type="text" name="nome"  class="form-control" id="nome" placeholder="" value="<?php echo $_SESSION['luomod'] ?>">
         </div>
         <div class="col-md-1">
         </div>
@@ -72,7 +72,7 @@ if(isset($_POST['modify'])){
           <a href="menucibi.php" class="btn btn-danger">Annulla</a>
         </div>
       </div>
-      <input type="hidden" name= "exn" value="<?php echo $_SESSION['menumod']; ?>">
+      <input type="hidden" name= "exn" value="<?php echo $_SESSION['luomod']; ?>">
       <input type="hidden" name= "modify" value="true">
     </form>
   </div>

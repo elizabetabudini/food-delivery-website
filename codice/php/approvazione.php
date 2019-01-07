@@ -47,10 +47,9 @@ if(isset($_POST["sent"])){
   <link href="./../css/form.css" rel="stylesheet">
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
-  <link href="./../css/approvazione.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
   <link href="./../css/footer.css" rel="stylesheet">
-
+  <style> form{ margin-top: 1%;} </style>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -82,27 +81,32 @@ if(isset($_POST["sent"])){
       echo '<h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l approvazione</h3>';
       foreach($conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0') as $row) {
         echo '
-        <div class="card card-sm center-msg-box transparent col-sm-8">
-          <div class="row card-sm">
-          <div class = "col-sm-8">
-            <p>'. $row['nome'] .'</p>
-            <p>'. $row['email_proprietario'] .'</p>
-          </div>
-          <form action="#" method="post" style = "margin: 0px;" id="form1" class = "card card-sm transparent col-sm-4">
-            <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
+          <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-12">
+          <div class="row">
+            <div class = "col-sm-8">
+              <h4>'. $row['nome'] .'</h4>
+              <p>'. $row['email_proprietario'] .'</p>
+            </div>
+            <div class = "col-sm-3">
+            <input type="submit" class="btn btn-success" name="action" value="Approva"/>
             <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
             <br/>
-            <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
+            <input type="submit" class="btn btn-danger" name="action" value="Elimina"/>
             <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
             <input type="hidden" name="sent" value="true" />
+            </div>
+            </div>
           </form>
-        </div></div>';
+
+        ';
+
       }
     }
 
     ?>
   </div>
   </div>
+</div>
   <?php include 'footer.php'; ?>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

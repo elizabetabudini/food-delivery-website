@@ -132,7 +132,7 @@ if(isset($_POST["sent"])){
         <form method="post" action="#" id="signupform" class = "mobile" >
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus required>
+            <input type="email" class="form-control" id="email" name="email" <?php if(isset($_POST["email"])) { echo 'autofocus value="'.htmlspecialchars($_POST['email']).'"';} ?> aria-describedby="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus required>
 
           </div>
           <div class="form-group">
