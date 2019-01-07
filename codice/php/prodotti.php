@@ -153,7 +153,7 @@ if(isset($_POST['modify'])){
                 <p class="lead"><?php echo $row["nome_menu"] !== NULL ? $row["nome_menu"] : "no menu"; ?></p>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
+                    <p class="lead"><?php echo $row["prezzo"].' €'; ?></p>
                   </div>
                   <div class="col-md-6">
                     <p class="lead"><?php echo $row["info"] !== "" ? $row["info"] : "no info"; ?></p>

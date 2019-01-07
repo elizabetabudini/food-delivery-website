@@ -20,7 +20,7 @@ if ( isset( $_SESSION['email'] ) ) {
       <a class="nav-link" href="visualizzaCarrello.php"<?php if($current == 'carrello') {echo 'id="current"';} ?>>Carrello <i class="fa fa-shopping-cart"></i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
+      <a class="nav-link" href="contatti.php"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="logout.php"<?php if($current == 'logout') {echo 'id="current"';} ?>>Logout <i class="fa fa-sign-out"></i></a>
@@ -41,7 +41,7 @@ if ( isset( $_SESSION['email'] ) ) {
       <a class="nav-link" href="areafornitori.php"<?php if($current == 'areafornitori') {echo 'id="current"';} ?>>Area Fornitori <i class="fa fa-handshake-o"></i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
+      <a class="nav-link" href="contatti.php"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="accedi.php">Amministratore <i class="fa fa-unlock-alt"></i></a>

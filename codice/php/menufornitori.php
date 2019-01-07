@@ -16,7 +16,7 @@ if ( isset( $_SESSION['email'] ) ) {
       <span class="sr-only">unread messages</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
+      <a class="nav-link" href="contatti.php"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="logout.php"<?php if($current == 'logout') {echo 'id="current"';} ?>>Logout <i class="fa fa-sign-out"></i></a>
@@ -37,7 +37,7 @@ if ( isset( $_SESSION['email'] ) ) {
       <a class="nav-link" href="homeclienti.php"<?php if($current == 'homeclienti') {echo 'id="current"';} ?>>Area Clienti <i class="fa fa-spoon"></i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
+      <a class="nav-link" href="contatti.php"<?php if($current == 'contatti') {echo 'id="current"';} ?>>Contatti <i class="fa fa-question"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="accedi.php">Amministratore <i class="fa fa-unlock-alt"></i></a>
