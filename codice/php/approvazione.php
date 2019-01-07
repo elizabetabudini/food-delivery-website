@@ -96,7 +96,7 @@ if(isset($_POST["sent"])){
             <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
             <input type="hidden" name="sent" value="true" />
           </form>
-        </div>';
+        </div></div>';
       }
     }
 

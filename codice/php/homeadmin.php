@@ -33,16 +33,16 @@ $current= "homeadmin";
   <div class="card card-sm center-msg-box transparent">
 
     <div class="row">
-      <div class="col-md-4 ">
+      <div class="col-md-3 ">
         <div class="card dark">
           <div class="card-body">
             <h5 class="card-title">Elimina utente</h5>
             <p class="card-text-center">Sicuro? nessuno vuole essere eliminato D:</p>
-            <a href="elencoutenti.php" class="btn btn-primary">Vai all'elenco utenti!</a>
+            <a href="elencoutenti.php" class="btn btn-primary">Utenti!</a>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="card dark">
           <div class="card-body ">
             <h5 class="card-title">Convalida ristoranti</h5>
@@ -51,12 +51,21 @@ $current= "homeadmin";
           </div>
         </div>
       </div>
-      <div class="col-md-4 ">
+      <div class="col-md-3 ">
         <div class="card dark">
           <div class="card-body ">
             <h5 class="card-title">Gestisci le categorie</h5>
             <p class="card-text-center">Mi raccomando non eliminare le pizze.</p>
-            <a href="categorie.php" class="btn btn-primary">Alle categorie!</a>
+            <a href="categorie.php" class="btn btn-primary">Categorie!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card dark">
+          <div class="card-body ">
+            <h5 class="card-title">Modifica luoghi</h5>
+            <p class="card-text-center">Ci espandiamo? *-*</p>
+            <a href="luoghi.php" class="btn btn-primary">Ai Luoghi!</a>
           </div>
         </div>
       </div>

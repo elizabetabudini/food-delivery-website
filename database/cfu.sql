@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 07, 2019 alle 14:45
+-- Creato il: Gen 07, 2019 alle 16:54
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -34,7 +34,7 @@ CREATE TABLE `alimento` (
   `info` varchar(100) NOT NULL,
   `prezzo` decimal(5,2) NOT NULL,
   `id_ristorante` int(11) NOT NULL,
-  `nome_menu` varchar(50) NOT NULL,
+  `nome_menu` varchar(50) DEFAULT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -50,8 +50,8 @@ INSERT INTO `alimento` (`disponibilita`, `nome`, `info`, `prezzo`, `id_ristorant
 (NULL, 'Seppie Gratinate', '', '9.00', 44, 'secondi piatti', 40),
 (NULL, 'Grigliata Mista di Pesce', '', '10.00', 44, 'secondi piatti', 41),
 (NULL, 'Tagliolini Spada, Melanzane e Mentuccia', '', '11.00', 44, 'pasta', 42),
-(NULL, 'Bruschetta \'La Boscaiola\'', 'Funghi di stagione, rucola, grana', '4.00', 45, 'Antipasti', 43),
-(NULL, 'Frisella La Sfiziosa', 'burrata, pomodorini gialli, acciughe, rucola', '4.00', 45, 'Antipasti', 44),
+(NULL, 'Bruschetta \'La Boscaiola\'', 'Funghi di stagione, rucola, grana', '4.00', 45, 'Antipasti e bruschette', 43),
+(NULL, 'Frisella La Sfiziosa', 'burrata, pomodorini gialli, acciughe, rucola', '4.00', 45, 'Antipasti e bruschette', 44),
 (NULL, 'Toscano', 'Chianina 200gr, pomodoro, caciotta, lattuga, salsa burger', '9.00', 45, 'Hamburger', 45),
 (NULL, 'Fassona', 'Fassona piemontese 200gr, speck, cheddar, funghi, salsa BBQ', '10.00', 45, 'Hamburger', 46),
 (NULL, 'Tonnarelli', 'cacio e pepe', '10.00', 45, 'Primi piatti', 47);
@@ -64,9 +64,8 @@ INSERT INTO `alimento` (`disponibilita`, `nome`, `info`, `prezzo`, `id_ristorant
 
 CREATE TABLE `carrello` (
   `id_prenotazione` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL,
-  `id_ristorante` int(11) NOT NULL,
-  `nome_menu` varchar(20) NOT NULL
+  `id_alimento` int(11) NOT NULL,
+  `quantita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -176,35 +175,21 @@ CREATE TABLE `messaggio` (
 --
 
 INSERT INTO `messaggio` (`id`, `email`, `testo`, `data`, `letto`) VALUES
-(10, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:10:45', '0'),
-(11, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:11:31', '0'),
-(12, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:13:52', '0'),
-(13, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:15:35', '0'),
-(14, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:16:39', '0'),
-(15, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:17:15', '0'),
-(16, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:18:06', '0'),
-(17, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:19:25', '0'),
-(18, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:19:46', '0'),
-(19, 'admin@admin.it', 'Il ristorante fasdf attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:22:33', '0'),
-(20, 'admin@admin.it', 'Il ristorante locanda3 attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-06 23:22:59', '0'),
-(41, 'utente@utente.it', 'L\'ordine id=29 verrÃ  spedito presso Aula 2.1 alle 2019-01-07 11:59:00', '2019-01-07 12:00:21', '1'),
-(43, 'utente@utente.it', 'L\'ordine id=29 verrÃ  spedito presso Aula 2.1 alle 2019-01-07 11:59:00', '2019-01-07 12:03:56', '1'),
-(46, 'admin@admin.it', 'Il ristorante Il cucinaro Osteria attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-07 12:09:33', '0'),
 (47, 'scottadito@fornitore.it', 'Iscrizione avvenuta correttamente! Riceverai una notifica quando l\'iscrizione sarÃ  approvata dal nostro Team', '2019-01-07 12:16:05', '0'),
 (48, 'admin@admin.it', 'Il ristorante Scottadito attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-07 12:16:05', '0'),
 (49, 'daneopizzeria@fornitore.it', 'Iscrizione avvenuta correttamente! Riceverai una notifica quando l\'iscrizione sarÃ  approvata dal nostro Team', '2019-01-07 12:23:44', '0'),
 (50, 'admin@admin.it', 'Il ristorante Da Neo Pizzeria attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-07 12:23:44', '0'),
-(52, 'utente@utente.it', 'L\'ordine id=31 verrÃ  spedito presso Aula Magna 3.4 alle 0000-00-00 00:00:00', '2019-01-07 12:28:31', '0'),
-(54, 'utente@utente.it', 'L\'ordine id=32 verrÃ  spedito presso Aula 2.1 alle ', '2019-01-07 13:25:51', '0'),
-(57, 'utente@utente.it', 'L\'ordine id=35 verrÃ  spedito presso Aula 2.1 alle 0000-00-00 00:00:00', '2019-01-07 13:30:40', '0'),
-(59, 'utente@utente.it', 'L\'ordine id=36 verrÃ  spedito presso Aula 2.1 alle 2019-01-07 13:51:00', '2019-01-07 13:31:32', '0'),
 (61, 'admin@admin.it', 'Il ristorante Ristorante La Muccigna attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-07 13:42:20', '0'),
 (62, 'chioscodelsavio@fornitore.it', 'Iscrizione avvenuta correttamente! Riceverai una notifica quando l\'iscrizione sarÃ  approvata dal nostro Team', '2019-01-07 13:50:29', '0'),
 (63, 'admin@admin.it', 'Il ristorante Chiosco del Savio attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-07 13:50:29', '0'),
 (64, 'ilcucinaroosteria@fornitore.it', 'L\'ordine 38 attende di essere evaso. Vai nei tuoi Strumenti', '2019-01-07 14:05:00', '0'),
-(65, 'utente@utente.it', 'L\'ordine id=38 verrÃ  spedito presso Aula 2.1 alle 2019-01-07 14:05:00', '2019-01-07 14:05:32', '0'),
 (66, 'scottadito@fornitore.it', 'L\'ordine 39 attende di essere evaso. Vai nei tuoi Strumenti', '2019-01-07 14:29:00', '0'),
-(67, 'utente@utente.it', 'L\'ordine id=39 verrÃ  spedito presso Aula 2.6 alle 2019-01-07 15:24:00', '2019-01-07 14:29:08', '0');
+(68, 'ilcucinaroosteria@fornitore.it', 'Buone notizie! Il tuo ristorante Ã¨ stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!', '2019-01-07 15:20:30', '0'),
+(69, 'scottadito@fornitore.it', 'Buone notizie! Il tuo ristorante Ã¨ stato approvato dal nostro Team, ora puoi aggiungere il tuo listino. Benvenuto!', '2019-01-07 15:20:31', '0'),
+(70, 'scottadito@fornitore.it', 'L\'ordine 40 attende di essere evaso. Vai nei tuoi Strumenti', '2019-01-07 15:21:00', '0'),
+(72, 'ilcucinaroosteria@fornitore.it', 'L\'ordine 41 attende di essere evaso. Vai nei tuoi Strumenti', '2019-01-07 15:24:00', '0'),
+(74, 'ilcucinaroosteria@fornitore.it', 'L\'ordine 42 attende di essere evaso. Vai nei tuoi Strumenti', '2019-01-07 16:06:00', '0'),
+(75, 'utente@utente.it', 'L\'ordine id=42 verrÃ  spedito presso Aula 2.1 alle 2019-01-07 16:06:00', '2019-01-07 16:06:25', '0');
 
 -- --------------------------------------------------------
 
@@ -263,7 +248,10 @@ INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_c
 ('', 34, NULL, 'utente@utente.it', NULL, 0, 0, 'Aula 2.1'),
 ('', 37, NULL, 'utente@utente.it', '2019-01-07 13:56:00', 0, 0, 'Aula 2.1'),
 ('', 38, 44, 'utente@utente.it', '2019-01-07 14:05:00', 0, 11, 'Aula 2.1'),
-('', 39, 45, 'utente@utente.it', '2019-01-07 15:24:00', 0, 70, 'Aula 2.6');
+('', 39, 45, 'utente@utente.it', '2019-01-07 15:24:00', 0, 70, 'Aula 2.6'),
+('', 40, 45, 'utente@utente.it', '2019-01-07 15:51:00', 0, 36, 'Aula 2.6'),
+('', 41, 44, 'utente@utente.it', '2019-01-07 15:23:00', 0, 11, 'Aula 2.1'),
+('', 42, 44, 'utente@utente.it', '2019-01-07 16:06:00', 0, 11, 'Aula 2.1');
 
 -- --------------------------------------------------------
 
@@ -287,8 +275,8 @@ CREATE TABLE `ristorante` (
 --
 
 INSERT INTO `ristorante` (`id`, `email_proprietario`, `nome`, `indirizzo`, `nome_categoria`, `info`, `rating`, `approvato`) VALUES
-(44, 'ilcucinaroosteria@fornitore.it', 'Il cucinaro Osteria', 'Via Boccaquattro, 4, 47521 Cesena FC', NULL, '', 0, 0),
-(45, 'scottadito@fornitore.it', 'Scottadito', 'Via Mario Angeloni, 335, 47521 Cesena FC', NULL, '', 0, 0),
+(44, 'ilcucinaroosteria@fornitore.it', 'Il cucinaro Osteria', 'Via Boccaquattro, 4, 47521 Cesena FC', NULL, '', 0, 1),
+(45, 'scottadito@fornitore.it', 'Scottadito', 'Via Mario Angeloni, 335, 47521 Cesena FC', NULL, '', 0, 1),
 (46, 'daneopizzeria@fornitore.it', 'Da Neo Pizzeria', 'Via Fratelli Spazzoli, 225, 47521 Cesena', NULL, '', 0, 0),
 (48, 'ristorantelamuccigna@fornitore.it', 'Ristorante La Muccig', 'Piazza del Popolo, 39, 47521 Cesena FC', NULL, '', 0, 0),
 (49, 'chioscodelsavio@fornitore.it', 'Chiosco del Savio', 'Via IX Febbraio, 41, 47521 Cesena FC', NULL, '', 0, 0);
@@ -308,8 +296,8 @@ ALTER TABLE `alimento`
 -- Indici per le tabelle `carrello`
 --
 ALTER TABLE `carrello`
-  ADD PRIMARY KEY (`id_prenotazione`,`nome`,`id_ristorante`,`nome_menu`),
-  ADD KEY `FKcomprende` (`nome`,`id_ristorante`,`nome_menu`);
+  ADD PRIMARY KEY (`id_prenotazione`,`id_alimento`),
+  ADD KEY `FKoff` (`id_alimento`);
 
 --
 -- Indici per le tabelle `categoria_ristoranti`
@@ -374,13 +362,13 @@ ALTER TABLE `alimento`
 -- AUTO_INCREMENT per la tabella `messaggio`
 --
 ALTER TABLE `messaggio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
@@ -396,13 +384,14 @@ ALTER TABLE `ristorante`
 -- Limiti per la tabella `alimento`
 --
 ALTER TABLE `alimento`
-  ADD CONSTRAINT `FKdel` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FKap` FOREIGN KEY (`id_ristorante`,`nome_menu`) REFERENCES `menu` (`id_ristorante`, `nome`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `carrello`
 --
 ALTER TABLE `carrello`
-  ADD CONSTRAINT `FKlistapre` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FKlistap` FOREIGN KEY (`id_prenotazione`) REFERENCES `prenotazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FKoff` FOREIGN KEY (`id_alimento`) REFERENCES `alimento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `menu`

@@ -13,38 +13,30 @@ $current= "strumenti";
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$stmt = $conn->prepare("SELECT id FROM ristorante WHERE email_proprietario = ?");
-$stmt->bind_param("s", $_SESSION["email"]);
-$stmt->execute();
-$result = $stmt->get_result();
-$id_rist = $result->fetch_object();
-$id_rist = $id_rist->id;
-$stmt->close();
+
 
 if(isset($_POST['add'])){
-  $stmt5 = $conn->prepare("INSERT INTO menu (nome, id_ristorante) VALUES (?, ?)");
+  $stmt5 = $conn->prepare("INSERT INTO luoghi (nome) VALUES (?)");
   if($stmt5!=false){
-    $stmt5->bind_param("ss", $_POST["nome"], $id_rist);
+    $stmt5->bind_param("s", $_POST["nome"]);
     $stmt5->execute();
     $stmt5->close();
   }
-  header("Location: menucibi.php");
-
+  header("Location: luoghi.php");
 }
 
 if(isset($_POST['modify'])){
   if($_POST["btn"]== "true"){
-    $_SESSION["menumod"] = $_POST["exn"];
-    header("Location: modificamenu.php");
+    $_SESSION["luomod"] = $_POST["exn"];
+    header("Location: modificaluoghi.php");
   }else{
-    $stmt5 = $conn->prepare("DELETE FROM menu WHERE nome = ?");
+    $stmt5 = $conn->prepare("DELETE FROM luoghi WHERE nome = ?");
     if($stmt5!=false){
       $stmt5->bind_param("s", $_POST["exn"] );
       $stmt5->execute();
       $stmt5->close();
     }
-    header("Location: menucibi.php");
-
+    header("Location: luoghi.php");
   }
 }
 ?>
@@ -76,17 +68,17 @@ if(isset($_POST['modify'])){
   <?php include 'menu.php'; ?>
   <br/>
   <div class="container transparent">
-    <a href="modificaprodotti.php" class="btn btn-success">< indietro</a>
+    <a href="homeadmin.php" class="btn btn-success">< indietro</a>
 
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
-      <h1><?php echo $_SESSION["nome"]?> ecco i tuoi menu</h1>
-      <h4 class="list-group-item-heading">Aggiungi un Menu!</h4>
+      <h1>Ecco i luoghi di consegna</h1>
+      <h4 class="list-group-item-heading">Aggiungi un Luogo!</h4>
 
       <form id ="add" class =" addprod card card-sm mobile "  method="post" action = "#">
         <div class="row addprod">
           <div class="form-group col-sm-4">
-            <label for="nome">Nome menu</label>
+            <label for="nome">Nome</label>
             <input type="text" name="nome"  class="form-control" id="nome" placeholder="" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
           </div>
           <div class="col-md-2 justify-content-center">
@@ -96,11 +88,10 @@ if(isset($_POST['modify'])){
           </div>
         </div>
       </form>
-      <h3 class="list-group-item-heading">Modifica i menu gia esistenti</h3>
+      <h3 class="list-group-item-heading">Gestisci i luoghi gia esistenti</h3>
       <?php
       //get rows query
-      $stmt = $conn->prepare("SELECT * FROM menu WHERE id_ristorante = ?");
-      $stmt->bind_param('s', $id_rist);
+      $stmt = $conn->prepare("SELECT * FROM luogo ");
       $stmt->execute();
 
       $query = $stmt->get_result();
@@ -111,7 +102,7 @@ if(isset($_POST['modify'])){
           <form id ="modify" class =" addprod card card-sm mobile "  method="post" action = "#">
             <div class="row justify-content-center">
               <div class="form-group col-sm-4">
-                <label for="nome">Nome menu</label>
+                <label for="nome">Nome</label>
                 <label name="nome"  class="form-control" id="nome"><?php echo $row['nome'] ?></label>
               </div>
               <div class="col-md-2">
