@@ -58,7 +58,7 @@ if(isset($_POST["sent"])){
   <?php include 'menu.php'; ?>
   <br/>
   <div class="container transparent">
-    <a href="homeadmin.php" class="btn btn-success">< indietro</a>
+    <a href="homeadmin.php" class="btn btn-success"><i class="fa fa-arrow-left"></i> Indietro</a>
 
 
   <div class="card card-sm center-msg-box transparent ">

@@ -69,8 +69,8 @@ $cognome= $row["cognome"];
 
 
       <input type="hidden" name="sent" value="true" />
-      <a href = "profiloutente.php"><button type="button"  class="btn btn-success">Annulla</button></a>
-      <button type="submit" class="btn btn-success" style="float: right">Modifica</button>
+      <a href = "profiloutente.php"><button type="button"  class="btn btn-danger">Annulla <i class="fa fa-close"></i></button></a>
+      <button type="submit" class="btn btn-success" style="float: right">Applica modifiche <i class="fa fa-check"></i></button>
     </form>
   </div>
 </div>

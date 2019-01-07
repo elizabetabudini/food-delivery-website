@@ -127,7 +127,7 @@ if(isset($_POST['modify'])){
             </br>
             <div class="col-sm-2S">
               <input type="hidden" name= "add" value="true">
-              <button type="submit" class="btn btn-success">Aggiungi</a>
+              <button type="submit" class="btn btn-success">Aggiungi <i class="fa fa-plus"></i></a>
               </div>
             </div>
 
@@ -159,10 +159,10 @@ if(isset($_POST['modify'])){
                     <p class="lead"><?php echo $row["info"] !== "" ? $row["info"] : "no info"; ?></p>
                   </div>
                   <div class="col-md-6">
-                    <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
+                    <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
                   </div>
                   <div class="col-md-6">
-                    <button type="submit" class="btn btn-success" name="btn" value = "false" onSubmit="return confirm('Are you sure you wish to delete?');">Elimina</button>
+                    <button type="submit" class="btn btn-danger" name="btn" value = "false" onSubmit="return confirm('Are you sure you wish to delete?');">Elimina <i class="fa fa-close"></i></button>
                   </div>
                   <input type="hidden" name= "prod" value="<?php echo $row["id"]; ?>">
                   <input type="hidden" name= "modify" value="true">

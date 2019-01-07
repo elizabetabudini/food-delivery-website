@@ -102,7 +102,7 @@ if($cart->total_items() <= 0){
         </div>
         <div class="container  mobile tot"style="padding: .75rem;">
           <?php if($cart->total_items() > 0){ ?>
-            <div class="text-center tot"><strong>Totale <?php echo '€'.$cart->total().' euro'; ?></strong></div>
+            <div class="text-center tot"><strong>Totale <?php echo $cart->total().' €'; ?></strong></div>
           <?php } ?>
 
         </div>
@@ -113,8 +113,8 @@ if($cart->total_items() <= 0){
             <p>Consegna: <?php echo $_SESSION['data']; ?></p>
             <p>Presso: <?php echo $_SESSION['luogo']; ?></p>
           </div>
-            <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn" >Invia ordine > </a>
-            <a href="ristorante.php" class="btn btn-warning backbtn"> < Continua gli acquisti</a>
+            <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn" >Invia ordine <i class="fa fa-check"></i></a>
+            <a href="ristorante.php" class="btn btn-warning backbtn"><i class="fa fa-arrow-left"></i> Continua gli acquisti</a>
         </div>
       </div>
       <?php include 'footer.php'; ?>

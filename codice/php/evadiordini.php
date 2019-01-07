@@ -22,11 +22,13 @@ if (session_status() === PHP_SESSION_NONE){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<body>
-		<?php  include 'menu.php';?>
+		<?php
+		$current="strumenti";
+		include 'menu.php';?>
 		<br/>
 <div class="container transparent">
 
-		<a href="strumenti.php" class="btn btn-success" >Indietro</a>
+		<a href="strumenti.php" class="btn btn-success" ><i class="fa fa-arrow-left"></i> Indietro</a>
 
 		<?php
 		$current="strumenti";
@@ -57,9 +59,9 @@ if (session_status() === PHP_SESSION_NONE){
 				echo "<p class='card-text'id='data'>Ordine: ".$row['id']."</p>";
 				echo "<p class='card-text' id='mess'>Cliente: ".$row['email_cliente']."</p>";
 
-				echo '<a href="apiordini.php?action=evadi&id='.$row["id"].'" class="btn btn-success" >Evadi</a>
+				echo '<a href="apiordini.php?action=evadi&id='.$row["id"].'" class="btn btn-success" >Evadi <i class="fa fa-check"></i></a>
 				<input type="hidden" name="sent" value="true" />';
-				echo	'<a href="apiordini.php?action=elimina&id='.$row["id"].'" class="btn btn-danger" onclick="return confirm("Sei sicuro?")">Rimuovi</a>
+				echo	'<a href="apiordini.php?action=elimina&id='.$row["id"].'" class="btn btn-danger" onclick="return confirm("Sei sicuro?")">Rimuovi <i class="fa fa-close"></i></a>
 
 				</form>';
 			}

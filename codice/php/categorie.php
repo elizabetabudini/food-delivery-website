@@ -84,11 +84,11 @@
               <div class="col-md-2">
                 </br>
                 <input type="hidden" name= "add" value="true">
-                <button type="submit" class="btn btn-success">Aggiungi</a>
+                <button type="submit" class="btn btn-success">Aggiungi <i class="fa fa-plus"></i></a>
               </div>
             </div>
           </form>
-          <h3 class="list-group-item-heading">Modifica i Prodotti gia esistenti <i class="fa fa-pencil"></i></h3>
+          <h3 class="list-group-item-heading">Modifica le categorie</h3>
           <?php
               //get rows query
               $stmt = $conn->prepare("SELECT * FROM categoria_ristoranti");
@@ -111,7 +111,7 @@
                     </div>
                       <div class="col-md-2">
                         <br/>
-                        <button type="submit" class="btn btn-danger" name="btn" value = "false">Elimina</button>
+                        <button type="submit" class="btn btn-danger" name="btn" value = "false">Elimina <i class="fa fa-close"></i></button>
                     </div>
                   </div>
                   <input type="hidden" name= "exn" value="<?php echo $row['nome_categoria']; ?>">

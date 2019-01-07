@@ -28,7 +28,7 @@ $current="elencoutenti";
   <?php include 'menu.php'; ?>
 <div class="container transparent">
   <br/>
-  <a href="homeadmin.php" class="btn btn-success">< indietro</a>
+  <a href="homeadmin.php" class="btn btn-success"><i class="fa fa-arrow-left"></i> indietro</a>
   <!--<div class="card card-sm center-msg-box transparent ">
   <h3 class="title text-center">Elenco utenti</h3> -->
   <div class="card card-sm center-msg-box mobile" style="background-color: rgba(0,0,0,0); box-shadow: rgba(0,0,0,0); border: 0px;">

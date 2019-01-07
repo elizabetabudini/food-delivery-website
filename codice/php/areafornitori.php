@@ -40,7 +40,7 @@ $current= "areafornitori";
           <div class="card-body ">
             <h5 class="card-title">Dai una svolta alla tua attività</h5>
             <p class="card-text-center">Perchè perdere l'occasione di spedire ogni giorno il tuo cibo a studenti affamati?</p>
-            <a href="signinfornitore.php" class="btn btn-primary">Registrati!</a>
+            <a href="signinfornitore.php" class="btn btn-success">Registrati! <i class="fa fa-pencil"></i></a>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@ $current= "areafornitori";
           <div class="card-body ">
             <h5 class="card-title">Sei già un nostro partner?</h5>
             <p class="card-text-center">Modifica il listino aggiungendo nuovi cibi, controlla i tuoi ordini e tanto altro.</p>
-            <a href="accedi.php" class="btn btn-primary">Accedi!</a>
+            <a href="accedi.php" class="btn btn-success">Accedi! <i class="fa fa-user"></i></a>
           </div>
         </div>
       </div>
