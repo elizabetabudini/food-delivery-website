@@ -15,18 +15,27 @@ if ($conn->connect_error) {
 }
 
 if(isset($_POST["sent"])){
-  $stmt = $conn->prepare("UPDATE ristorante SET nome = ?, indirizzo = ?, info = ?, nome_categoria = ?  WHERE email_proprietario = ?");
-  if($stmt!=false){
-    $stmt->bind_param("sssss", $_POST["nomerist"], $_POST["indirizzorist"], $_POST["info"], $_POST["Categoria"], $_SESSION["email"]);
-    $stmt->execute();
-    $stmt->close();
-  }
-  else {
-    $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 65 signinfornitore.php </br>";
+  if($_POST["Categoria"] != "notf"){
+    $stmt = $conn->prepare("UPDATE ristorante SET nome = ?, indirizzo = ?, info = ?, nome_categoria = ?  WHERE email_proprietario = ?");
+    if($stmt!=false){
+      $stmt->bind_param("sssss", $_POST["nomerist"], $_POST["indirizzorist"], $_POST["info"], $_POST["Categoria"], $_SESSION["email"]);
+      $stmt->execute();
+      $stmt->close();
+    }else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 65 signinfornitore.php </br>";
+    }
+  }else{
+    $stmt = $conn->prepare("UPDATE ristorante SET nome = ?, indirizzo = ?, info = ? WHERE email_proprietario = ?");
+    if($stmt!=false){
+      $stmt->bind_param("ssss", $_POST["nomerist"], $_POST["indirizzorist"], $_POST["info"], $_SESSION["email"]);
+      $stmt->execute();
+      $stmt->close();
+
+    }
   }
   header("Location: profilofornitore.php");
-}
 
+}
 $query = $conn->query("SELECT * FROM ristorante WHERE email_proprietario = '".$_SESSION["email"]."'");
 $row = $query->fetch_assoc();
 $nome_rist = $row["nome"];
@@ -75,12 +84,17 @@ $categoria= $row["nome_categoria"];
           <?php
           $conn = new mysqli($servername, $username, $password, $dbname);
           $sql = mysqli_query($conn, "SELECT nome_categoria FROM categoria_ristoranti");
-          while ($row = $sql->fetch_assoc()){
-            if($row['nome_categoria'] == $categoria){
-              echo "<option selected value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
-            }else{
-              echo "<option value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
+          if(mysqli_num_rows($sql) != 0){
+            echo $categoria === null ? "<option selected value='notf'>None selected</option>" : "";
+            while ($row = $sql->fetch_assoc()){
+              if($row['nome_categoria'] == $categoria){
+                echo "<option selected value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
+              }else{
+                echo "<option value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
+              }
             }
+          }else {
+            echo  "<option value='notf'>Nessuna categoria </option>";
           }
           ?>
         </select>

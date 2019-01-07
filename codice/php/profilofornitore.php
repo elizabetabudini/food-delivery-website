@@ -80,7 +80,7 @@
                          <tr>
                              <tr>
                         <td>Categoria:</td>
-                        <td><?php echo $categoria; ?></td>
+                        <td><?php  echo ($categoria != NULL) ?  $categoria :  'Nessuna categoria selezionata'; ?></td>
                       </tr>
                       <tr>
                         <td>Info:</td>
