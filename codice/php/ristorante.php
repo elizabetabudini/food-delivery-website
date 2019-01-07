@@ -73,7 +73,7 @@ $current="home";
             echo $ext["nome"];
             echo '</h3>';
             //get rows query
-            $stmt = $conn->prepare('SELECT nome, nome_menu, prezzo, id FROM alimento WHERE id_ristorante = ? AND nome_menu = "'.$ext['nome'].'"');
+            $stmt = $conn->prepare('SELECT *  FROM alimento WHERE id_ristorante = ? AND nome_menu = "'.$ext['nome'].'"');
             $stmt->bind_param('s', $_SESSION["id_ristorante"]);
             $stmt->execute();
 
@@ -85,6 +85,7 @@ $current="home";
                 <div class="thumbnail">
                   <div class="caption">
                     <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
+                    <p class="list-group-item-text"><?php echo ''.$row["info"]; ?></p>
                     <div class="row">
                       <div class="col-md-6">
                         <p class="lead"><?php echo $row["prezzo"].' €'; ?></p>

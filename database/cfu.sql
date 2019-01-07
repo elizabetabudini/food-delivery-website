@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 07, 2019 alle 14:14
+-- Creato il: Gen 07, 2019 alle 14:45
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.0
 
@@ -34,7 +34,7 @@ CREATE TABLE `alimento` (
   `info` varchar(100) NOT NULL,
   `prezzo` decimal(5,2) NOT NULL,
   `id_ristorante` int(11) NOT NULL,
-  `nome_menu` varchar(20) DEFAULT NULL,
+  `nome_menu` varchar(50) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -51,7 +51,7 @@ INSERT INTO `alimento` (`disponibilita`, `nome`, `info`, `prezzo`, `id_ristorant
 (NULL, 'Grigliata Mista di Pesce', '', '10.00', 44, 'secondi piatti', 41),
 (NULL, 'Tagliolini Spada, Melanzane e Mentuccia', '', '11.00', 44, 'pasta', 42),
 (NULL, 'Bruschetta \'La Boscaiola\'', 'Funghi di stagione, rucola, grana', '4.00', 45, 'Antipasti', 43),
-(NULL, 'Frisella La Sfiziosa', 'burrata, pomodorini gialli, acciughe, rucola', '3.00', 45, 'Antipasti', 44),
+(NULL, 'Frisella La Sfiziosa', 'burrata, pomodorini gialli, acciughe, rucola', '4.00', 45, 'Antipasti', 44),
 (NULL, 'Toscano', 'Chianina 200gr, pomodoro, caciotta, lattuga, salsa burger', '9.00', 45, 'Hamburger', 45),
 (NULL, 'Fassona', 'Fassona piemontese 200gr, speck, cheddar, funghi, salsa BBQ', '10.00', 45, 'Hamburger', 46),
 (NULL, 'Tonnarelli', 'cacio e pepe', '10.00', 45, 'Primi piatti', 47);
@@ -141,7 +141,7 @@ INSERT INTO `luogo` (`nome`) VALUES
 
 CREATE TABLE `menu` (
   `id_ristorante` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL
+  `nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -152,7 +152,7 @@ INSERT INTO `menu` (`id_ristorante`, `nome`) VALUES
 (44, 'Pasta'),
 (44, 'Primi piatti'),
 (44, 'Secondi piatti'),
-(45, 'Antipasti'),
+(45, 'Antipasti e bruschette'),
 (45, 'Carni alla griglia'),
 (45, 'Hamburger'),
 (45, 'Primi piatti');
@@ -202,7 +202,9 @@ INSERT INTO `messaggio` (`id`, `email`, `testo`, `data`, `letto`) VALUES
 (62, 'chioscodelsavio@fornitore.it', 'Iscrizione avvenuta correttamente! Riceverai una notifica quando l\'iscrizione sarÃ  approvata dal nostro Team', '2019-01-07 13:50:29', '0'),
 (63, 'admin@admin.it', 'Il ristorante Chiosco del Savio attende la tua approvazione, controlla i tuoi Strumenti', '2019-01-07 13:50:29', '0'),
 (64, 'ilcucinaroosteria@fornitore.it', 'L\'ordine 38 attende di essere evaso. Vai nei tuoi Strumenti', '2019-01-07 14:05:00', '0'),
-(65, 'utente@utente.it', 'L\'ordine id=38 verrÃ  spedito presso Aula 2.1 alle 2019-01-07 14:05:00', '2019-01-07 14:05:32', '0');
+(65, 'utente@utente.it', 'L\'ordine id=38 verrÃ  spedito presso Aula 2.1 alle 2019-01-07 14:05:00', '2019-01-07 14:05:32', '0'),
+(66, 'scottadito@fornitore.it', 'L\'ordine 39 attende di essere evaso. Vai nei tuoi Strumenti', '2019-01-07 14:29:00', '0'),
+(67, 'utente@utente.it', 'L\'ordine id=39 verrÃ  spedito presso Aula 2.6 alle 2019-01-07 15:24:00', '2019-01-07 14:29:08', '0');
 
 -- --------------------------------------------------------
 
@@ -260,7 +262,8 @@ INSERT INTO `prenotazione` (`info_prenotazione`, `id`, `id_ristorante`, `email_c
 ('', 33, NULL, 'utente@utente.it', NULL, 0, 0, 'Aula 2.1'),
 ('', 34, NULL, 'utente@utente.it', NULL, 0, 0, 'Aula 2.1'),
 ('', 37, NULL, 'utente@utente.it', '2019-01-07 13:56:00', 0, 0, 'Aula 2.1'),
-('', 38, 44, 'utente@utente.it', '2019-01-07 14:05:00', 0, 11, 'Aula 2.1');
+('', 38, 44, 'utente@utente.it', '2019-01-07 14:05:00', 0, 11, 'Aula 2.1'),
+('', 39, 45, 'utente@utente.it', '2019-01-07 15:24:00', 0, 70, 'Aula 2.6');
 
 -- --------------------------------------------------------
 
@@ -371,13 +374,13 @@ ALTER TABLE `alimento`
 -- AUTO_INCREMENT per la tabella `messaggio`
 --
 ALTER TABLE `messaggio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
@@ -390,6 +393,12 @@ ALTER TABLE `ristorante`
 --
 
 --
+-- Limiti per la tabella `alimento`
+--
+ALTER TABLE `alimento`
+  ADD CONSTRAINT `FKdel` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Limiti per la tabella `carrello`
 --
 ALTER TABLE `carrello`
@@ -399,7 +408,7 @@ ALTER TABLE `carrello`
 -- Limiti per la tabella `menu`
 --
 ALTER TABLE `menu`
-  ADD CONSTRAINT `FKoffre` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FKoffre` FOREIGN KEY (`id_ristorante`) REFERENCES `ristorante` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `messaggio`
