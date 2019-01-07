@@ -82,19 +82,20 @@ if(isset($_POST["sent"])){
       echo '<h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l approvazione</h3>';
       foreach($conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0') as $row) {
         echo '
-        <div class="row card-sm">
         <div class="card card-sm center-msg-box transparent col-sm-8">
-        <p>'. $row['nome'] .'</p>
-        <p>'. $row['email_proprietario'] .'</p>
-        </div>
-        <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
-        <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
-        <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
-        <br/>
-        <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
-        <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
-        <input type="hidden" name="sent" value="true" />
-        </form>
+          <div class="row card-sm">
+          <div class = "col-sm-8">
+            <p>'. $row['nome'] .'</p>
+            <p>'. $row['email_proprietario'] .'</p>
+          </div>
+          <form action="#" method="post" style = "margin: 0px;" id="form1" class = "card card-sm transparent col-sm-4">
+            <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
+            <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
+            <br/>
+            <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
+            <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
+            <input type="hidden" name="sent" value="true" />
+          </form>
         </div>';
       }
     }

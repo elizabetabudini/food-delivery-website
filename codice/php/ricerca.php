@@ -127,6 +127,7 @@ function closeNav() {
     <div class="container">';
     foreach($conn->query($query) as $row)
     {
+      if($row["approvato"]==1){
       echo '
       <ul id="myUL">
       <li class="list-group-item" id="item">
@@ -139,7 +140,7 @@ function closeNav() {
       <button class="a btn btn-sm btn-success " id = "submit" type="submit" >Guarda listino </button>
       </form>
       </li>"';
-
+      }
     }
     echo "</ul>";
     $conn->close();
