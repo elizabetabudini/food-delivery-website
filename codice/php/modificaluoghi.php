@@ -51,7 +51,7 @@ if(isset($_POST['modify'])){
     </style>
   </head>
   <body>
-    <?php $current = "modificaprodotti";
+    <?php $current = "modificaluoghi";
     include 'menu.php';
     ?>
     <div class=" container card card-sm center-msg-box mobile">
@@ -69,7 +69,7 @@ if(isset($_POST['modify'])){
         </div>
         <div class="col-md-2">
           <br/>
-          <a href="menucibi.php" class="btn btn-danger">Annulla</a>
+          <a href="luoghi.php" class="btn btn-danger">Annulla</a>
         </div>
       </div>
       <input type="hidden" name= "exn" value="<?php echo $_SESSION['luomod']; ?>">

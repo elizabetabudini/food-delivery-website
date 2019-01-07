@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 
 
 if(isset($_POST['add'])){
-  $stmt5 = $conn->prepare("INSERT INTO luoghi (nome) VALUES (?)");
+  $stmt5 = $conn->prepare("INSERT INTO luogo (nome) VALUES (?)");
   if($stmt5!=false){
     $stmt5->bind_param("s", $_POST["nome"]);
     $stmt5->execute();
@@ -30,7 +30,7 @@ if(isset($_POST['modify'])){
     $_SESSION["luomod"] = $_POST["exn"];
     header("Location: modificaluoghi.php");
   }else{
-    $stmt5 = $conn->prepare("DELETE FROM luoghi WHERE nome = ?");
+    $stmt5 = $conn->prepare("DELETE FROM luogo WHERE nome = ?");
     if($stmt5!=false){
       $stmt5->bind_param("s", $_POST["exn"] );
       $stmt5->execute();
@@ -73,7 +73,7 @@ if(isset($_POST['modify'])){
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <h1>Ecco i luoghi di consegna</h1>
-      <h4 class="list-group-item-heading">Aggiungi un Luogo!</h4>
+      <h3 class="list-group-item-heading">Aggiungi un Luogo!</h3>
 
       <form id ="add" class =" addprod card card-sm mobile "  method="post" action = "#">
         <div class="row addprod">
