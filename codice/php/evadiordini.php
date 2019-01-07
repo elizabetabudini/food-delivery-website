@@ -56,8 +56,25 @@ if (session_status() === PHP_SESSION_NONE){
 		} else {
 			while($row = mysqli_fetch_array($result)) {
 				echo '<form action="#" method="post" class="card-text mobile" id="form1" >';
-				echo "<p class='card-text'id='data'>Ordine: ".$row['id']."</p>";
-				echo "<p class='card-text' id='mess'>Cliente: ".$row['email_cliente']."</p>";
+				echo "<h4 class='card-text'id='data'>ID Ordine: ".$row['id']."</h4>";
+				echo "<h4 class='card-text' id='mess'>Cliente: ".$row['email_cliente']."</h4>";
+				$res = mysqli_query($con,"SELECT * FROM carrello WHERE id_prenotazione = ".$id);
+				if($res->num_rows==0){
+					echo "";
+				} else {
+					while($rowi = mysqli_fetch_array($res)) {
+						$res2 = mysqli_query($con,"SELECT * FROM alimento WHERE id= ".$rowi['id_alimento']);
+						if($res2->num_rows==0){
+							echo "";
+						} else {
+							$rowii = mysqli_fetch_array($res2);
+							echo "<p class='card-text' id='mess'>Alimento: ".$rowii['nome']." </p>";
+							echo "<p class='card-text' id='mess'>ID_alimento: ".$rowi['id_alimento']." </p>";
+							echo "<p class='card-text' id='mess'>Quantità: ".$rowi['quantita']."</p></br>";
+						}
+
+					}
+				}
 
 				echo '<a href="apiordini.php?action=evadi&id='.$row["id"].'" class="btn btn-success" >Evadi <i class="fa fa-check"></i></a>
 				<input type="hidden" name="sent" value="true" />';

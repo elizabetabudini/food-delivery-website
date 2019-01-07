@@ -47,10 +47,7 @@ $carrello = new Cart;
 </head>
 </head>
 <body>
-  <?php include 'menu.php';
-  var_dump($_SESSION['quantità']);
-  var_dump($_SESSION['id']);
-  $_SESSION['id'];?>
+  <?php include 'menu.php';?>
   <div class="card card-sm center-msg-box transparent mobile">
     <h1>Carrello</h1>
 
