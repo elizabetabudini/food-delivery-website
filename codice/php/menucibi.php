@@ -65,6 +65,14 @@ if(isset($_POST['modify'])){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   .a{float:right;}
+  .cont{
+    padding-bottom: 2%;
+    text-align: center;
+    border-top:  2px solid #444;
+  }
+  .text-alig{
+    text-align: center;
+  }
   .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
   .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
   #torna {float: left; margin-left: 6%; margin-top: 1%;}
@@ -81,10 +89,15 @@ if(isset($_POST['modify'])){
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <h1><?php echo $_SESSION["nome"]?> ecco i tuoi menu</h1>
-      <h4 class="list-group-item-heading">Aggiungi un Menu!</h4>
+    </br>
 
-      <form id ="add" class =" addprod card card-sm mobile "  method="post" action = "#">
-        <div class="row addprod">
+      <h3 class="list-group-item-heading">Aggiungi un Menu!</h3>
+    </br>
+
+      <form id ="add" class =" addprod text-alig mobile justify-content-center"  method="post" action = "#">
+        <div class="thumbnail ">
+          <div class="caption ">
+              <div class="row addprod justify-content-center">
           <div class="form-group col-sm-4">
             <label for="nome">Nome menu</label>
             <input type="text" name="nome"  class="form-control" id="nome" placeholder="" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
@@ -95,7 +108,12 @@ if(isset($_POST['modify'])){
           <button type="submit" class="btn btn-success">Aggiungi <i class="fa fa-plus"></i></a>
           </div>
         </div>
+      </div>
+      </div>
       </form>
+    </br>
+  </br>
+
       <h3 class="list-group-item-heading">Modifica i menu gia esistenti</h3>
       <?php
       //get rows query
@@ -106,23 +124,26 @@ if(isset($_POST['modify'])){
       $query = $stmt->get_result();
       if($query->num_rows > 0){
         while($row = $query->fetch_assoc()){
-          echo $row["nome"];
           ?>
-          <form id ="modify" class =" addprod card card-sm mobile "  method="post" action = "#">
-            <div class="row justify-content-center">
-              <div class="form-group col-sm-4">
-                <label for="nome">Nome menu</label>
-                <label name="nome"  class="form-control" id="nome"><?php echo $row['nome'] ?></label>
+          <form id ="modify cont" class =" addprod  text-alig "  method="post" action = "#">
+            <div class="thumbnail ">
+              <div class="caption ">
+                  <div class="row ">
+              <div class="col-sm-12">
+              
+                <p name="nome"  class="lead"><?php echo $row['nome'] ?></p>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-6 cont ">
                 <br/>
                 <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-6 cont">
                 <br/>
-                <button type="submit" class="btn btn-danger" name="btn" value = "false">Elimina <i class="fa fa-trash"></i></button>
+                <button type="submit" class="btn btn-danger" name="btn" value = "false"onSubmit="return confirm('Are you sure you wish to delete?');">Elimina <i class="fa fa-trash"></i></button>
               </div>
             </div>
+          </div>
+        </div>
           <input type="hidden" name= "exn" value="<?php echo $row['nome']; ?>">
           <input type="hidden" name= "modify" value="true">
           </form>

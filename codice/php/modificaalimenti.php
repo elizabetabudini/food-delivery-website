@@ -59,14 +59,24 @@
     <style >
     .a{float:right;}
     .cart-link{width: 100%;text-align: right;display: block;font-size: 22px;}
-    .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
+    .caption{color:black;background-color:; padding: 20px;margin-top: 5px;}
     #torna {float: left; margin-left: 6%; margin-top: 1%;}
     .addprod{padding: 10px;}
+    form{background-color: rgba(255,255,255,0.9)}
+
+    .cont{
+      padding-top: 2%;
+      padding-bottom: 2%;
+      text-align: center;
+      border-top:  2px solid #444;
+    }
     h1,h2,h3, #nop {color:white;}
     </style>
   </head>
   <body>
   <?php include 'menu.php'; ?>
+  <div class="container">
+
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <?php
@@ -77,7 +87,7 @@
         $query = $stmt->get_result();
         $row = $query->fetch_assoc();
             ?>
-            <form id ="modify" class ="card card-sm mobile addprod"  method="post" action = "#">
+            <form id ="modify" class =" card-sm mobile text-alig addprod"  method="post" action = "#">
               <div class=" thumbnail ">
                 <div class="caption">
                   <div class="row">
@@ -119,11 +129,11 @@
                 </div>
                 <div class="col-md-12">
                   <br/>
-                  <div class="container row justify-content-center">
-                    <div class="col-xs-2" style="float: left; margin: 2%;">
+                  <div class=" row justify-content-center">
+                    <div class="col-sm-6 cont" style="float: left;;">
                       <a href="prodotti.php" class="btn btn-danger">Annulla <i class="fa fa-close"></i></a>
                     </div>
-                    <div class="col-xs-2 " style="float: right; margin: 2%;">
+                    <div class="col-sm-6 cont" style="float: right;;">
                       <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
                     </div>
 
@@ -138,6 +148,7 @@
         ?>
     </div>
   </div>
+</div>
 </div>
 <?php include 'footer.php'; ?>
 

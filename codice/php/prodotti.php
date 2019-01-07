@@ -79,6 +79,12 @@ if(isset($_POST['modify'])){
   .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
   #torna {float: left; margin-left: 6%; margin-top: 1%;}
   .addprod{padding: 10px;}
+  .cont{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    border-top:  2px solid #444;
+  }
   h1,h2,h3, #nop {color:white;}
   </style>
 </head>
@@ -125,9 +131,9 @@ if(isset($_POST['modify'])){
           <div class="col-md-12 ">
             <div class="row justify-content-center">
             </br>
-            <div class="col-sm-2S">
+            <div class="col-sm-12">
               <input type="hidden" name= "add" value="true">
-              <button type="submit" class="btn btn-success">Aggiungi</a>
+              <button type="submit" class="btn btn-success">Aggiungi <i class="fa fa-plus"></i></a>
               </div>
             </div>
 
@@ -146,25 +152,25 @@ if(isset($_POST['modify'])){
       if($query->num_rows > 0){
         while($row = $query->fetch_assoc()){
           ?>
-          <form id ="modify" class =" "  method="post" action = "#">
-            <div class="thumbnail">
-              <div class="caption">
+          <form id ="modify cont" class =" text-alig"   method="post" action = "#">
+            <div class="thumbnail ">
+              <div class="caption ">
                 <h4 class="list-group-item-heading" style="color: #444;"><?php echo $row["nome"]; ?></h4>
                 <p class="lead"><?php echo $row["nome_menu"] !== NULL ? $row["nome_menu"] : "no menu"; ?></p>
-                <div class="row">
-                  <div class="col-md-6">
+                <div class="row ">
+                  <div class="col-md-6 ">
                     <p class="lead"><?php echo $row["prezzo"].' €'; ?></p>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 ">
                     <p class="lead"><?php echo $row["info"] !== "" ? $row["info"] : "no info"; ?></p>
                   </div>
-                  <div class="col-md-6">
-                    <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
-                  </div>
-                  <div class="col-md-6">
-                    <button type="submit" class="btn btn-success" name="btn" value = "false" onSubmit="return confirm('Are you sure you wish to delete?');">Elimina</button>
+                  <div class="col-md-6 cont">
+                    <button type="submit" class="btn btn-danger" name="btn" value = "false" onSubmit="return confirm('Are you sure you wish to delete?');">Elimina <i class="fa fa-trash"></i></button>
                   </div>
                   <input type="hidden" name= "prod" value="<?php echo $row["id"]; ?>">
+                  <div class="col-md-6 cont">
+                    <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
+                  </div>
                   <input type="hidden" name= "modify" value="true">
                 </div>
               </div>

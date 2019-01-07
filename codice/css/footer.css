@@ -24,6 +24,10 @@ body {
   .mobile{
     max-width:100%;
   }
+    .text-alig{
+      text-align: center;
+    }
+
   .container {
     max-width:100%;
     width: 100%;
