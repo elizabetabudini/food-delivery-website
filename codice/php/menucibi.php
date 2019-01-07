@@ -60,10 +60,16 @@ if(isset($_POST['modify'])){
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../css/footer.css" rel="stylesheet">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <?php include 'menu.php'; ?>
+  <br/>
+  <div class="container transparent">
+    <a href="modificaprodotti.php" class="btn btn-success">< indietro</a>
+
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <h1><?php echo $_SESSION["nome"]?> ecco i tuoi menu</h1>
@@ -73,7 +79,7 @@ if(isset($_POST['modify'])){
         <div class="row justify-content-center">
           <div class="form-group col-sm-4">
             <label for="nome">Nome menu</label>
-            <input type="text" name="nome"  class="form-control" id="nome" placeholder="" pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+            <input type="text" name="nome"  class="form-control" id="nome" placeholder="" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
           </div>
           <div class="col-md-2">
           </br>
@@ -118,9 +124,10 @@ if(isset($_POST['modify'])){
     $stmt->close();
 
     ?>
-  </div>
+  </div></div>
 </div>
 </div>
+<?php include 'footer.php'; ?>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -24,7 +24,7 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   h1,h3, h4{text-align: center; color:white;}
-  .center-msg-box{width: 900px;background: rgba(0,0,0,0.7);}
+  .center-msg-box{background: rgba(0,0,0,0.7);}
   </style>
 </head>
 <body>
@@ -32,11 +32,12 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
   include 'menu.php';
   ?>
 <div class="container transparent">
-  <a href="strumenti.php" class="btn btn-success" >Indietro</a>
+  <br/>
+  <a href="strumenti.php" class="btn btn-success"> < Indietro</a>
 
-<div class="card card-sm center-msg-box transparent mobile">
+<div class="card card-sm center-msg-box transparent mobile ">
   <div class="row justify-content-center">
-    <div class="col-sm-4 ">
+    <div class="col-sm-5 ">
       <div class="card lis">
         <div class="card-body">
           <h5 class="card-title">Gestisci i prodotti</h5>
@@ -45,7 +46,7 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-5">
       <div class="card lis">
         <div class="card-body ">
           <h5 class="card-title">Gestisci i menu</h5>

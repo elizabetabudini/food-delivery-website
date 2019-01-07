@@ -45,8 +45,9 @@
     h1,h3{text-align: center; color:white;}
     .a{float:right;}
     .card{width: 450px;background: rgba(0,0,0,0.7);}
-    .table{background-color: rgba(255,255,255,65%);}
+    .table{background-color: rgba(255,255,255,65%); }
     .table td, .table th{border-top: none;}
+    }
 </style>
 
   </head>
