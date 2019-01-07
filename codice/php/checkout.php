@@ -62,8 +62,7 @@ if($cart->total_items() <= 0){
   </style>
 </head>
 <body>
-  <?php include 'menu.php'; var_dump($_SESSION["luogo"]);
-  var_dump($_SESSION["data"]);?>
+  <?php include 'menu.php'; ?>
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container  mobile">
       <h1>Anteprima dell'ordine</h1>
@@ -84,9 +83,9 @@ if($cart->total_items() <= 0){
               ?>
               <tr>
                 <td><?php echo $alimento["nome"]; ?></td>
-                <td><?php echo '€'.$alimento["prezzo"].' euro'; ?></td>
+                <td><?php echo $alimento["prezzo"].' €'; ?></td>
                 <td><?php echo $alimento["quantità"]; ?></td>
-                <td><?php echo '€'.$alimento["subtotale"].' euro'; ?></td>
+                <td><?php echo $alimento["subtotale"].' €'; ?></td>
               </tr>
             <?php } }else{ ?>
               <tr><td colspan="4"><p>Non ci sono prodotti nel tuo carrello</p></td>
@@ -97,7 +96,7 @@ if($cart->total_items() <= 0){
           </table>
               <div class="container  mobile table"style="padding: .75rem;">
                 <?php if($cart->total_items() > 0){ ?>
-                  <div class="text-center"><strong>Totale <?php echo '€'.$cart->total().' euro'; ?></strong></div>
+                  <div class="text-center tot"><strong>Totale <?php echo '€'.$cart->total().' euro'; ?></strong></div>
                 <?php } ?>
 
               </div>
@@ -107,7 +106,8 @@ if($cart->total_items() <= 0){
           <div>
           <h4>Dettagli di spedizione</h4>
             <p><?php echo $_SESSION['email']; ?></p>
-            <p><?php echo $_SESSION['luogo']; ?></p>
+            <p>Consegna: <?php echo $_SESSION['data']; ?></p>
+            <p>Presso: <?php echo $_SESSION['luogo']; ?></p>
           </div>
             <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn" style="float: right;">Invia ordine > </a>
             <a href="ristorante.php" class="btn btn-warning backbtn" style="float: left;"> < Continua gli acquisti</a>

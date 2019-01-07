@@ -95,6 +95,28 @@ if(isset($_POST["sent"])){
     } else {
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 96 signinfornitore.php </br>";
     }
+    $stmt = $conn->prepare("SELECT * FROM persona WHERE email = ?");
+    $stmt->bind_param('s', $_POST['email']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_object();
+
+    $_SESSION['nome']= $user->nome;
+    $_SESSION['cognome']= $user->cognome;
+    $_SESSION["email"]=$_POST['email'];
+
+    $mess= "Iscrizione avvenuta correttamente! Riceverai una notifica quando l'iscrizione sarà approvata dal nostro Team";
+    $data= date('Y-m-d H-i-s');
+    $letto="0";
+    $email=$_POST['email'];
+    $stmt5 = $conn->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
+    if($stmt5!=false){
+      $stmt5->bind_param("ssss", $mess, $email, $data, $letto);
+      $stmt5->execute();
+      $stmt5->close();
+    } else {
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: signinfornitore.php </br>";
+    }
 
     $mess= "Il ristorante ".$nomerist." attende la tua approvazione, controlla i tuoi Strumenti";
     $data= date('Y-m-d H-i-s');
@@ -106,7 +128,13 @@ if(isset($_POST["sent"])){
       $stmt5->execute();
       $stmt5->close();
     } else {
-      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 109 signinfornitore.php </br>";
+      $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: signinfornitore.php </br>";
+    }
+
+    if($user->privilegi==1){
+      $_SESSION['fornitore']= $user->privilegi;
+      $_SESSION['fornitore']=true;
+      header("Location: strumenti.php");
     }
 
   }

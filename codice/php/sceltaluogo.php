@@ -18,6 +18,8 @@ $current= " ";
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/footer.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../timepicker/jquery.timepicker.css" rel="stylesheet">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style> label{margin-top: 2%;} </style>
 </head>
@@ -58,10 +60,13 @@ $current= " ";
                 ?>
               </select>
 
-              <label class"data">Seleziona data e orario
-                <input type="dateTime-local" name="oraConsegna" id="currentDateTime"  min="<?php echo date("Y-m-d")."T".date("H:i");?>" value="<?php echo date("Y-m-d")."T".date("H:i");?>" required>
-              </label>
 
+              <input type="hidden" name="data" value="<?php echo date("Y-m-d")?>" >
+              <label name="data" value="<?php echo date("Y-m-d")?>" > Giorno: <?php echo date("d-m-Y")?></label></br>
+
+              <label> Orario:
+                <input id="time" value="<?php echo date("H:i")?>" name="orario" type="text" data-time-format="H:i"/>
+              </label>
 
             </form>
           </div>
@@ -70,10 +75,10 @@ $current= " ";
             <button class="btn btn-lg btn-success" id = "submit" type="submit" >Continua <i class="fa fa-arrow-right"></i></button>
             <?php
             if(isset($_POST['submit'])){
+              $_POST["oraConsegna"]= "".$_POST['data']."".$_POST['orario']."";
+              $_SESSION["data"]=$_POST["oraConsegna"];
+              $_SESSION["luogo"]=$_POST["luogo"];
               header("Location: prenotazione2.php");
-
-              var_dump($_POST["luogo"]);
-              var_dump($_POST["oraConsegna"]);
             }
             ?>
           </div>
@@ -90,5 +95,7 @@ $current= " ";
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="./../js/messaggi.js"></script>
+  <script src="./../timepicker/jquery.timepicker.min.js"></script>
+  <script src="./../js/time.js"></script>
 </body>
 </html>

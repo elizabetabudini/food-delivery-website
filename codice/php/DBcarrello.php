@@ -110,6 +110,15 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
           $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
         }
         $cart->destroy();
+        if(isset($_SESSION["data"])){
+          unset($_SESSION["data"]);
+        }
+        if(isset($_SESSION["luogo"])){
+          unset($_SESSION["luogo"]);
+        }
+        if(isset($_SESSION["id_prenotazione"])){
+          unset($_SESSION["id_prenotazione"]);
+        }
         header("Location: orderSuccess.php");
       }else{
         header("Location: checkout.php");
