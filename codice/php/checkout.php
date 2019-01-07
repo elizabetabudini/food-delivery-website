@@ -44,12 +44,16 @@ $utente  = $result->fetch_object();
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../css/table.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   h1,h3, h4{text-align: center; color:white;}
   p{text-align: center;}
   a{float:right;}
   .card{width: 900px;background: rgba(0,0,0,0.7);margin:5% auto;}
+  }
+
+  .container{ background-color: rgba(0, 0, 0, 0.9);
   }
   .table{background-color: rgba(255,255,255,65%);}
   .footBtn{width: 95%;float: left;}
@@ -59,7 +63,7 @@ $utente  = $result->fetch_object();
 <body>
   <?php include 'menu.php'; ?>
   <div class="card card-sm center-msg-box transparent mobile">
-    <div class="container">
+    <div class="container  mobile">
       <h1>Anteprima dell'ordine</h1>
       <table class="table mobile">
         <thead>
@@ -103,10 +107,8 @@ $utente  = $result->fetch_object();
             <p><?php echo $utente->email; ?></p>
             <p><?php echo $_SESSION['luogo']; ?></p>
           </div>
-          <div class="footBtn">
-            <a href="ristorante.php" class="btn btn-warning"> < Continua gli acquisti</a>
-            <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn">Invia ordine > </a>
-          </div>
+            <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn" style="float: right;">Invia ordine > </a>
+            <a href="ristorante.php" class="btn btn-warning backbtn" style="float: left;"> < Continua gli acquisti</a>
         </div>
       </div>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
