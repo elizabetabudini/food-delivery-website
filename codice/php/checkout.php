@@ -2,6 +2,10 @@
 if (session_status() === PHP_SESSION_NONE){
   session_start();
 }
+if(!isset($_SESSION['email'])){
+  $_SESSION['Redirect']= "checkout.php";
+  header("Location: accedi.php");
+}
 $current="carrello";
 $servername = "localhost";
 $username = "root";

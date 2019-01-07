@@ -55,14 +55,6 @@ $current="home";
     ?>
     <row class="row mobile">
       <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success"><i class="fa fa-arrow-left"></i> Torna ai ristoranti</i></a>
-      <?php
-      if(!isset($_SESSION['email'])){
-        $_SESSION['Redirect']= "visualizzaCarrello.php";
-        echo '<a href="accedi.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello <i class="fa fa-shopping-cart"></i></a>';
-      } else {
-        echo '<a href="visualizzaCarrello.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello <i class="fa fa-shopping-cart"></i></a>';
-      }
-        ?>
 
     </row>
 

@@ -55,7 +55,7 @@ if(isset($_POST["sent"])){
         if($user->privilegi==0){
           $_SESSION['utente']= $user->privilegi;
           $_SESSION['utente']=true;
-          if($_SESSION["Redirect"]=="visualizzaCarrello.php"){
+          if($_SESSION["Redirect"]=="checkout.php"){
               header("Location:".$URL."");
           } else {
             header("Location: homeclienti.php");
