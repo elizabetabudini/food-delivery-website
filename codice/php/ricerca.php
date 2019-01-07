@@ -45,9 +45,11 @@ function closeNav() {
   <style>
   h1,h3{text-align: center; color:white;}
   .list-group-item{background-color: rgba(255,255,255, 65%)  }
-  .a{float:right;margin-right: 2%}
   .filtri{margin-left: 7%; margin-top: 3%; }
   .table{background-color: rgba(255,255,255,65%);}
+  .closebtn, .apply{float:right; margin-right: 10%;}
+  .form-check-label{color:white;}
+  .sidenav{background-color:rgba(0,0,0,95%) }
     </style>
 
   </head>
@@ -57,7 +59,7 @@ function closeNav() {
 
     <div id="mySidenav" class="sidenav">
       <div class ="margin">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn btn btn-danger" onclick="closeNav()"><i class="fa fa-close"></i> </a>
         <br/>
         <h3>Categories</h3>
         <form  action="ricerca.php" method="post" id="Categories">
@@ -69,16 +71,16 @@ function closeNav() {
               echo'
               <div class="form-check">
               <input class="form-check-input" type="checkbox" value="'.$row['nome_categoria'].'" name="check[]" id="'.$row['nome_categoria'].'">
-              <label class="form-check-label" for="'.$row['nome_categoria'].'">
+              <p class="form-check-label" for="'.$row['nome_categoria'].'">
               '.$row['nome_categoria'].'
-              </label>
+              </p>
               </div>';
             }
 
             ?>
           </div>
           <br/>
-          <input type="submit" class="a btn btn-success" name="action" value="Applica filtri"/>
+          <input type="submit" class="apply btn btn-success" name="action" value="Applica filtri"/>
         </form>
       </div>
       <div class="row margin">
@@ -87,9 +89,11 @@ function closeNav() {
     </div>
   </div>
   <row class="row mobile">
-  <button class="col-xsm-4  filtri btn btn-success" type="button" name="button"  onclick="openNav()">Filtri</button>
-  <input class="col-xsm-8 "type="text" id="myInput" onkeyup="myFunction()" placeholder="Cerca ristorante..">
-</row>
+    <button class="col-xsm-4  filtri btn btn-success" type="button" name="button"  onclick="openNav()">Filtri
+          <i class="fa fa-filter"></i>
+    </button>
+    <input class="col-xsm-8 "type="text" id="myInput" onkeyup="myFunction()" placeholder="Cerca ristorante..">
+  </row>
 
   <div class="container">
     <?php
@@ -98,8 +102,7 @@ function closeNav() {
       die("Connection failed: " . $conn->connect_error);
     }
     $filter = array();
-    /*  foreach($conn->query('SELECT * FROM categoria_ristoranti ORDER BY nome_categoria') as $row) {
-    echo $row["nome_categoria"];*/
+
     if(isset($_POST['check'])){
       $aCat = $_POST['check'];
       $N = count($aCat);
@@ -133,7 +136,7 @@ function closeNav() {
 
       <form action="ristorante.php" method="post" name ="seleziona" id="seleziona">
       <input type = "hidden" name="id_ristorante" value="'.$row["id"].'">
-      <button class="a btn btn-sm btn-success " id = "submit" type="submit" >Guarda Listino </button>
+      <button class="a btn btn-sm btn-success " id = "submit" type="submit" >Guarda listino </button>
       </form>
       </li>"';
 

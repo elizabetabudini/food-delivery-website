@@ -155,8 +155,7 @@ $current= "signinfornitore";
           else{
             ?>
             <div class="alert alert-danger alert-php" role="alert">
-              Errore durante l'inserimento!
-              <p><?=$errors?><?=$insertError?></p>
+              Errore durante l'inserimento! La mail inserita è già registrata.
             </div>
             <?php
           }
@@ -170,24 +169,24 @@ $current= "signinfornitore";
         <form id="fornitoreform" method="post" action="#" class = "mobile">
           <div class="form-group">
             <label for="inputRist">Nome Ristorante</label>
-            <input type="text" name="nomerist"  class="form-control" id="inputRist" autofocus placeholder="Inserisci nome ristorante" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+            <input type="text" <?php if(isset($_POST["nomerist"])) { echo 'value="'.htmlspecialchars($_POST['nomerist']).'"';} else echo 'autofocus' ?> name="nomerist"  class="form-control" id="inputRist" placeholder="Inserisci nome ristorante" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
           </div>
           <div class="form-group">
             <label for="inputIndirizzo">Indirizzo Ristorante</label>
-            <input type="text" name="indirizzorist"  class="form-control" id="inputIndirizzo" placeholder="Inserisci indirizzo ristorante" required>
+            <input type="text" <?php if(isset($_POST["indirizzorist"])) { echo 'value="'.htmlspecialchars($_POST['indirizzorist']).'"';} ?> name="indirizzorist"  class="form-control" id="inputIndirizzo" placeholder="Inserisci indirizzo ristorante" required>
             <small id="Help" class="form-text text-muted">Ad es. "Viale Bovio, 11, Cesena, FC"</small>
           </div>
           <div class="form-group">
             <label for="inputNome">Nome</label>
-            <input type="text" name="nome" class="form-control" id="inputNome" placeholder="Inserisci Nome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+            <input type="text" <?php if(isset($_POST["nome"])) { echo 'value="'.htmlspecialchars($_POST['nome']).'"';} ?> name="nome" class="form-control" id="inputNome" placeholder="Inserisci Nome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
           </div>
           <div class="form-group">
             <label for="inputCognome">Cognome</label>
-            <input type="text" name="cognome" class="form-control" id="inputCognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+            <input type="text" name="cognome" <?php if(isset($_POST["cognome"])) { echo 'value="'.htmlspecialchars($_POST['cognome']).'"';} ?> class="form-control" id="inputCognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
           </div>
           <div class="form-group">
             <label for="inputEmail">Indirizzo Email</label>
-            <input type="email" name="email"  class="form-control" id="inputEmail" placeholder="Inserisci Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Email non valida! Esempio valido: mario.rossi@gmail.com">
+            <input type="email" name="email"  <?php if(isset($_POST["email"])) { echo 'autofocus value="'.htmlspecialchars($_POST['email']).'"';} ?> class="form-control" id="inputEmail" placeholder="Inserisci Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Email non valida! Esempio valido: mario.rossi@gmail.com">
           </div>
           <div class="form-group">
             <label for="inputPassword">Password</label>
@@ -195,7 +194,7 @@ $current= "signinfornitore";
           </div>
 
           <input type="hidden" name="sent" value="true" />
-          <button type="submit" class="btn btn-primary">Registrati</button>
+          <button type="submit" class="btn btn-success">Registrati</button>
         </form>
       </div>
     </div>

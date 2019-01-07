@@ -2,25 +2,25 @@
 // Start the session
 if (session_status() === PHP_SESSION_NONE){
   session_start();
-  if(!isset($_SESSION["admin"])){
-    $_SESSION["admin"]= "false";
-    $_SESSION["utente"]= "true";
-    $_SESSION["fornitore"]= "false";
-  }
+}
+if(!isset($_SESSION["admin"])){
+  $_SESSION["admin"]= "false";
+  $_SESSION["utente"]= "true";
+  $_SESSION["fornitore"]= "false";
 }
 ?>
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cfu";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 if(isset($_SESSION["email"])){
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "cfu";
-
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
 
   $result = mysqli_query($conn,"SELECT * FROM messaggio WHERE email = '".$_SESSION["email"]."' AND letto='0'");
   if($result->num_rows>0){
@@ -30,7 +30,27 @@ if(isset($_SESSION["email"])){
     $_SESSION["unread"]=0;
   }
 
+    $result = mysqli_query($conn,"SELECT privilegi FROM persona WHERE email = '".$_SESSION["email"]."'");
+    $utente = $result->fetch_object();
+    $privilegi = $utente->privilegi;
+    if($privilegi==0){
+      $_SESSION['fornitore']== "false";
+      $_SESSION['utente']== "true";
+      $_SESSION['admin']== "false";
+    }
+    if($privilegi==1){
+      $_SESSION['fornitore']== "true";
+      $_SESSION['utente']== "false";
+      $_SESSION['admin']== "false";
+    }
+    if($privilegi==2){
+      $_SESSION['fornitore']== "false";
+      $_SESSION['utente']== "false";
+      $_SESSION['admin']== "true";
+    }
 }
+
+
 if ($_SESSION['fornitore']== "true") {
   echo '<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>';

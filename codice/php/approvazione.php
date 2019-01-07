@@ -69,24 +69,30 @@ if(isset($_POST["sent"])){
       die("Connection failed: " . $conn->connect_error);
     }
 
-    echo '<h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l approvazione</h3>';
-    foreach($conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0') as $row) {
-      echo '
-      <div class="row card-sm">
-      <div class="card card-sm center-msg-box transparent col-sm-8">
-      <p>'. $row['nome'] .'</p>
-      <p>'. $row['email_proprietario'] .'</p>
-      </div>
-      <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
-      <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
-      <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
-      <br/>
-      <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
-      <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
-      <input type="hidden" name="sent" value="true" />
-      </form>
-      </div>';
+    $res=$conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0');
+    if($res->num_rows==0){
+      echo '<h3 class="title text-center">Non ci sono ristoranti che attentono approvazione</h3>';
+    }else {
+      echo '<h3 class="title text-center">Ecco i ristoranti che non hanno ancora ricevuto l approvazione</h3>';
+      foreach($conn->query('SELECT nome , email_proprietario, id FROM ristorante WHERE approvato = 0') as $row) {
+        echo '
+        <div class="row card-sm">
+        <div class="card card-sm center-msg-box transparent col-sm-8">
+        <p>'. $row['nome'] .'</p>
+        <p>'. $row['email_proprietario'] .'</p>
+        </div>
+        <form action="#" method="post" id="form1" class = "card card-sm transparent col-sm-4">
+        <input type="submit" class="btn btn-primary" name="action" value="Approva"/>
+        <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
+        <br/>
+        <input type="submit" class="btn btn-primary" name="action" value="Elimina"/>
+        <input type="hidden" name = "email" value="'.$row["email_proprietario"].'">
+        <input type="hidden" name="sent" value="true" />
+        </form>
+        </div>';
+      }
     }
+
     ?>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE){
 $_SESSION['fornitore']= "false";
 $_SESSION['utente']= "true";
 $_SESSION['admin']="false";
-$current= "homeclienti";
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -61,7 +60,10 @@ $current= "homeclienti";
           <!--end of col-->
           <div class="col-auto">
             <button class="btn btn-lg btn-success" id = "submit" type="submit" >Ristoranti</button>
-            <?php if(isset($_POST['luogo'])) $selectOption = $_POST['luogo']; ?>
+            <?php if(isset($_POST['luogo'])) $selectOption = $_POST['luogo'];
+            if(isset($_POST['submit'])){
+              header("Location: prenotazione.php");
+            }?>
           </div>
           <!--end of col-->
         </div>

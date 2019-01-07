@@ -108,7 +108,7 @@
 
 
 
-        <a class"a" href="modificadati.php" class="btn btn-success">Modifica dati</a>
+        <a class"a" href="modificadati.php" class="btn btn-success">Modifica dati <i class="fa fa-pencil"></i></a>
     </div>
   </div>
   </div>

@@ -21,11 +21,12 @@ $carrello = new Cart;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   input[type="number"]{width: 70px;}
-  h1,h3{text-align: center; color:white;}
+  h1,h3, p{text-align: center; color:white;}
   .right{float:right;}
   .left{float:left;}
   .card{width: 700px;background: rgba(0,0,0,0.7);}
   .table{background-color: rgba(255,255,255,65%);}
+  .nores{color:black;}
   </style>
   <script>
 
@@ -46,7 +47,8 @@ $carrello = new Cart;
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <h1>Carrello</h1>
-      <table class="table mobile">
+      <div class="table-responsive">
+      <table class="table">
         <thead>
           <tr>
             <th>Alimento</th>
@@ -73,28 +75,29 @@ $carrello = new Cart;
                 </td>
               </tr>
             <?php } }else{ ?>
-              <tr><td colspan="5"><p>Il tuo carrelo è vuoto...</p></td>
+              <tr><td colspan="5"><p class="nores">Il tuo carrelo è vuoto...</p></td>
               <?php } ?>
             </tr>
           </tbody>
           <?php
           if($carrello->total_items() > 0){ ?>
-            <tr>
-              <td class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></td>
               <tr>
-              </table>
-
-                <a href="sceltaluogo.php" class="right btn btn-success ">Checkout ></a>;
-
-        <?php
+                <td class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></td>
+                <tr>
+                </table>
+              </div>
+              <?php
+              if(!isset($_SESSION["luogo"]) || !isset($_SESSION["data"])){
+                echo '<a href="sceltaluogo.php" class="right btn btn-success ">Checkout ></a>';
+              } else{
+                echo '<a href="checkout.php" class="right btn btn-success ">Checkout ></a>';
+              }
             }
 
              if(isset($_SESSION["id_ristorante"])){
-              echo '<a href="ristorante.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a></td>
-              <td colspan="2">';
+              echo '<a href="ristorante.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
             } else {
-              echo '<a href="ricerca.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a></td>
-              <td colspan="2">';
+              echo '<a href="ricerca.php" class="left btn btn-success"><i class="glyphicon glyphicon-menu-left"></i> < Aggiungi prodotti</a>';
             }?>
 
 

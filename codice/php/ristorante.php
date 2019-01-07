@@ -53,8 +53,10 @@ $current="home";
 
     <?php
     ?>
-    <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success">< Torna ai ristoranti</a>
-    <a href="visualizzaCarrello.php" class="btn btn-success" id="carrello" title="View Cart"> Carrello > </a>
+    <row class="row mobile">
+      <a href="DBcarrello.php?action=resetCart" id="torna" class="btn btn-success"><i class="fa fa-arrow-left"></i> Torna ai ristoranti</i></a>
+
+    </row>
 
     <div class="card card-sm center-msg-box transparent mobile">
       <div class="container mobile">
@@ -87,7 +89,7 @@ $current="home";
                         <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
                       </div>
                       <div class="col-md-6">
-                        <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello</a>
+                        <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello <i class="fa fa-cart-plus"></i></a>
                       </div>
                     </div>
                   </div>

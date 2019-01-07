@@ -102,7 +102,7 @@ if(isset($_POST["sent"])){
             <div class="alert alert-danger alert-php" role="alert">
               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
               <span class="sr-only">Errore:</span>
-              Errore durante l'inserimento! <?=$errors?><?=$insertError?>
+              Errore durante l'inserimento! La mail inserita è già registrata.
             </div>
           </div>
           <?php
@@ -117,22 +117,22 @@ if(isset($_POST["sent"])){
       <form id="insertform" method="post" action="#" class ="mobile">
         <div class="form-group">
           <label for="inputNome">Nome</label>
-          <input type="text" name="nome" class="form-control" id="nome" placeholder="Inserisci Nome" autofocus="true" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+          <input type="text" name="nome" <?php if(isset($_POST["nome"])) { echo 'value="'.htmlspecialchars($_POST['nome']).'"';} else echo 'autofocus' ?> class="form-control" id="nome" placeholder="Inserisci Nome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
         </div>
         <div class="form-group">
           <label for="inputCognome">Cognome</label>
-          <input type="text" name="cognome" class="form-control" id="cognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
+          <input type="text" name="cognome" <?php if(isset($_POST["cognome"])) { echo 'value="'.htmlspecialchars($_POST['cognome']).'"';} ?> class="form-control" id="cognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
         </div>
         <div class="form-group">
           <label for="inputEmail">Indirizzo Email</label>
-          <input type="email" name="email"  class="form-control" id="email" placeholder="Inserisci Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+          <input type="email" name="email"  <?php if(isset($_POST["email"])) { echo 'autofocus value="'.htmlspecialchars($_POST['email']).'"';} ?> class="form-control" id="email" placeholder="Inserisci Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
         </div>
         <div class="form-group">
           <label for="inputPassword">Password</label>
           <input type="password" name="password"  class="form-control" id="password" placeholder="Inserisci Password" required pattern=".{4,}" title="Inserisci almeno 4 caratteri">
         </div>
         <input type="hidden" name="sent" value="true" />
-        <button type="submit" class="btn btn-primary">Registrati</button>
+        <button type="submit" class="btn btn-success">Registrati</button>
       </form>
     </div>
   </div>

@@ -55,8 +55,8 @@ if(isset($_POST["sent"])){
         if($user->privilegi==0){
           $_SESSION['utente']= $user->privilegi;
           $_SESSION['utente']=true;
-          if(isset($_SESSION["Redirect"])){
-            header("Location:".$URL."");
+          if($_SESSION["Redirect"]=="checkout.php"){
+              header("Location:".$URL."");
           } else {
             header("Location: homeclienti.php");
           }
@@ -140,7 +140,7 @@ if(isset($_POST["sent"])){
             <input type="password" class="form-control" name= "password" id="password" placeholder="Password" required>
           </div>
           <input type="hidden" name="sent" value="true" />
-          <button type="submit" name= "submit" id= "submit" class="btn btn-primary">Accedi</button>
+          <button type="submit" name= "submit" id= "submit" class="btn btn-success">Accedi</button>
         </form>
       </div>
     </div>
