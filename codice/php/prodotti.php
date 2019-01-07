@@ -71,6 +71,7 @@ if(isset($_POST['modify'])){
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
+  <link href="./../css/footer.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   .a{float:right;}
@@ -78,14 +79,14 @@ if(isset($_POST['modify'])){
   .caption{color:black;background-color: rgba(255,255,255, 90%); padding: 20px;margin-top: 5px;}
   #torna {float: left; margin-left: 6%; margin-top: 1%;}
   .addprod{padding: 10px;}
-  h1,h2,h3{color:white;}
+  h1,h2,h3,h4,h5{color:white;}
   </style>
 </head>
 <body>
   <?php include 'menu.php'; ?>
   <div class="container transparent">
     <br/>
-  <a href="strumenti.php" class=" btn btn-success"> < Indietro</a>
+  <a href="modificaprodotti.php" class=" btn btn-success"> < Indietro</a>
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container mobile">
       <h1>Listino di <?php echo $_SESSION["nome"]?></h1>
@@ -173,11 +174,14 @@ if(isset($_POST['modify'])){
           </form>
       <?php
     }
+  }else{
+    echo "<br/><h5> Ancora non hai prodotti nel Listino </h5>";
   }
   ?>
 </div>
 </div>
 </div>
+<?php include 'footer.php'; ?>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
