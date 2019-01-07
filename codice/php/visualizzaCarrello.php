@@ -90,9 +90,9 @@ $carrello = new Cart;
               ?>
               <tr>
                 <td><?php echo $alimento["nome"]; ?></td>
-                <td><?php echo '€'.$alimento["prezzo"].' euro'; ?></td>
+                <td><?php echo $alimento["prezzo"].' €'; ?></td>
                 <td><input type="number" class="form-control text-center" value="<?php echo $alimento["quantità"]; ?>" onchange="updateCartItem(this, '<?php echo $alimento["rowid"]; ?>')"></td>
-                <td><?php echo '€'.$alimento["subtotale"].' euro'; ?></td>
+                <td><?php echo $alimento["subtotale"].' €'; ?></td>
                 <td>
                   <a href="DBcarrello.php?action=removeCartItem&id=<?php echo $alimento["rowid"]; ?>" class="btn btn-danger" onclick="return confirm('Sei sicuro?')">X</a>
                 </td>

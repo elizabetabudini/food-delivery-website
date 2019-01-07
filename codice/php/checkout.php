@@ -96,7 +96,7 @@ if($cart->total_items() <= 0){
           </table>
               <div class="container  mobile table"style="padding: .75rem;">
                 <?php if($cart->total_items() > 0){ ?>
-                  <div class="text-center tot"><strong>Totale <?php echo '€'.$cart->total().' euro'; ?></strong></div>
+                  <div class="text-center tot"><strong>Totale <?php echo $cart->total().' €'; ?></strong></div>
                 <?php } ?>
 
               </div>

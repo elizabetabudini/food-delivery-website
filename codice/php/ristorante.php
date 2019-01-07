@@ -87,7 +87,7 @@ $current="home";
                     <h4 class="list-group-item-heading"><?php echo $row["nome"]; ?></h4>
                     <div class="row">
                       <div class="col-md-6">
-                        <p class="lead"><?php echo '€'.$row["prezzo"].' euro'; ?></p>
+                        <p class="lead"><?php echo $row["prezzo"].' €'; ?></p>
                       </div>
                       <div class="col-md-6">
                         <a class="a btn btn-success" href="DBcarrello.php?action=addToCart&id=<?php echo $row["id"]; ?>">Aggiungi al carrello <i class="fa fa-cart-plus"></i></a>
