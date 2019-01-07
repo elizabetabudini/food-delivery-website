@@ -109,8 +109,8 @@ if($cart->total_items() <= 0){
             <p>Consegna: <?php echo $_SESSION['data']; ?></p>
             <p>Presso: <?php echo $_SESSION['luogo']; ?></p>
           </div>
-            <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn" style="float: right;">Invia ordine > </a>
-            <a href="ristorante.php" class="btn btn-warning backbtn" style="float: left;"> < Continua gli acquisti</a>
+            <a href="DBcarrello.php?action=placeOrder" class="btn btn-success orderBtn" >Invia ordine > </a>
+            <a href="ristorante.php" class="btn btn-warning backbtn"> < Continua gli acquisti</a>
         </div>
       </div>
       <?php include 'footer.php'; ?>
