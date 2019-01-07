@@ -132,7 +132,7 @@ if(isset($_POST["sent"])){
           <input type="password" name="password"  class="form-control" id="password" placeholder="Inserisci Password" required pattern=".{4,}" title="Inserisci almeno 4 caratteri">
         </div>
         <input type="hidden" name="sent" value="true" />
-        <button type="submit" class="btn btn-primary">Registrati</button>
+        <button type="submit" class="btn btn-success">Registrati</button>
       </form>
     </div>
   </div>

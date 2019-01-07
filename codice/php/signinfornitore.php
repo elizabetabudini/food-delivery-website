@@ -194,7 +194,7 @@ $current= "signinfornitore";
           </div>
 
           <input type="hidden" name="sent" value="true" />
-          <button type="submit" class="btn btn-primary">Registrati</button>
+          <button type="submit" class="btn btn-success">Registrati</button>
         </form>
       </div>
     </div>

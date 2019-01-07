@@ -5,7 +5,6 @@
   $_SESSION['fornitore']= "false";
   $_SESSION['utente']= "true";
   $_SESSION['admin']="false";
-  $current= "prenotazione";
 
   $servername = "localhost";
   $username = "root";

@@ -91,8 +91,8 @@ $categoria= $row["nome_categoria"];
       </div>
 
       <input type="hidden" name="sent" value="true" />
-      <a href = "profilofornitore.php"><button type="button"  class="btn btn-success">Annulla</button></a>
-      <button type="submit" class="btn btn-success" style="float: right">Modifica</button>
+      <a href = "profilofornitore.php"><button type="button"  class="btn btn-danger">Annulla <i class="fa fa-close"></i></button></a>
+      <button type="submit" class="btn btn-success" style="float: right">Modifica <i class="fa fa-pencil"></i></button>
     </form>
   </div>
 </div>

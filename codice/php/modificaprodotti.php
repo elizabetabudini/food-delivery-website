@@ -15,7 +15,6 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
   <title>CFU - Home Fornitori</title>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <link rel="stylesheet" href="./../css/bootstrap.min.css">
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
@@ -24,22 +23,27 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   h1,h3, h4{text-align: center; color:white;}
-  .con{width: 900px;background: rgba(0,0,0,0.7);}
+  .center-msg-box{width: 900px;background: rgba(0,0,0,0.7);}
   </style>
 </head>
 <body>
-  <?php $current = "modificaprodotti";
+  <?php $current = "strumenti";
   include 'menu.php';
   ?>
+<row class=" mobile">
+  <button class="col-xsm-4  filtri btn btn-success" type="button" name="button"  onclick="openNav()">Filtri
+    </button>
 
+  <input class="col-xsm-8 "type="text" id="myInput" onkeyup="myFunction()" placeholder="Cerca ristorante..">
+</row>
 <div class="card card-sm center-msg-box transparent mobile">
   <div class="row justify-content-center">
     <div class="col-sm-4 ">
       <div class="card lis">
         <div class="card-body">
           <h5 class="card-title">Gestisci i prodotti</h5>
-          <p class="card-text-center">Inserisci nuovi prodotti e modifica quelli esistenti</p>
-          <a href="prodotti.php" class="btn btn-primary">Modifica prodotti</a>
+          <p class="card-text-center">Visualizza e modifica i prodotti nel listino</p>
+          <a href="prodotti.php" class="btn btn-success">Alimenti</a>
         </div>
       </div>
     </div>
@@ -48,7 +52,7 @@ $_SESSION['Redirect']= $_SERVER["REQUEST_URI"];
         <div class="card-body ">
           <h5 class="card-title">Gestisci i menu</h5>
           <p class="card-text-center">Inserisci nuovi menu e gestisci quelli esistenti</p>
-          <a href="menucibi.php" class="btn btn-primary">Modifica listino</a>
+          <a href="menucibi.php" class="btn btn-success">Menu</a>
         </div>
       </div>
     </div>

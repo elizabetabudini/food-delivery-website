@@ -107,10 +107,10 @@
                   <br/>
                   <div class="row justify-content-center">
                     <div class="col-md-2">
-                      <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica</button>
+                      <button type="submit" class="btn btn-success" name="btn" value = "true">Modifica <i class="fa fa-pencil"></i></button>
                     </div>
                     <div class="col-md-2">
-                      <a href="menucibi.php" class="btn btn-success">Annulla</a>
+                      <a href="menucibi.php" class="btn btn-danger">Annulla <i class="fa fa-close"></i></a>
                     </div>
                   </div></div>
               </div>

@@ -41,7 +41,7 @@ $current="strumenti";
           <div class="card-body">
             <h5 class="card-title">Evadi Ordine</h5>
             <p class="card-text-center">Non fare attendere i tuoi clienti</p>
-            <a href="evadiordini.php" class="btn btn-primary">Elenco ordini!</a>
+            <a href="evadiordini.php" class="btn btn-success">Ordini</a>
           </div>
         </div>
       </div>
@@ -49,8 +49,8 @@ $current="strumenti";
         <div class="card lis">
           <div class="card-body ">
             <h5 class="card-title">Modifica Listino</h5>
-            <p class="card-text-center">Aumenta la scelta! :D</p>
-            <a href="modificaprodotti.php" class="btn btn-primary">Modifica!</a>
+            <p class="card-text-center">Aumenta la scelta! Inserisci prodotti e nuovi menu</p>
+            <a href="modificaprodotti.php" class="btn btn-success">Listino</a>
           </div>
         </div>
       </div>

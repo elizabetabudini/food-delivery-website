@@ -76,7 +76,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
 
         }
         $mess= "L'ordine ".$_SESSION['id_prenotazione']." attende di essere evaso. Vai nei tuoi Strumenti";
-        $data= date('Y-m-d-H-m');
+        $data= date('Y-m-d H-i');
         $letto="0";
         $stmt5 = $db->prepare("INSERT INTO messaggio (testo, email, data, letto) VALUES (?, ?, ?, ?)");
         if($stmt5!=false){

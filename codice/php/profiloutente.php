@@ -69,7 +69,7 @@
                     </tbody>
                   </table>
 
-        <a cass"a" href="modificadatiutente.php" class="btn btn-success">Modifica dati</a>
+        <a cass"a" href="modificadatiutente.php" class="btn btn-success">Modifica dati <i class="fa fa-pencil"></i></a>
     </div>
   </div>
   </div>

@@ -7,10 +7,6 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "cfu";
-if(!isset($_SESSION['email'])){
-  $_SESSION['Redirect']= "checkout.php";
-  header('location:accedi.php');
-}
 
 $con = new mysqli($servername, $username, $password, $dbname);
 
@@ -22,15 +18,15 @@ if ($con->connect_error) {
 include 'carrello.php';
 $cart = new Cart;
 
-// redirect to home if cart is empty
-if($cart->total_items() <= 0){
-  header("Location: ristorante.php");
-}
 $stmt = $con->prepare("SELECT * FROM persona WHERE email = ?");
 $stmt->bind_param('s', $_SESSION["email"]);
 $stmt->execute();
 $result = $stmt->get_result();
 $utente  = $result->fetch_object();
+
+if($cart->total_items() <= 0){
+  header("Location: visualizzaCarrello.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -47,30 +43,28 @@ $utente  = $result->fetch_object();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   h1,h3, h4{text-align: center; color:white;}
-  p{text-align: center;}
-  a{float:right;}
-  .card{width: 900px;background: rgba(0,0,0,0.7);margin:5% auto;}
+  p{text-align: center; color:white;}
+  .card{width: 900px; background-color: rgba(0,0,0, 0.7); margin:5% auto;}
   }
-  .table{background-color: rgba(255,255,255,65%);}
   .footBtn{width: 95%;float: left;}
   .orderBtn {float: right;}
   </style>
 </head>
 <body>
-  <?php include 'menu.php'; ?>
+  <?php include 'menu.php'; var_dump($_SESSION["luogo"]);
+  var_dump($_SESSION["data"]);?>
   <div class="card card-sm center-msg-box transparent mobile">
-    <div class="container">
+    <div class="container mobile">
       <h1>Anteprima dell'ordine</h1>
-      <table class="table mobile">
-        <thead>
+      <div class="table-responsive">
+      <table style= "background-color:rgba(255,255,255,65%); " class="table">
           <tr>
             <th>Alimento</th>
             <th>Prezzo</th>
             <th>Quantità</th>
             <th>Subtotale</th>
           </tr>
-        </thead>
-        <tbody>
+
           <?php
           if($cart->total_items() > 0){
             //get cart items from session
@@ -86,21 +80,19 @@ $utente  = $result->fetch_object();
             <?php } }else{ ?>
               <tr><td colspan="4"><p>Non ci sono prodotti nel tuo carrello</p></td>
               <?php } ?>
-            </tbody>
-            <tfoot>
+
               <tr>
                 <td colspan="3"></td>
                 <?php if($cart->total_items() > 0){ ?>
                   <td class="text-center"><strong>Totale <?php echo '€'.$cart->total().' euro'; ?></strong></td>
                 <?php } ?>
               </tr>
-            </tfoot>
           </table>
+        </div>
+
+          <div>
           <h4>Dettagli di spedizione</h4>
-          <div class="table">
-            <p><?php echo $utente->nome; ?></p>
-            <p><?php echo $utente->cognome; ?></p>
-            <p><?php echo $utente->email; ?></p>
+            <p><?php echo $_SESSION['email']; ?></p>
             <p><?php echo $_SESSION['luogo']; ?></p>
           </div>
           <div class="footBtn">

@@ -18,8 +18,8 @@ $current= " ";
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/footer.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
-  <link href="./../css/notificapopup.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style> label{margin-top: 2%;} </style>
 </head>
 <body>
   <?php
@@ -58,7 +58,7 @@ $current= " ";
                 ?>
               </select>
 
-              <label>Seleziona data e orario
+              <label class"data">Seleziona data e orario
                 <input type="dateTime-local" name="oraConsegna" id="currentDateTime"  min="<?php echo date("Y-m-d")."T".date("H:i");?>" value="<?php echo date("Y-m-d")."T".date("H:i");?>" required>
               </label>
 
@@ -67,22 +67,13 @@ $current= " ";
           </div>
           <!--end of col-->
           <div class="col-auto">
-            <button class="btn btn-lg btn-success" id = "submit" type="submit" >Continua ></button>
-            <?php if(isset($_POST['submit'])){
-              $_SESSION["luogo"] = $_POST['luogo'];
-              $servername = "localhost";
-              $username = "root";
-              $password = "";
-              $dbname = "cfu";
-              $conn = new mysqli($servername, $username, $password, $dbname);
-              if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-              }
-              $stmt3 = $conn->prepare("UPDATE prenotazione SET luogo_consegna=? data_consegna=? WHERE id=?");
-              $stmt3->bind_param("ss", $_POST["luogo"], $_POST['oraConsegna'], $_SESSION["id_prenotazione"] );
-              $stmt3->execute();
-              $stmt3->close();
-              $conn->close();
+            <button class="btn btn-lg btn-success" id = "submit" type="submit" >Continua <i class="fa fa-arrow-right"></i></button>
+            <?php
+            if(isset($_POST['submit'])){
+              header("Location: prenotazione2.php");
+
+              var_dump($_POST["luogo"]);
+              var_dump($_POST["oraConsegna"]);
             }
             ?>
           </div>

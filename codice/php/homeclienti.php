@@ -60,7 +60,10 @@ $_SESSION['admin']="false";
           <!--end of col-->
           <div class="col-auto">
             <button class="btn btn-lg btn-success" id = "submit" type="submit" >Ristoranti</button>
-            <?php if(isset($_POST['luogo'])) $selectOption = $_POST['luogo']; ?>
+            <?php if(isset($_POST['luogo'])) $selectOption = $_POST['luogo'];
+            if(isset($_POST['submit'])){
+              header("Location: prenotazione.php");
+            }?>
           </div>
           <!--end of col-->
         </div>
