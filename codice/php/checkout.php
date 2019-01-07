@@ -44,7 +44,6 @@ if($cart->total_items() <= 0){
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
-  <link href="./../css/table.css" rel="stylesheet">
   <link href="./../css/footer.css" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,10 +52,10 @@ if($cart->total_items() <= 0){
   p{text-align: center; color:white;}
   .card{width: 900px; background-color: rgba(0,0,0, 0.7); margin:5% auto;}
   }
-
   .container{ background-color: rgba(0, 0, 0, 0.9);
   }
-  .table{background-color: rgba(255,255,255,65%);}
+  .tot{background-color: #28a745; color:white; margin-top: 1%; margin-bottom: 1%;}
+  .table{background-color: rgba(255,255,255,65%); margin-top: 1%}
   .footBtn{width: 95%;float: left;}
   .orderBtn {float: right;}
   </style>
@@ -66,11 +65,11 @@ if($cart->total_items() <= 0){
   <div class="card card-sm center-msg-box transparent mobile">
     <div class="container  mobile">
       <h1>Anteprima dell'ordine</h1>
-      <div class="table-responsive">
-      <table style= "background-color:rgba(255,255,255,65%); " class="table">
+      <div class="table-responsive table-striped table-light">
+      <table class="table">
           <tr>
             <th>Alimento</th>
-            <th>Prezzo</th>
+            <th>Prezzo unitario</th>
             <th>Quantità</th>
             <th>Subtotale</th>
           </tr>
@@ -94,12 +93,13 @@ if($cart->total_items() <= 0){
               <tr>
               </tr>
           </table>
-              <div class="container  mobile table"style="padding: .75rem;">
-                <?php if($cart->total_items() > 0){ ?>
-                  <div class="text-center tot"><strong>Totale <?php echo '€'.$cart->total().' euro'; ?></strong></div>
-                <?php } ?>
 
-              </div>
+
+        </div>
+        <div class="container  mobile tot"style="padding: .75rem;">
+          <?php if($cart->total_items() > 0){ ?>
+            <div class="text-center tot"><strong>Totale <?php echo '€'.$cart->total().' euro'; ?></strong></div>
+          <?php } ?>
 
         </div>
 

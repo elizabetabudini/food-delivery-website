@@ -118,13 +118,6 @@ if(isset($_POST["sent"])){
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: signinfornitore.php </br>";
     }
 
-    $to = $email;
-    $subject = "Iscrizione CFU - Cesena Food University";
-    $txt = wordwrap($mess,70);
-    $headers = "From: elizabeta.budini@studio.unibo.it" . "\r\n" .
-    "CC: budina97@live.it";
-    mail($to,$subject,$txt,$headers);
-
     $mess= "Il ristorante ".$nomerist." attende la tua approvazione, controlla i tuoi Strumenti";
     $data= date('Y-m-d H-i-s');
     $letto="0";
@@ -137,12 +130,6 @@ if(isset($_POST["sent"])){
     } else {
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: signinfornitore.php </br>";
     }
-    $to = $email;
-    $subject = "Iscrizione CFU - Cesena Food University";
-    $txt = wordwrap($mess,70);
-    $headers = "From: elizabeta.budini@studio.unibo.it" . "\r\n" .
-    "CC: budina97@live.it";
-    mail($to,$subject,$txt,$headers);
 
     if($user->privilegi==1){
       $_SESSION['fornitore']= $user->privilegi;

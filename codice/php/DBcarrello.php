@@ -87,13 +87,6 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
           $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
         }
 
-        $to = $email;
-        $subject = "Ordine CFU - Cesena Food University";
-        $txt = wordwrap($mess,70);
-        $headers = "From: budina97@live.it" . "\r\n" .
-        "CC: budina97@live.it";
-        mail($to,$subject,$txt,$headers);
-
         $stmt5 = $db->prepare("SELECT * FROM prenotazione WHERE id=?");
         if($stmt5!=false){
           $stmt5->bind_param("s", $_SESSION["id_prenotazione"]);

@@ -18,7 +18,6 @@ $carrello = new Cart;
   <link href="./../css/full.css" rel="stylesheet">
   <link href="./../css/menubar.css" rel="stylesheet">
   <link href="./../css/navigation.css" rel="stylesheet">
-  <link href="./../css/table.css" rel="stylesheet">
   <link href="./../css/footer.css" rel="stylesheet">
 
 
@@ -26,11 +25,12 @@ $carrello = new Cart;
   <style>
   input[type="number"]{width: 70px;}
   h1,h3, p{text-align: center; color:white;}
-  .right{float:right;}
-  .left{float:left;}
+  .right{float:right;  margin-bottom: 1%}
+  .left{float:left;  margin-bottom: 1%}
   .card{width: 700px;background: rgba(0,0,0,0.7);}
   .table{background-color: rgba(255,255,255,65%);}
   .nores{color:black;}
+  .tot{background-color: #28a745; color:white; margin-top: 1%; margin-bottom: 1%;}
   </style>
   <script>
 
@@ -69,8 +69,7 @@ $carrello = new Cart;
     }?>
 
 
-      <div class="table-responsive">
-<br>
+      <div class="table-responsive table-striped table-light carrello">
       <table class="table">
         <thead>
           <tr>
@@ -103,17 +102,18 @@ $carrello = new Cart;
             </tr>
           </tbody>
         </table>
-
+</div>
           <?php
           if($carrello->total_items() > 0){ ?>
-            <div class="container  mobile table"style="padding: .75rem;">
+            <div class="container mobile tot"style="padding: .75rem;">
                 <div class="text-center"><strong>Totale <?php echo '€'.$carrello->total().' euro'; ?></strong></div>
             </div>
 
-              </div>
+
             <?php } ?>
           </div>
-        </div>
+
+          </div>
         <?php include 'footer.php'; ?>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
