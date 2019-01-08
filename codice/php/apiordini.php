@@ -46,6 +46,14 @@ if(isset($_REQUEST["action"]) && !empty($_REQUEST["id"])){
     } else {
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
     }
+    $to = "cesenafooduniversity@gmail.com";
+    $subject = "Il tuo ordine è partito! CFU";
+    $headers = "From: cesenafooduniversity@gmail.com" . "\r\n";
+    $body = $email.", grazie per aver utilizzato il nostro servizio!
+    L'ordine id=".$_SESSION['id_prenotazione']." verrà spedito presso ".$luogo." dell'Università di Cesena alle ".$oraConsegna."
+    Ignora questo messaggio se non ti riguarda. CFU Team" . "\r\n";
+    mail($to, $subject, $body, $headers);
+
     header("Location: evadiordini.php");
 
   } elseif($_REQUEST["action"]=="elimina" && !empty($_REQUEST["id"])){
@@ -66,6 +74,13 @@ if(isset($_REQUEST["action"]) && !empty($_REQUEST["id"])){
     } else {
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
     }
+    $to = "cesenafooduniversity@gmail.com";
+    $headers = "From: cesenafooduniversity@gmail.com" . "\r\n";
+    $subject = $email.", il tuo ordine NON è stato accettato! CFU";
+    $body = "Abbiamo emesso il rimborso. Ci scusiamo per il disagio.
+    Ignora questo messaggio se non ti riguarda. CFU Team" . "\r\n";
+    mail($to, $subject, $body, $headers);
+
     header("Location: evadiordini.php");
   }
 }

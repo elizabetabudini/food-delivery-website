@@ -25,6 +25,13 @@ if(isset($_POST["sent"])){
     $stmt2->bind_param("ssss", $mess, $_POST['email'], $data, $letto);
     $stmt2->execute();
     $stmt2->close();
+
+    $to = "cesenafooduniversity@gmail.com";
+    $subject = "Ristorante ".$_POST['email']." Approvato CFU";
+    $headers = "From: cesenafooduniversity@gmail.com" . "\r\n";
+    $body = "Ora sei dei nostri! Il tuo ristorante è stato approvato dal nostro Team.
+    Ignora questo messaggio se non ti riguarda. CFU Team" . "\r\n";
+    mail($to, $subject, $body, $headers);
   }
 
   if($_POST['action'] == "Elimina" ){

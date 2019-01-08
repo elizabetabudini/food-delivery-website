@@ -139,6 +139,12 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         } else {
           $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
         }
+        $to = "cesenafooduniversity@gmail.com";
+        $headers = "From: cesenafooduniversity@gmail.com" . "\r\n";
+        $subject = "Evasione ordine n. ".$_SESSION['id_prenotazione']."di ".$email->email_proprietario;
+        $body = "L'ordine ".$_SESSION['id_prenotazione']." attende di essere evaso. Accedi alla pagina Strumenti
+        Ignora questo messaggio se non ti riguarda. CFU Team" . "\r\n";
+        mail($to, $subject, $body, $headers);
 
         $stmt5 = $db->prepare("SELECT * FROM prenotazione WHERE id=?");
         if($stmt5!=false){
@@ -162,6 +168,14 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         } else {
           $errors .= "Bad Programmatore Exception: la query non è andata a buon fine</br>";
         }
+        $to = "cesenafooduniversity@gmail.com";
+        $headers = "From: cesenafooduniversity@gmail.com" . "\r\n";
+        $subject = "Il tuo ordine è stato accettato! CFU";
+        $body = "Grazie per aver utilizzato il nostro servizio!
+        L'ordine id=".$_SESSION['id_prenotazione']." verrà spedito presso ".$luogo." dell'Università di Cesena alle ".$oraConsegna."
+        Ignora questo messaggio se non ti riguarda. CFU Team" . "\r\n";
+        mail($to, $subject, $body, $headers);
+
         $cart->destroy();
         if(isset($_SESSION["data"])){
           unset($_SESSION["data"]);

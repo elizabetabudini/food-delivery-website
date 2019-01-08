@@ -65,9 +65,9 @@ if(isset($_POST["sent"])){
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: 65 signinfornitore.php </br>";
     }
 
-    $stmt2 = $conn->prepare("INSERT INTO ristorante ( info, email_proprietario, nome, indirizzo, rating) VALUES (?, ?, ?, ?, ?)");
+    $stmt2 = $conn->prepare("INSERT INTO ristorante ( info, email_proprietario, nome, indirizzo, nome_categoria, rating) VALUES (?, ?, ?, ?, ?)");
     if($stmt2!=false){
-      $stmt2->bind_param("sssss", $info, $email, $nomerist, $indirizzorist, $rating);
+      $stmt2->bind_param("ssssss", $info, $email, $nomerist, $indirizzorist, $_POST["Categoria"], $rating);
       $res= $stmt2->execute();
       $stmt2->close();
     } else {
@@ -117,6 +117,14 @@ if(isset($_POST["sent"])){
     } else {
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: signinfornitore.php </br>";
     }
+    $to = $email;
+    $subject = "Iscrizione CESENA FOOD UNIVERSITY";
+    $body = "Iscrizione avvenuta correttamente! Riceverai
+    una notifica quando l'iscrizione sarà approvata dal nostro Team.
+    Ignora questa mail se non ti riguarda. Un saluto, CFU Team";
+    $headers = "From: cesenafooduniversity@gmail.com" . "\r\n";
+    mail($to, $subject, $body, $headers);
+
 
     $mess= "Il ristorante ".$nomerist." attende la tua approvazione, controlla i tuoi Strumenti";
     $data= date('Y-m-d H-i-s');
@@ -130,6 +138,10 @@ if(isset($_POST["sent"])){
     } else {
       $errors .= "Bad Programmatore Exception: la query non è andata a buon fine: signinfornitore.php </br>";
     }
+    $to = "cesenafooduniversity@gmail.com";
+    $subject = "Approvazione ".$nomerist;
+    $body = "Il ristorante ".$nomerist." attende la tua approvazione, controlla i tuoi Strumenti" . "\r\n";
+    mail($to, $subject, $body, $headers);
 
     if($user->privilegi==1){
       $_SESSION['fornitore']= $user->privilegi;
@@ -205,16 +217,33 @@ $current= "signinfornitore";
             <small id="Help" class="form-text text-muted">Ad es. "Viale Bovio, 11, Cesena, FC"</small>
           </div>
           <div class="form-group">
+            <label for="inputIndirizzo">Categoria ristorante</label>
+            <select  class="form-control form-control-md form-control-borderless" id="Categoria" name="Categoria">
+              <?php
+              $conn = new mysqli($servername, $username, $password, $dbname);
+              $sql = mysqli_query($conn, "SELECT nome_categoria FROM categoria_ristoranti");
+              while ($row = $sql->fetch_assoc()){
+                if($row['nome_categoria'] == $categoria){
+                  echo "<option selected value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
+                }else{
+                  echo "<option value='". $row['nome_categoria'] ."'>" . $row['nome_categoria'] . "</option>";
+                }
+              }
+              ?>
+            </select>
+            <small id="Help" class="form-text text-muted">Potrai modificare la tua categoria in seguito, sulla pagina Profilo</small>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Indirizzo Email</label>
+            <input type="email" name="email"  <?php if(isset($_POST["email"])) { echo 'autofocus value="'.htmlspecialchars($_POST['email']).'"';} ?> class="form-control" id="inputEmail" placeholder="Inserisci Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Email non valida! Esempio valido: mario.rossi@gmail.com">
+          </div>
+          <div class="form-group">
             <label for="inputNome">Nome</label>
             <input type="text" <?php if(isset($_POST["nome"])) { echo 'value="'.htmlspecialchars($_POST['nome']).'"';} ?> name="nome" class="form-control" id="inputNome" placeholder="Inserisci Nome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
           </div>
           <div class="form-group">
             <label for="inputCognome">Cognome</label>
             <input type="text" name="cognome" <?php if(isset($_POST["cognome"])) { echo 'value="'.htmlspecialchars($_POST['cognome']).'"';} ?> class="form-control" id="inputCognome" placeholder="Inserisci Cognome" required pattern=".{2,}" title="Inserisci almeno 2 caratteri">
-          </div>
-          <div class="form-group">
-            <label for="inputEmail">Indirizzo Email</label>
-            <input type="email" name="email"  <?php if(isset($_POST["email"])) { echo 'autofocus value="'.htmlspecialchars($_POST['email']).'"';} ?> class="form-control" id="inputEmail" placeholder="Inserisci Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Email non valida! Esempio valido: mario.rossi@gmail.com">
           </div>
           <div class="form-group">
             <label for="inputPassword">Password</label>
