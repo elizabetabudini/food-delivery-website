@@ -1,10 +1,11 @@
-# HOW TO: 
- 1) Scaricare il file cfu.sql presente nella cartella sitotecweb/database     
- 2) Aprire xampp e avviare il servizio cliccando su start (almeno apache e mysqli)    
- 3) Scaricare questa cartella in C:/xampp/htdocs    
- 4) Digitare sulla barra di ricerca localhost/sitotecweb/index.php    
- 5) Per un corretto funzionamento controllare che la versione di PHP sia uguale o superiore a PHP v7.3.0    
- 6) Per l'invio di email sostituire i propri file C:/xampp/php/php.ini e C:/xampp/sendmail/sendmail.ini con quelli forniti nella cartella sitotecweb/database     
- 7) Per leggere le email loggarsi su gmail user: cesenafooduniversity@gmail.com pwd: amministratore    
- 
- Contatti elizabeta.budini@studio.unibo.it  ----- filippo.orazi@studio.unibo.it
+Project evaluated by the University of Bologna on the day 09/01/2019, score: 29/30
+
+This project was carried out in order to provide a food delivery website service to the students of the University of Bologna. It was developed using Bootstrap and CSS/HTML/JS. The interface is interactive and intuitive and allows access to: customers, suppliers and administrators. 
+
+A customer can order food from a restaurant by selecting various filters and menus, can choose a delivery time and place. The customer can monitor the delivery and receive emails (Gmail) with updates about his order.
+Suppliers who own a restaurant can make their products available by specifying price and quantity, can ship a product and monitor delivery and pending orders. 
+Administrators can manage users and control new subscriptions to the site, they can delete or suspend any user.
+
+Go to /mockups/ for screenshots of the website!
+
+Realized by Elizabeta Budini and Filippo Orazi
